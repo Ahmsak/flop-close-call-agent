@@ -1,0 +1,1897 @@
+[
+  {
+    "strategy": "A_one_shot_long",
+    "final_price": "180.00",
+    "accounts": [
+      {
+        "owner": "agent",
+        "registered": true,
+        "collateral": "8000.00",
+        "cash_before_settlement": "1920.0000",
+        "fees": "80.0000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "-800.00",
+        "final_balance": "9120.0000",
+        "contest_score": "-880.0000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "counterparty",
+        "registered": true,
+        "collateral": "8000.00",
+        "cash_before_settlement": "1920.0000",
+        "fees": "80.0000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "800.00",
+        "final_balance": "10720.0000",
+        "contest_score": "720.0000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0.0000",
+    "settled": 1
+  },
+  {
+    "strategy": "A_one_shot_long",
+    "final_price": "200.00",
+    "accounts": [
+      {
+        "owner": "agent",
+        "registered": true,
+        "collateral": "8000.00",
+        "cash_before_settlement": "1920.0000",
+        "fees": "80.0000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "0.00",
+        "final_balance": "9920.0000",
+        "contest_score": "-80.0000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "counterparty",
+        "registered": true,
+        "collateral": "8000.00",
+        "cash_before_settlement": "1920.0000",
+        "fees": "80.0000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "0.00",
+        "final_balance": "9920.0000",
+        "contest_score": "-80.0000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0.0000",
+    "settled": 1
+  },
+  {
+    "strategy": "A_one_shot_long",
+    "final_price": "210.00",
+    "accounts": [
+      {
+        "owner": "agent",
+        "registered": true,
+        "collateral": "8000.00",
+        "cash_before_settlement": "1920.0000",
+        "fees": "80.0000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "400.00",
+        "final_balance": "10320.0000",
+        "contest_score": "320.0000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "counterparty",
+        "registered": true,
+        "collateral": "8000.00",
+        "cash_before_settlement": "1920.0000",
+        "fees": "80.0000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "-400.00",
+        "final_balance": "9520.0000",
+        "contest_score": "-480.0000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0.0000",
+    "settled": 1
+  },
+  {
+    "strategy": "A_one_shot_long",
+    "final_price": "220.00",
+    "accounts": [
+      {
+        "owner": "agent",
+        "registered": true,
+        "collateral": "8000.00",
+        "cash_before_settlement": "1920.0000",
+        "fees": "80.0000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "800.00",
+        "final_balance": "10720.0000",
+        "contest_score": "720.0000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "counterparty",
+        "registered": true,
+        "collateral": "8000.00",
+        "cash_before_settlement": "1920.0000",
+        "fees": "80.0000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "-800.00",
+        "final_balance": "9120.0000",
+        "contest_score": "-880.0000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0.0000",
+    "settled": 1
+  },
+  {
+    "strategy": "A_one_shot_long",
+    "final_price": "400.00",
+    "accounts": [
+      {
+        "owner": "agent",
+        "registered": true,
+        "collateral": "8000.00",
+        "cash_before_settlement": "1920.0000",
+        "fees": "80.0000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "8000.00",
+        "final_balance": "17920.0000",
+        "contest_score": "7920.0000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "counterparty",
+        "registered": true,
+        "collateral": "8000.00",
+        "cash_before_settlement": "1920.0000",
+        "fees": "80.0000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "-8000.00",
+        "final_balance": "1920.0000",
+        "contest_score": "-8080.0000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0.0000",
+    "settled": 1
+  },
+  {
+    "strategy": "B_one_shot_short",
+    "final_price": "180.00",
+    "accounts": [
+      {
+        "owner": "agent",
+        "registered": true,
+        "collateral": "8000.00",
+        "cash_before_settlement": "1920.0000",
+        "fees": "80.0000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "800.00",
+        "final_balance": "10720.0000",
+        "contest_score": "720.0000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "counterparty",
+        "registered": true,
+        "collateral": "8000.00",
+        "cash_before_settlement": "1920.0000",
+        "fees": "80.0000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "-800.00",
+        "final_balance": "9120.0000",
+        "contest_score": "-880.0000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0.0000",
+    "settled": 1
+  },
+  {
+    "strategy": "B_one_shot_short",
+    "final_price": "200.00",
+    "accounts": [
+      {
+        "owner": "agent",
+        "registered": true,
+        "collateral": "8000.00",
+        "cash_before_settlement": "1920.0000",
+        "fees": "80.0000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "0.00",
+        "final_balance": "9920.0000",
+        "contest_score": "-80.0000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "counterparty",
+        "registered": true,
+        "collateral": "8000.00",
+        "cash_before_settlement": "1920.0000",
+        "fees": "80.0000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "0.00",
+        "final_balance": "9920.0000",
+        "contest_score": "-80.0000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0.0000",
+    "settled": 1
+  },
+  {
+    "strategy": "B_one_shot_short",
+    "final_price": "210.00",
+    "accounts": [
+      {
+        "owner": "agent",
+        "registered": true,
+        "collateral": "8000.00",
+        "cash_before_settlement": "1920.0000",
+        "fees": "80.0000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "-400.00",
+        "final_balance": "9520.0000",
+        "contest_score": "-480.0000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "counterparty",
+        "registered": true,
+        "collateral": "8000.00",
+        "cash_before_settlement": "1920.0000",
+        "fees": "80.0000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "400.00",
+        "final_balance": "10320.0000",
+        "contest_score": "320.0000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0.0000",
+    "settled": 1
+  },
+  {
+    "strategy": "B_one_shot_short",
+    "final_price": "220.00",
+    "accounts": [
+      {
+        "owner": "agent",
+        "registered": true,
+        "collateral": "8000.00",
+        "cash_before_settlement": "1920.0000",
+        "fees": "80.0000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "-800.00",
+        "final_balance": "9120.0000",
+        "contest_score": "-880.0000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "counterparty",
+        "registered": true,
+        "collateral": "8000.00",
+        "cash_before_settlement": "1920.0000",
+        "fees": "80.0000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "800.00",
+        "final_balance": "10720.0000",
+        "contest_score": "720.0000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0.0000",
+    "settled": 1
+  },
+  {
+    "strategy": "B_one_shot_short",
+    "final_price": "400.00",
+    "accounts": [
+      {
+        "owner": "agent",
+        "registered": true,
+        "collateral": "8000.00",
+        "cash_before_settlement": "1920.0000",
+        "fees": "80.0000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "-8000.00",
+        "final_balance": "1920.0000",
+        "contest_score": "-8080.0000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "counterparty",
+        "registered": true,
+        "collateral": "8000.00",
+        "cash_before_settlement": "1920.0000",
+        "fees": "80.0000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "8000.00",
+        "final_balance": "17920.0000",
+        "contest_score": "7920.0000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0.0000",
+    "settled": 1
+  },
+  {
+    "strategy": "C_late_long",
+    "final_price": "180.00",
+    "accounts": [
+      {
+        "owner": "agent",
+        "registered": true,
+        "collateral": "8240.00",
+        "cash_before_settlement": "1677.6000",
+        "fees": "82.4000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "-1040.00",
+        "final_balance": "8877.6000",
+        "contest_score": "-1122.4000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "counterparty",
+        "registered": true,
+        "collateral": "8240.00",
+        "cash_before_settlement": "1677.6000",
+        "fees": "82.4000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "1040.00",
+        "final_balance": "10957.6000",
+        "contest_score": "957.6000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0.0000",
+    "settled": 1
+  },
+  {
+    "strategy": "C_late_long",
+    "final_price": "200.00",
+    "accounts": [
+      {
+        "owner": "agent",
+        "registered": true,
+        "collateral": "8240.00",
+        "cash_before_settlement": "1677.6000",
+        "fees": "82.4000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "-240.00",
+        "final_balance": "9677.6000",
+        "contest_score": "-322.4000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "counterparty",
+        "registered": true,
+        "collateral": "8240.00",
+        "cash_before_settlement": "1677.6000",
+        "fees": "82.4000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "240.00",
+        "final_balance": "10157.6000",
+        "contest_score": "157.6000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0.0000",
+    "settled": 1
+  },
+  {
+    "strategy": "C_late_long",
+    "final_price": "210.00",
+    "accounts": [
+      {
+        "owner": "agent",
+        "registered": true,
+        "collateral": "8240.00",
+        "cash_before_settlement": "1677.6000",
+        "fees": "82.4000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "160.00",
+        "final_balance": "10077.6000",
+        "contest_score": "77.6000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "counterparty",
+        "registered": true,
+        "collateral": "8240.00",
+        "cash_before_settlement": "1677.6000",
+        "fees": "82.4000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "-160.00",
+        "final_balance": "9757.6000",
+        "contest_score": "-242.4000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0.0000",
+    "settled": 1
+  },
+  {
+    "strategy": "C_late_long",
+    "final_price": "220.00",
+    "accounts": [
+      {
+        "owner": "agent",
+        "registered": true,
+        "collateral": "8240.00",
+        "cash_before_settlement": "1677.6000",
+        "fees": "82.4000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "560.00",
+        "final_balance": "10477.6000",
+        "contest_score": "477.6000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "counterparty",
+        "registered": true,
+        "collateral": "8240.00",
+        "cash_before_settlement": "1677.6000",
+        "fees": "82.4000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "-560.00",
+        "final_balance": "9357.6000",
+        "contest_score": "-642.4000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0.0000",
+    "settled": 1
+  },
+  {
+    "strategy": "C_late_long",
+    "final_price": "400.00",
+    "accounts": [
+      {
+        "owner": "agent",
+        "registered": true,
+        "collateral": "8240.00",
+        "cash_before_settlement": "1677.6000",
+        "fees": "82.4000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "7760.00",
+        "final_balance": "17677.6000",
+        "contest_score": "7677.6000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "counterparty",
+        "registered": true,
+        "collateral": "8240.00",
+        "cash_before_settlement": "1677.6000",
+        "fees": "82.4000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "-7760.00",
+        "final_balance": "2157.6000",
+        "contest_score": "-7842.4000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0.0000",
+    "settled": 1
+  },
+  {
+    "strategy": "D_late_short",
+    "final_price": "180.00",
+    "accounts": [
+      {
+        "owner": "agent",
+        "registered": true,
+        "collateral": "8240.00",
+        "cash_before_settlement": "1677.6000",
+        "fees": "82.4000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "1040.00",
+        "final_balance": "10957.6000",
+        "contest_score": "957.6000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "counterparty",
+        "registered": true,
+        "collateral": "8240.00",
+        "cash_before_settlement": "1677.6000",
+        "fees": "82.4000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "-1040.00",
+        "final_balance": "8877.6000",
+        "contest_score": "-1122.4000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0.0000",
+    "settled": 1
+  },
+  {
+    "strategy": "D_late_short",
+    "final_price": "200.00",
+    "accounts": [
+      {
+        "owner": "agent",
+        "registered": true,
+        "collateral": "8240.00",
+        "cash_before_settlement": "1677.6000",
+        "fees": "82.4000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "240.00",
+        "final_balance": "10157.6000",
+        "contest_score": "157.6000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "counterparty",
+        "registered": true,
+        "collateral": "8240.00",
+        "cash_before_settlement": "1677.6000",
+        "fees": "82.4000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "-240.00",
+        "final_balance": "9677.6000",
+        "contest_score": "-322.4000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0.0000",
+    "settled": 1
+  },
+  {
+    "strategy": "D_late_short",
+    "final_price": "210.00",
+    "accounts": [
+      {
+        "owner": "agent",
+        "registered": true,
+        "collateral": "8240.00",
+        "cash_before_settlement": "1677.6000",
+        "fees": "82.4000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "-160.00",
+        "final_balance": "9757.6000",
+        "contest_score": "-242.4000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "counterparty",
+        "registered": true,
+        "collateral": "8240.00",
+        "cash_before_settlement": "1677.6000",
+        "fees": "82.4000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "160.00",
+        "final_balance": "10077.6000",
+        "contest_score": "77.6000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0.0000",
+    "settled": 1
+  },
+  {
+    "strategy": "D_late_short",
+    "final_price": "220.00",
+    "accounts": [
+      {
+        "owner": "agent",
+        "registered": true,
+        "collateral": "8240.00",
+        "cash_before_settlement": "1677.6000",
+        "fees": "82.4000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "-560.00",
+        "final_balance": "9357.6000",
+        "contest_score": "-642.4000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "counterparty",
+        "registered": true,
+        "collateral": "8240.00",
+        "cash_before_settlement": "1677.6000",
+        "fees": "82.4000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "560.00",
+        "final_balance": "10477.6000",
+        "contest_score": "477.6000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0.0000",
+    "settled": 1
+  },
+  {
+    "strategy": "D_late_short",
+    "final_price": "400.00",
+    "accounts": [
+      {
+        "owner": "agent",
+        "registered": true,
+        "collateral": "8240.00",
+        "cash_before_settlement": "1677.6000",
+        "fees": "82.4000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "-7760.00",
+        "final_balance": "2157.6000",
+        "contest_score": "-7842.4000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "counterparty",
+        "registered": true,
+        "collateral": "8240.00",
+        "cash_before_settlement": "1677.6000",
+        "fees": "82.4000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "7760.00",
+        "final_balance": "17677.6000",
+        "contest_score": "7677.6000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0.0000",
+    "settled": 1
+  },
+  {
+    "strategy": "E_repeated",
+    "final_price": "180.00",
+    "accounts": [
+      {
+        "owner": "agent",
+        "registered": true,
+        "collateral": "0",
+        "cash_before_settlement": "10072.8000",
+        "fees": "327.2000",
+        "realized_pnl": "400.0000",
+        "unrealized_pnl": "0",
+        "final_balance": "10072.8000",
+        "contest_score": "72.8000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "counterparty",
+        "registered": true,
+        "collateral": "0",
+        "cash_before_settlement": "9272.8000",
+        "fees": "327.2000",
+        "realized_pnl": "-400.0000",
+        "unrealized_pnl": "0",
+        "final_balance": "9272.8000",
+        "contest_score": "-727.2000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0.0000",
+    "settled": 4
+  },
+  {
+    "strategy": "E_repeated",
+    "final_price": "200.00",
+    "accounts": [
+      {
+        "owner": "agent",
+        "registered": true,
+        "collateral": "0",
+        "cash_before_settlement": "10072.8000",
+        "fees": "327.2000",
+        "realized_pnl": "400.0000",
+        "unrealized_pnl": "0",
+        "final_balance": "10072.8000",
+        "contest_score": "72.8000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "counterparty",
+        "registered": true,
+        "collateral": "0",
+        "cash_before_settlement": "9272.8000",
+        "fees": "327.2000",
+        "realized_pnl": "-400.0000",
+        "unrealized_pnl": "0",
+        "final_balance": "9272.8000",
+        "contest_score": "-727.2000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0.0000",
+    "settled": 4
+  },
+  {
+    "strategy": "E_repeated",
+    "final_price": "210.00",
+    "accounts": [
+      {
+        "owner": "agent",
+        "registered": true,
+        "collateral": "0",
+        "cash_before_settlement": "10072.8000",
+        "fees": "327.2000",
+        "realized_pnl": "400.0000",
+        "unrealized_pnl": "0",
+        "final_balance": "10072.8000",
+        "contest_score": "72.8000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "counterparty",
+        "registered": true,
+        "collateral": "0",
+        "cash_before_settlement": "9272.8000",
+        "fees": "327.2000",
+        "realized_pnl": "-400.0000",
+        "unrealized_pnl": "0",
+        "final_balance": "9272.8000",
+        "contest_score": "-727.2000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0.0000",
+    "settled": 4
+  },
+  {
+    "strategy": "E_repeated",
+    "final_price": "220.00",
+    "accounts": [
+      {
+        "owner": "agent",
+        "registered": true,
+        "collateral": "0",
+        "cash_before_settlement": "10072.8000",
+        "fees": "327.2000",
+        "realized_pnl": "400.0000",
+        "unrealized_pnl": "0",
+        "final_balance": "10072.8000",
+        "contest_score": "72.8000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "counterparty",
+        "registered": true,
+        "collateral": "0",
+        "cash_before_settlement": "9272.8000",
+        "fees": "327.2000",
+        "realized_pnl": "-400.0000",
+        "unrealized_pnl": "0",
+        "final_balance": "9272.8000",
+        "contest_score": "-727.2000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0.0000",
+    "settled": 4
+  },
+  {
+    "strategy": "E_repeated",
+    "final_price": "400.00",
+    "accounts": [
+      {
+        "owner": "agent",
+        "registered": true,
+        "collateral": "0",
+        "cash_before_settlement": "10072.8000",
+        "fees": "327.2000",
+        "realized_pnl": "400.0000",
+        "unrealized_pnl": "0",
+        "final_balance": "10072.8000",
+        "contest_score": "72.8000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "counterparty",
+        "registered": true,
+        "collateral": "0",
+        "cash_before_settlement": "9272.8000",
+        "fees": "327.2000",
+        "realized_pnl": "-400.0000",
+        "unrealized_pnl": "0",
+        "final_balance": "9272.8000",
+        "contest_score": "-727.2000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0.0000",
+    "settled": 4
+  },
+  {
+    "strategy": "F_market_making",
+    "final_price": "180.00",
+    "accounts": [
+      {
+        "owner": "agent",
+        "registered": true,
+        "collateral": "0",
+        "cash_before_settlement": "9999.2000",
+        "fees": "160.8000",
+        "realized_pnl": "160.0000",
+        "unrealized_pnl": "0",
+        "final_balance": "9999.2000",
+        "contest_score": "-0.8000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "counterparty",
+        "registered": true,
+        "collateral": "0",
+        "cash_before_settlement": "9680.0000",
+        "fees": "160.0000",
+        "realized_pnl": "-160.0000",
+        "unrealized_pnl": "0",
+        "final_balance": "9680.0000",
+        "contest_score": "-320.0000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0.0000",
+    "settled": 2
+  },
+  {
+    "strategy": "F_market_making",
+    "final_price": "200.00",
+    "accounts": [
+      {
+        "owner": "agent",
+        "registered": true,
+        "collateral": "0",
+        "cash_before_settlement": "9999.2000",
+        "fees": "160.8000",
+        "realized_pnl": "160.0000",
+        "unrealized_pnl": "0",
+        "final_balance": "9999.2000",
+        "contest_score": "-0.8000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "counterparty",
+        "registered": true,
+        "collateral": "0",
+        "cash_before_settlement": "9680.0000",
+        "fees": "160.0000",
+        "realized_pnl": "-160.0000",
+        "unrealized_pnl": "0",
+        "final_balance": "9680.0000",
+        "contest_score": "-320.0000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0.0000",
+    "settled": 2
+  },
+  {
+    "strategy": "F_market_making",
+    "final_price": "210.00",
+    "accounts": [
+      {
+        "owner": "agent",
+        "registered": true,
+        "collateral": "0",
+        "cash_before_settlement": "9999.2000",
+        "fees": "160.8000",
+        "realized_pnl": "160.0000",
+        "unrealized_pnl": "0",
+        "final_balance": "9999.2000",
+        "contest_score": "-0.8000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "counterparty",
+        "registered": true,
+        "collateral": "0",
+        "cash_before_settlement": "9680.0000",
+        "fees": "160.0000",
+        "realized_pnl": "-160.0000",
+        "unrealized_pnl": "0",
+        "final_balance": "9680.0000",
+        "contest_score": "-320.0000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0.0000",
+    "settled": 2
+  },
+  {
+    "strategy": "F_market_making",
+    "final_price": "220.00",
+    "accounts": [
+      {
+        "owner": "agent",
+        "registered": true,
+        "collateral": "0",
+        "cash_before_settlement": "9999.2000",
+        "fees": "160.8000",
+        "realized_pnl": "160.0000",
+        "unrealized_pnl": "0",
+        "final_balance": "9999.2000",
+        "contest_score": "-0.8000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "counterparty",
+        "registered": true,
+        "collateral": "0",
+        "cash_before_settlement": "9680.0000",
+        "fees": "160.0000",
+        "realized_pnl": "-160.0000",
+        "unrealized_pnl": "0",
+        "final_balance": "9680.0000",
+        "contest_score": "-320.0000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0.0000",
+    "settled": 2
+  },
+  {
+    "strategy": "F_market_making",
+    "final_price": "400.00",
+    "accounts": [
+      {
+        "owner": "agent",
+        "registered": true,
+        "collateral": "0",
+        "cash_before_settlement": "9999.2000",
+        "fees": "160.8000",
+        "realized_pnl": "160.0000",
+        "unrealized_pnl": "0",
+        "final_balance": "9999.2000",
+        "contest_score": "-0.8000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "counterparty",
+        "registered": true,
+        "collateral": "0",
+        "cash_before_settlement": "9680.0000",
+        "fees": "160.0000",
+        "realized_pnl": "-160.0000",
+        "unrealized_pnl": "0",
+        "final_balance": "9680.0000",
+        "contest_score": "-320.0000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0.0000",
+    "settled": 2
+  },
+  {
+    "strategy": "G_momentum",
+    "final_price": "180.00",
+    "accounts": [
+      {
+        "owner": "agent",
+        "registered": true,
+        "collateral": "8240.00",
+        "cash_before_settlement": "1677.6000",
+        "fees": "82.4000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "-1040.00",
+        "final_balance": "8877.6000",
+        "contest_score": "-1122.4000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "counterparty",
+        "registered": true,
+        "collateral": "8240.00",
+        "cash_before_settlement": "1677.6000",
+        "fees": "82.4000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "1040.00",
+        "final_balance": "10957.6000",
+        "contest_score": "957.6000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0.0000",
+    "settled": 1
+  },
+  {
+    "strategy": "G_momentum",
+    "final_price": "200.00",
+    "accounts": [
+      {
+        "owner": "agent",
+        "registered": true,
+        "collateral": "8240.00",
+        "cash_before_settlement": "1677.6000",
+        "fees": "82.4000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "-240.00",
+        "final_balance": "9677.6000",
+        "contest_score": "-322.4000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "counterparty",
+        "registered": true,
+        "collateral": "8240.00",
+        "cash_before_settlement": "1677.6000",
+        "fees": "82.4000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "240.00",
+        "final_balance": "10157.6000",
+        "contest_score": "157.6000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0.0000",
+    "settled": 1
+  },
+  {
+    "strategy": "G_momentum",
+    "final_price": "210.00",
+    "accounts": [
+      {
+        "owner": "agent",
+        "registered": true,
+        "collateral": "8240.00",
+        "cash_before_settlement": "1677.6000",
+        "fees": "82.4000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "160.00",
+        "final_balance": "10077.6000",
+        "contest_score": "77.6000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "counterparty",
+        "registered": true,
+        "collateral": "8240.00",
+        "cash_before_settlement": "1677.6000",
+        "fees": "82.4000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "-160.00",
+        "final_balance": "9757.6000",
+        "contest_score": "-242.4000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0.0000",
+    "settled": 1
+  },
+  {
+    "strategy": "G_momentum",
+    "final_price": "220.00",
+    "accounts": [
+      {
+        "owner": "agent",
+        "registered": true,
+        "collateral": "8240.00",
+        "cash_before_settlement": "1677.6000",
+        "fees": "82.4000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "560.00",
+        "final_balance": "10477.6000",
+        "contest_score": "477.6000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "counterparty",
+        "registered": true,
+        "collateral": "8240.00",
+        "cash_before_settlement": "1677.6000",
+        "fees": "82.4000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "-560.00",
+        "final_balance": "9357.6000",
+        "contest_score": "-642.4000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0.0000",
+    "settled": 1
+  },
+  {
+    "strategy": "G_momentum",
+    "final_price": "400.00",
+    "accounts": [
+      {
+        "owner": "agent",
+        "registered": true,
+        "collateral": "8240.00",
+        "cash_before_settlement": "1677.6000",
+        "fees": "82.4000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "7760.00",
+        "final_balance": "17677.6000",
+        "contest_score": "7677.6000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "counterparty",
+        "registered": true,
+        "collateral": "8240.00",
+        "cash_before_settlement": "1677.6000",
+        "fees": "82.4000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "-7760.00",
+        "final_balance": "2157.6000",
+        "contest_score": "-7842.4000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0.0000",
+    "settled": 1
+  },
+  {
+    "strategy": "H_contrarian",
+    "final_price": "180.00",
+    "accounts": [
+      {
+        "owner": "agent",
+        "registered": true,
+        "collateral": "8240.00",
+        "cash_before_settlement": "1677.6000",
+        "fees": "82.4000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "1040.00",
+        "final_balance": "10957.6000",
+        "contest_score": "957.6000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "counterparty",
+        "registered": true,
+        "collateral": "8240.00",
+        "cash_before_settlement": "1677.6000",
+        "fees": "82.4000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "-1040.00",
+        "final_balance": "8877.6000",
+        "contest_score": "-1122.4000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0.0000",
+    "settled": 1
+  },
+  {
+    "strategy": "H_contrarian",
+    "final_price": "200.00",
+    "accounts": [
+      {
+        "owner": "agent",
+        "registered": true,
+        "collateral": "8240.00",
+        "cash_before_settlement": "1677.6000",
+        "fees": "82.4000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "240.00",
+        "final_balance": "10157.6000",
+        "contest_score": "157.6000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "counterparty",
+        "registered": true,
+        "collateral": "8240.00",
+        "cash_before_settlement": "1677.6000",
+        "fees": "82.4000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "-240.00",
+        "final_balance": "9677.6000",
+        "contest_score": "-322.4000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0.0000",
+    "settled": 1
+  },
+  {
+    "strategy": "H_contrarian",
+    "final_price": "210.00",
+    "accounts": [
+      {
+        "owner": "agent",
+        "registered": true,
+        "collateral": "8240.00",
+        "cash_before_settlement": "1677.6000",
+        "fees": "82.4000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "-160.00",
+        "final_balance": "9757.6000",
+        "contest_score": "-242.4000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "counterparty",
+        "registered": true,
+        "collateral": "8240.00",
+        "cash_before_settlement": "1677.6000",
+        "fees": "82.4000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "160.00",
+        "final_balance": "10077.6000",
+        "contest_score": "77.6000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0.0000",
+    "settled": 1
+  },
+  {
+    "strategy": "H_contrarian",
+    "final_price": "220.00",
+    "accounts": [
+      {
+        "owner": "agent",
+        "registered": true,
+        "collateral": "8240.00",
+        "cash_before_settlement": "1677.6000",
+        "fees": "82.4000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "-560.00",
+        "final_balance": "9357.6000",
+        "contest_score": "-642.4000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "counterparty",
+        "registered": true,
+        "collateral": "8240.00",
+        "cash_before_settlement": "1677.6000",
+        "fees": "82.4000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "560.00",
+        "final_balance": "10477.6000",
+        "contest_score": "477.6000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0.0000",
+    "settled": 1
+  },
+  {
+    "strategy": "H_contrarian",
+    "final_price": "400.00",
+    "accounts": [
+      {
+        "owner": "agent",
+        "registered": true,
+        "collateral": "8240.00",
+        "cash_before_settlement": "1677.6000",
+        "fees": "82.4000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "-7760.00",
+        "final_balance": "2157.6000",
+        "contest_score": "-7842.4000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "counterparty",
+        "registered": true,
+        "collateral": "8240.00",
+        "cash_before_settlement": "1677.6000",
+        "fees": "82.4000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "7760.00",
+        "final_balance": "17677.6000",
+        "contest_score": "7677.6000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0.0000",
+    "settled": 1
+  },
+  {
+    "strategy": "I_no_trade",
+    "final_price": "180.00",
+    "accounts": [
+      {
+        "owner": "agent",
+        "registered": true,
+        "collateral": "0",
+        "cash_before_settlement": "10000",
+        "fees": "0",
+        "realized_pnl": "0",
+        "unrealized_pnl": "0",
+        "final_balance": "10000",
+        "contest_score": "0",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "counterparty",
+        "registered": true,
+        "collateral": "0",
+        "cash_before_settlement": "10000",
+        "fees": "0",
+        "realized_pnl": "0",
+        "unrealized_pnl": "0",
+        "final_balance": "10000",
+        "contest_score": "0",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0",
+    "settled": 0
+  },
+  {
+    "strategy": "I_no_trade",
+    "final_price": "200.00",
+    "accounts": [
+      {
+        "owner": "agent",
+        "registered": true,
+        "collateral": "0",
+        "cash_before_settlement": "10000",
+        "fees": "0",
+        "realized_pnl": "0",
+        "unrealized_pnl": "0",
+        "final_balance": "10000",
+        "contest_score": "0",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "counterparty",
+        "registered": true,
+        "collateral": "0",
+        "cash_before_settlement": "10000",
+        "fees": "0",
+        "realized_pnl": "0",
+        "unrealized_pnl": "0",
+        "final_balance": "10000",
+        "contest_score": "0",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0",
+    "settled": 0
+  },
+  {
+    "strategy": "I_no_trade",
+    "final_price": "210.00",
+    "accounts": [
+      {
+        "owner": "agent",
+        "registered": true,
+        "collateral": "0",
+        "cash_before_settlement": "10000",
+        "fees": "0",
+        "realized_pnl": "0",
+        "unrealized_pnl": "0",
+        "final_balance": "10000",
+        "contest_score": "0",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "counterparty",
+        "registered": true,
+        "collateral": "0",
+        "cash_before_settlement": "10000",
+        "fees": "0",
+        "realized_pnl": "0",
+        "unrealized_pnl": "0",
+        "final_balance": "10000",
+        "contest_score": "0",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0",
+    "settled": 0
+  },
+  {
+    "strategy": "I_no_trade",
+    "final_price": "220.00",
+    "accounts": [
+      {
+        "owner": "agent",
+        "registered": true,
+        "collateral": "0",
+        "cash_before_settlement": "10000",
+        "fees": "0",
+        "realized_pnl": "0",
+        "unrealized_pnl": "0",
+        "final_balance": "10000",
+        "contest_score": "0",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "counterparty",
+        "registered": true,
+        "collateral": "0",
+        "cash_before_settlement": "10000",
+        "fees": "0",
+        "realized_pnl": "0",
+        "unrealized_pnl": "0",
+        "final_balance": "10000",
+        "contest_score": "0",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0",
+    "settled": 0
+  },
+  {
+    "strategy": "I_no_trade",
+    "final_price": "400.00",
+    "accounts": [
+      {
+        "owner": "agent",
+        "registered": true,
+        "collateral": "0",
+        "cash_before_settlement": "10000",
+        "fees": "0",
+        "realized_pnl": "0",
+        "unrealized_pnl": "0",
+        "final_balance": "10000",
+        "contest_score": "0",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "counterparty",
+        "registered": true,
+        "collateral": "0",
+        "cash_before_settlement": "10000",
+        "fees": "0",
+        "realized_pnl": "0",
+        "unrealized_pnl": "0",
+        "final_balance": "10000",
+        "contest_score": "0",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0",
+    "settled": 0
+  },
+  {
+    "strategy": "J_independent_owners",
+    "final_price": "180.00",
+    "accounts": [
+      {
+        "owner": "long_agent",
+        "registered": true,
+        "collateral": "8000.00",
+        "cash_before_settlement": "1920.0000",
+        "fees": "80.0000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "-800.00",
+        "final_balance": "9120.0000",
+        "contest_score": "-880.0000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "short_agent",
+        "registered": true,
+        "collateral": "8000.00",
+        "cash_before_settlement": "1920.0000",
+        "fees": "80.0000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "800.00",
+        "final_balance": "10720.0000",
+        "contest_score": "720.0000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "baseline",
+        "registered": true,
+        "collateral": "0",
+        "cash_before_settlement": "10000",
+        "fees": "0",
+        "realized_pnl": "0",
+        "unrealized_pnl": "0",
+        "final_balance": "10000",
+        "contest_score": "0",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "external_seller",
+        "registered": true,
+        "collateral": "8000.00",
+        "cash_before_settlement": "1920.0000",
+        "fees": "80.0000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "800.00",
+        "final_balance": "10720.0000",
+        "contest_score": "720.0000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "external_buyer",
+        "registered": true,
+        "collateral": "8000.00",
+        "cash_before_settlement": "1920.0000",
+        "fees": "80.0000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "-800.00",
+        "final_balance": "9120.0000",
+        "contest_score": "-880.0000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0.0000",
+    "settled": 2
+  },
+  {
+    "strategy": "J_independent_owners",
+    "final_price": "200.00",
+    "accounts": [
+      {
+        "owner": "long_agent",
+        "registered": true,
+        "collateral": "8000.00",
+        "cash_before_settlement": "1920.0000",
+        "fees": "80.0000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "0.00",
+        "final_balance": "9920.0000",
+        "contest_score": "-80.0000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "short_agent",
+        "registered": true,
+        "collateral": "8000.00",
+        "cash_before_settlement": "1920.0000",
+        "fees": "80.0000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "0.00",
+        "final_balance": "9920.0000",
+        "contest_score": "-80.0000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "baseline",
+        "registered": true,
+        "collateral": "0",
+        "cash_before_settlement": "10000",
+        "fees": "0",
+        "realized_pnl": "0",
+        "unrealized_pnl": "0",
+        "final_balance": "10000",
+        "contest_score": "0",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "external_seller",
+        "registered": true,
+        "collateral": "8000.00",
+        "cash_before_settlement": "1920.0000",
+        "fees": "80.0000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "0.00",
+        "final_balance": "9920.0000",
+        "contest_score": "-80.0000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "external_buyer",
+        "registered": true,
+        "collateral": "8000.00",
+        "cash_before_settlement": "1920.0000",
+        "fees": "80.0000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "0.00",
+        "final_balance": "9920.0000",
+        "contest_score": "-80.0000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0.0000",
+    "settled": 2
+  },
+  {
+    "strategy": "J_independent_owners",
+    "final_price": "210.00",
+    "accounts": [
+      {
+        "owner": "long_agent",
+        "registered": true,
+        "collateral": "8000.00",
+        "cash_before_settlement": "1920.0000",
+        "fees": "80.0000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "400.00",
+        "final_balance": "10320.0000",
+        "contest_score": "320.0000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "short_agent",
+        "registered": true,
+        "collateral": "8000.00",
+        "cash_before_settlement": "1920.0000",
+        "fees": "80.0000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "-400.00",
+        "final_balance": "9520.0000",
+        "contest_score": "-480.0000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "baseline",
+        "registered": true,
+        "collateral": "0",
+        "cash_before_settlement": "10000",
+        "fees": "0",
+        "realized_pnl": "0",
+        "unrealized_pnl": "0",
+        "final_balance": "10000",
+        "contest_score": "0",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "external_seller",
+        "registered": true,
+        "collateral": "8000.00",
+        "cash_before_settlement": "1920.0000",
+        "fees": "80.0000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "-400.00",
+        "final_balance": "9520.0000",
+        "contest_score": "-480.0000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "external_buyer",
+        "registered": true,
+        "collateral": "8000.00",
+        "cash_before_settlement": "1920.0000",
+        "fees": "80.0000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "400.00",
+        "final_balance": "10320.0000",
+        "contest_score": "320.0000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0.0000",
+    "settled": 2
+  },
+  {
+    "strategy": "J_independent_owners",
+    "final_price": "220.00",
+    "accounts": [
+      {
+        "owner": "long_agent",
+        "registered": true,
+        "collateral": "8000.00",
+        "cash_before_settlement": "1920.0000",
+        "fees": "80.0000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "800.00",
+        "final_balance": "10720.0000",
+        "contest_score": "720.0000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "short_agent",
+        "registered": true,
+        "collateral": "8000.00",
+        "cash_before_settlement": "1920.0000",
+        "fees": "80.0000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "-800.00",
+        "final_balance": "9120.0000",
+        "contest_score": "-880.0000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "baseline",
+        "registered": true,
+        "collateral": "0",
+        "cash_before_settlement": "10000",
+        "fees": "0",
+        "realized_pnl": "0",
+        "unrealized_pnl": "0",
+        "final_balance": "10000",
+        "contest_score": "0",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "external_seller",
+        "registered": true,
+        "collateral": "8000.00",
+        "cash_before_settlement": "1920.0000",
+        "fees": "80.0000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "-800.00",
+        "final_balance": "9120.0000",
+        "contest_score": "-880.0000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "external_buyer",
+        "registered": true,
+        "collateral": "8000.00",
+        "cash_before_settlement": "1920.0000",
+        "fees": "80.0000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "800.00",
+        "final_balance": "10720.0000",
+        "contest_score": "720.0000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0.0000",
+    "settled": 2
+  },
+  {
+    "strategy": "J_independent_owners",
+    "final_price": "400.00",
+    "accounts": [
+      {
+        "owner": "long_agent",
+        "registered": true,
+        "collateral": "8000.00",
+        "cash_before_settlement": "1920.0000",
+        "fees": "80.0000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "8000.00",
+        "final_balance": "17920.0000",
+        "contest_score": "7920.0000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "short_agent",
+        "registered": true,
+        "collateral": "8000.00",
+        "cash_before_settlement": "1920.0000",
+        "fees": "80.0000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "-8000.00",
+        "final_balance": "1920.0000",
+        "contest_score": "-8080.0000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "baseline",
+        "registered": true,
+        "collateral": "0",
+        "cash_before_settlement": "10000",
+        "fees": "0",
+        "realized_pnl": "0",
+        "unrealized_pnl": "0",
+        "final_balance": "10000",
+        "contest_score": "0",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "external_seller",
+        "registered": true,
+        "collateral": "8000.00",
+        "cash_before_settlement": "1920.0000",
+        "fees": "80.0000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "-8000.00",
+        "final_balance": "1920.0000",
+        "contest_score": "-8080.0000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      },
+      {
+        "owner": "external_buyer",
+        "registered": true,
+        "collateral": "8000.00",
+        "cash_before_settlement": "1920.0000",
+        "fees": "80.0000",
+        "realized_pnl": "0.0000",
+        "unrealized_pnl": "8000.00",
+        "final_balance": "17920.0000",
+        "contest_score": "7920.0000",
+        "collateral_after_settlement": "0",
+        "unrealized_after_settlement": "0"
+      }
+    ],
+    "zero_sum": "0.0000",
+    "settled": 2
+  }
+]

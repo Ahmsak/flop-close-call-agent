@@ -1,0 +1,29 @@
+{
+  "owners": [
+    "agent",
+    "counterparty"
+  ],
+  "seed_price": "200.00",
+  "final_price": "210.00",
+  "sweeps": [
+    {
+      "n": 1,
+      "reference_price": "200.00",
+      "close_price": "200.00",
+      "trades": [
+        {
+          "id": "entry",
+          "owner": "agent",
+          "counterparty": "counterparty",
+          "side": "long",
+          "quantity": "40",
+          "entry_price": "200.00"
+        }
+      ],
+      "register": [
+        "agent",
+        "counterparty"
+      ]
+    }
+  ]
+}

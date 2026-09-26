@@ -1,0 +1,10 @@
+# Public participant archives remain local, per upstream AGENTS.md.
+*.txt
+*.json
+!provenance.json
+!upstream_checks.json
+!signature_verification.json
+!simulation_verification.json
+!local_checks.json
+!strategy_results.json
+!strategy_scenarios.json

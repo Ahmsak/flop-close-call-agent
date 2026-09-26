@@ -1,0 +1,39 @@
+{
+  "timestamp": "2026-09-26T10:32:23.676782+00:00",
+  "algorithm": "Ed25519; exact room|nonce|text UTF-8; public multicodec ed01 key",
+  "signature_created": false,
+  "rooms": {
+    "d-close1-flow": {
+      "records": 264,
+      "verified": 264
+    },
+    "d-close1-state": {
+      "records": 264,
+      "verified": 264
+    },
+    "d-close1-price": {
+      "records": 265,
+      "verified": 265
+    },
+    "d-close1-positions": {
+      "records": 264,
+      "verified": 264
+    },
+    "d-close1-pnl": {
+      "records": 264,
+      "verified": 264
+    }
+  },
+  "failures": [],
+  "tampering_rejected": [
+    true,
+    true,
+    true
+  ],
+  "seed_signature_valid": true,
+  "seed_manifest_matches": true,
+  "manifest_sha256": "bae09812e25eb6f1369c611f24964f7ea0acafddfc45301a16f33f941296dafa",
+  "close1_launch_trust_anchor_verified": false,
+  "authority": "DRAFT/UNVERIFIED",
+  "limitation": "Seed signature proves possession of stated key. No close-1 signed FLOP Labs launch binding that key to the contest was located."
+}

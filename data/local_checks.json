@@ -1,0 +1,76 @@
+[
+  {
+    "command": [
+      "python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "local_tests",
+      "-v"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "test_after_lock_rejected (test_tooling.ToolingTests) ... ok\ntest_clawback (test_tooling.ToolingTests) ... ok\ntest_client_execution_flag_never_enables (test_tooling.ToolingTests) ... ok\ntest_custom_start_and_fees (test_tooling.ToolingTests) ... ok\ntest_insufficient_counterparty_funds (test_tooling.ToolingTests) ... ok\ntest_last_sweep_mints_before_trades (test_tooling.ToolingTests) ... ok\ntest_long_short_conservation (test_tooling.ToolingTests) ... ok\ntest_multiple_trades_realized_unrealized (test_tooling.ToolingTests) ... ok\ntest_no_trade_ties (test_tooling.ToolingTests) ... ok\ntest_official_7_digit_amount_limit (test_tooling.ToolingTests) ... ok\ntest_self_trade_disabled (test_tooling.ToolingTests) ... ok\ntest_short_negative_balance (test_tooling.ToolingTests) ... ok\ntest_unregistered_counterparty (test_tooling.ToolingTests) ... ok\ntest_validation_does_not_mutate (test_tooling.ToolingTests) ... ok\ntest_validator_rejects_invalid_closing_reference (test_tooling.ToolingTests) ... ok\ntest_upstream_accepts_after_final_and_result_is_stale (test_tooling.UpstreamAuditObservations) ... ok\ntest_upstream_accepts_extra_trade_fields (test_tooling.UpstreamAuditObservations) ... ok\n\n----------------------------------------------------------------------\nRan 17 tests in 0.026s\n\nOK\n"
+  },
+  {
+    "command": [
+      "python",
+      "-m",
+      "tools.research_scenarios"
+    ],
+    "exit_code": 0,
+    "stdout": "50 official-Fold scenarios completed\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "python",
+      "tools/simulate_strategy.py",
+      "tools/example_scenario.json",
+      "--output",
+      "data/example_result.json"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "C:\\Users\\razgl\\Documents\\Codex\\2026-09-26\\files-pasted-by-the-user-ai\\outputs\\flop-close-call\\.venv\\Scripts\\python.exe",
+      "tools/verify_public_snapshot.py"
+    ],
+    "exit_code": 0,
+    "stdout": "{\n  \"verification\": {\n    \"timestamp\": \"2026-09-26T10:32:23.676782+00:00\",\n    \"algorithm\": \"Ed25519; exact room|nonce|text UTF-8; public multicodec ed01 key\",\n    \"signature_created\": false,\n    \"rooms\": {\n      \"d-close1-flow\": {\n        \"records\": 264,\n        \"verified\": 264\n      },\n      \"d-close1-state\": {\n        \"records\": 264,\n        \"verified\": 264\n      },\n      \"d-close1-price\": {\n        \"records\": 265,\n        \"verified\": 265\n      },\n      \"d-close1-positions\": {\n        \"records\": 264,\n        \"verified\": 264\n      },\n      \"d-close1-pnl\": {\n        \"records\": 264,\n        \"verified\": 264\n      }\n    },\n    \"failures\": [],\n    \"tampering_rejected\": [\n      true,\n      true,\n      true\n    ],\n    \"seed_signature_valid\": true,\n    \"seed_manifest_matches\": true,\n    \"manifest_sha256\": \"bae09812e25eb6f1369c611f24964f7ea0acafddfc45301a16f33f941296dafa\",\n    \"close1_launch_trust_anchor_verified\": false,\n    \"authority\": \"DRAFT/UNVERIFIED\",\n    \"limitation\": \"Seed signature proves possession of stated key. No close-1 signed FLOP Labs launch binding that key to the contest was located.\"\n  },\n  \"snapshot_summary\": {\n    \"timestamp\": \"2026-09-26T10:02:51.151402+00:00\",\n    \"authority\": \"DRAFT/UNVERIFIED\",\n    \"signatures_verified\": true,\n    \"latest_common_sweep\": 264,\n    \"sweep_timestamp\": \"2026-09-26T10:00:19.057634Z\",\n    \"registered_owner_accounts\": 1141897,\n    \"participant_humans\": null,\n    \"leaderboard_mark\": \"222.72\",\n    \"top_score\": \"163.60\",\n    \"third_score\": \"156.02\",\n    \"score_type\": \"live mark-to-market, not final contest result\",\n    \"reference_price\": {\n      \"px\": \"224.39\",\n      \"tid\": 663907000390743,\n      \"time\": \"2026-09-26T09:59:55.703000Z\"\n    },\n    \"trade_count\": null,\n    \"trade_count_lower_bound\": 111162,\n    \"reported_trade_count\": 111162,\n    \"mint_count_reconciled\": 1141897,\n    \"mint_mismatch_sweeps\": [],\n    \"missed_range_sweeps\": 32,\n    \"max_observed_post_delay_seconds\": 2500.826832999999,\n    \"max_observed_post_delay_sweep\": 42,\n    \"trade_count_limitation\": \"Includes disclosed omitted counts; older flow posts may omit trades without a count. Full archives not located.\",\n    \"referee_key\": \"did:key:z6MkowHQwsx9xr84WbWN3YCnKutyBnBXkT1ChKY4uEAAMzte\",\n    \"seed_manifest_sha256\": \"bae09812e25eb6f1369c611f24964f7ea0acafddfc45301a16f33f941296dafa\"\n  }\n}\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "python",
+      "scripts/verify.py"
+    ],
+    "exit_code": 0,
+    "stdout": "Verified 15 artifacts against manifest.json.\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "python",
+      "scripts/build.py",
+      "--check"
+    ],
+    "exit_code": 0,
+    "stdout": "Generated files are current.\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "diff",
+      "--exit-code"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  }
+]

@@ -1,0 +1,361 @@
+{
+  "A_one_shot_long": {
+    "owners": [
+      "agent",
+      "counterparty"
+    ],
+    "seed_price": "200.00",
+    "final_price": "210.00",
+    "sweeps": [
+      {
+        "n": 1,
+        "reference_price": "200.00",
+        "close_price": "200.00",
+        "trades": [
+          {
+            "id": "entry",
+            "owner": "agent",
+            "counterparty": "counterparty",
+            "side": "long",
+            "quantity": "40",
+            "entry_price": "200.00"
+          }
+        ],
+        "register": [
+          "agent",
+          "counterparty"
+        ]
+      }
+    ]
+  },
+  "B_one_shot_short": {
+    "owners": [
+      "agent",
+      "counterparty"
+    ],
+    "seed_price": "200.00",
+    "final_price": "210.00",
+    "sweeps": [
+      {
+        "n": 1,
+        "reference_price": "200.00",
+        "close_price": "200.00",
+        "trades": [
+          {
+            "id": "entry",
+            "owner": "agent",
+            "counterparty": "counterparty",
+            "side": "short",
+            "quantity": "40",
+            "entry_price": "200.00"
+          }
+        ],
+        "register": [
+          "agent",
+          "counterparty"
+        ]
+      }
+    ]
+  },
+  "C_late_long": {
+    "owners": [
+      "agent",
+      "counterparty"
+    ],
+    "seed_price": "200.00",
+    "final_price": "210.00",
+    "sweeps": [
+      {
+        "n": 2554,
+        "reference_price": "206.00",
+        "close_price": "206.00",
+        "trades": [
+          {
+            "id": "entry",
+            "owner": "agent",
+            "counterparty": "counterparty",
+            "side": "long",
+            "quantity": "40",
+            "entry_price": "206.00"
+          }
+        ],
+        "register": [
+          "agent",
+          "counterparty"
+        ]
+      }
+    ]
+  },
+  "D_late_short": {
+    "owners": [
+      "agent",
+      "counterparty"
+    ],
+    "seed_price": "200.00",
+    "final_price": "210.00",
+    "sweeps": [
+      {
+        "n": 2554,
+        "reference_price": "206.00",
+        "close_price": "206.00",
+        "trades": [
+          {
+            "id": "entry",
+            "owner": "agent",
+            "counterparty": "counterparty",
+            "side": "short",
+            "quantity": "40",
+            "entry_price": "206.00"
+          }
+        ],
+        "register": [
+          "agent",
+          "counterparty"
+        ]
+      }
+    ]
+  },
+  "E_repeated": {
+    "owners": [
+      "agent",
+      "counterparty"
+    ],
+    "seed_price": "200.00",
+    "final_price": "210.00",
+    "sweeps": [
+      {
+        "n": 1,
+        "reference_price": "200.00",
+        "close_price": "200.00",
+        "trades": [
+          {
+            "id": "entry",
+            "owner": "agent",
+            "counterparty": "counterparty",
+            "side": "long",
+            "quantity": "40",
+            "entry_price": "200.00"
+          }
+        ],
+        "register": [
+          "agent",
+          "counterparty"
+        ]
+      },
+      {
+        "n": 100,
+        "reference_price": "206.00",
+        "close_price": "206.00",
+        "trades": [
+          {
+            "id": "exit1",
+            "owner": "agent",
+            "counterparty": "counterparty",
+            "side": "short",
+            "quantity": "40",
+            "entry_price": "206.00"
+          }
+        ],
+        "register": []
+      },
+      {
+        "n": 200,
+        "reference_price": "204.00",
+        "close_price": "204.00",
+        "trades": [
+          {
+            "id": "entry2",
+            "owner": "agent",
+            "counterparty": "counterparty",
+            "side": "long",
+            "quantity": "40",
+            "entry_price": "204.00"
+          }
+        ],
+        "register": []
+      },
+      {
+        "n": 300,
+        "reference_price": "208.00",
+        "close_price": "208.00",
+        "trades": [
+          {
+            "id": "exit2",
+            "owner": "agent",
+            "counterparty": "counterparty",
+            "side": "short",
+            "quantity": "40",
+            "entry_price": "208.00"
+          }
+        ],
+        "register": []
+      }
+    ]
+  },
+  "F_market_making": {
+    "owners": [
+      "agent",
+      "counterparty"
+    ],
+    "seed_price": "200.00",
+    "final_price": "210.00",
+    "sweeps": [
+      {
+        "n": 1,
+        "reference_price": "200.00",
+        "close_price": "200.00",
+        "trades": [
+          {
+            "id": "entry",
+            "owner": "agent",
+            "counterparty": "counterparty",
+            "side": "long",
+            "quantity": "40",
+            "entry_price": "198.00"
+          }
+        ],
+        "register": [
+          "agent",
+          "counterparty"
+        ]
+      },
+      {
+        "n": 2,
+        "reference_price": "200.00",
+        "close_price": "200.00",
+        "trades": [
+          {
+            "id": "ask",
+            "owner": "agent",
+            "counterparty": "counterparty",
+            "side": "short",
+            "quantity": "40",
+            "entry_price": "202.00"
+          }
+        ],
+        "register": []
+      }
+    ]
+  },
+  "G_momentum": {
+    "owners": [
+      "agent",
+      "counterparty"
+    ],
+    "seed_price": "200.00",
+    "final_price": "210.00",
+    "sweeps": [
+      {
+        "n": 100,
+        "reference_price": "206.00",
+        "close_price": "206.00",
+        "trades": [
+          {
+            "id": "entry",
+            "owner": "agent",
+            "counterparty": "counterparty",
+            "side": "long",
+            "quantity": "40",
+            "entry_price": "206.00"
+          }
+        ],
+        "register": [
+          "agent",
+          "counterparty"
+        ]
+      }
+    ]
+  },
+  "H_contrarian": {
+    "owners": [
+      "agent",
+      "counterparty"
+    ],
+    "seed_price": "200.00",
+    "final_price": "210.00",
+    "sweeps": [
+      {
+        "n": 100,
+        "reference_price": "206.00",
+        "close_price": "206.00",
+        "trades": [
+          {
+            "id": "entry",
+            "owner": "agent",
+            "counterparty": "counterparty",
+            "side": "short",
+            "quantity": "40",
+            "entry_price": "206.00"
+          }
+        ],
+        "register": [
+          "agent",
+          "counterparty"
+        ]
+      }
+    ]
+  },
+  "I_no_trade": {
+    "owners": [
+      "agent",
+      "counterparty"
+    ],
+    "seed_price": "200.00",
+    "final_price": "210.00",
+    "sweeps": [
+      {
+        "n": 1,
+        "reference_price": "200.00",
+        "close_price": "200.00",
+        "trades": [],
+        "register": [
+          "agent",
+          "counterparty"
+        ]
+      }
+    ]
+  },
+  "J_independent_owners": {
+    "owners": [
+      "long_agent",
+      "short_agent",
+      "baseline",
+      "external_seller",
+      "external_buyer"
+    ],
+    "seed_price": "200.00",
+    "final_price": "210.00",
+    "sweeps": [
+      {
+        "n": 1,
+        "reference_price": "200.00",
+        "close_price": "200.00",
+        "trades": [
+          {
+            "id": "independent_long",
+            "owner": "long_agent",
+            "counterparty": "external_seller",
+            "side": "long",
+            "quantity": "40",
+            "entry_price": "200.00"
+          },
+          {
+            "id": "independent_short",
+            "owner": "short_agent",
+            "counterparty": "external_buyer",
+            "side": "short",
+            "quantity": "40",
+            "entry_price": "200.00"
+          }
+        ],
+        "register": [
+          "long_agent",
+          "short_agent",
+          "baseline",
+          "external_seller",
+          "external_buyer"
+        ]
+      }
+    ]
+  }
+}

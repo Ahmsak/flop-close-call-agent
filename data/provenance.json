@@ -1,0 +1,92 @@
+{
+  "timestamp": "2026-09-26T10:02:59.585889+00:00",
+  "requested_path": "C:\\works\\flop-close-call",
+  "actual_path": "C:\\Users\\razgl\\Documents\\Codex\\2026-09-26\\files-pasted-by-the-user-ai\\outputs\\flop-close-call",
+  "commands": [
+    {
+      "command": [
+        "git",
+        "remote",
+        "-v"
+      ],
+      "exit_code": 0,
+      "stdout": "origin\thttps://github.com/flop-labs/technocore-close-call-challenge (fetch)\norigin\thttps://github.com/flop-labs/technocore-close-call-challenge (push)\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "branch",
+        "--show-current"
+      ],
+      "exit_code": 0,
+      "stdout": "main\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": "66c1da36538e4b1c685417d2f66922906b13fea0\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "log",
+        "-1",
+        "--format=%cI"
+      ],
+      "exit_code": 0,
+      "stdout": "2026-09-25T17:02:20+08:00\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "show-ref",
+        "--tags"
+      ],
+      "exit_code": 0,
+      "stdout": "debe011b0683f9b11ac12498440398937d305ba8 refs/tags/close-1\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "status",
+        "--porcelain=v1"
+      ],
+      "exit_code": 0,
+      "stdout": "?? data/\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "cat-file",
+        "-p",
+        "close-1"
+      ],
+      "exit_code": 0,
+      "stdout": "object 66c1da36538e4b1c685417d2f66922906b13fea0\ntype commit\ntag close-1\ntagger Sergey Vidyuk <svidyuk@gmail.com> 1790327534 +0800\n\nclose-1: the package the referee runs\n\nmanifest.json sha256 bae09812e25eb6f1369c611f24964f7ea0acafddfc45301a16f33f941296dafa\nOpening 2026-09-25T12:00:00Z; lock 2026-10-04T09:00:00Z; S is the last xyz:NVDA trade before 10:00:00 UTC on 4 October.\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "log",
+        "--all",
+        "--oneline"
+      ],
+      "exit_code": 0,
+      "stdout": "66c1da3 Rules: no challenge window; S as posted is final (#4)\ne2d300e Rules: 5% limits and a clawback against the sweep's closing price (#3)\n2ffd8be Rules: 5% limits and a clawback against the sweep's closing price (#2)\n3764025 close-1 package: public rooms, reserved referee names, simulation, and a 1M FLOP pool for the top three (#1)\na566c5d Close Call package: rules, fold, sample season and tests\n",
+      "stderr": ""
+    }
+  ],
+  "authority": "DRAFT/UNVERIFIED",
+  "manifest_sha256": "bae09812e25eb6f1369c611f24964f7ea0acafddfc45301a16f33f941296dafa"
+}

@@ -1,0 +1,13 @@
+{
+  "command": "python sim/close_call_sim.py data/upstream_sim_results.json",
+  "exit_code": 0,
+  "stdout": "1785 seasons in 872s\n",
+  "stderr": "",
+  "expected_seasons": 1785,
+  "completed_seasons": 1785,
+  "max_absolute_zero_sum_gap": 1.7462298274040222e-09,
+  "results_sha256": "7742b393034195c59051bc67c609ef0f62889b5caf48a36112d552c55e332406",
+  "reproducibility": "run(0,n=30) repeated twice, exactly equal to each other and full-suite scale[0]",
+  "scope": "Unmodified upstream design regression suite, not a developed strategy",
+  "timestamp": "2026-09-26T10:32:22.397349+00:00"
+}
