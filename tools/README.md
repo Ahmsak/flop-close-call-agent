@@ -1,11 +1,13 @@
-# Offline tools
+# Read-only research tools
+
+Stage 2 setup, trust boundaries and current repository status: [Hermes handoff](../docs/HERMES_HANDOFF.md).
 
 Run from the repository root with Python 3.10+:
 
 ```powershell
 python tools/simulate_strategy.py tools/example_scenario.json
 python -m tools.research_scenarios
-python -m unittest discover -s local_tests -v
+.\.venv\Scripts\python.exe -m unittest discover -s local_tests -v
 ```
 
 `simulate_strategy.py` imports the unchanged `close_call_fold.Fold`. No network, signing, new DID or private key is involved. Owner labels reuse the six public IDs in the upstream sample; maximum six accounts per scenario. All participants, including counterparties, have the selected starting POLF. A void is reported, never silently treated as a fill.
@@ -23,7 +25,16 @@ print(client.get_reference_price())
 assert client.construct_trade() == 'EXECUTION_DISABLED'
 ```
 
-The client observes a saved local snapshot, not a refreshed live service. `find_counterparties()` returns unknown/empty because an authenticated, complete offer archive is absent. No transport is activated. Local validation requires an existing Fold plus prospective sweep/reference/close; it cannot know the future close or reserve counterparties' funds.
+`observe()` reads a saved snapshot and recomputes its age. `refresh_once()` explicitly fetches the six fixed public export endpoints, verifies signatures and package continuity, and atomically saves a PARTIAL snapshot. It never upgrades referee authority or claims full ledger replay. `find_counterparties()` returns unknown/empty because a complete verified offer archive is absent. Local validation requires an existing Fold plus prospective sweep/reference/close; it cannot know the future close or reserve counterparties' funds.
+
+```powershell
+.\.venv\Scripts\python.exe -m tools.contest_client.observer
+python -m tools.research_scenarios --final-comparison --snapshot data/observer/latest.json
+```
+
+The observer uses GET only, no credentials, no redirects, a 15-second socket timeout, 12 MiB response cap and at most three attempts (1s/2s backoff). Raw UTF-8 bytes, source URLs, retrieval times, SHA-256, room generation and per-record signature/sequence checks stay under ignored `data/observer/`. This is one refresh, not a background service. Refresh exit 0 permits PARTIAL evidence; consult all trust flags. A rejected refresh saves evidence but does not replace `latest.json`.
+
+`validated_replay()` requires a complete seed/sweeps/final sequence before invoking the unchanged Fold. It is an ordering guard, not signature authentication or a downloaded-archive verifier. Full archive retrieval is currently unavailable; no live full-replay claim is made.
 
 To repeat public signature verification on already saved exports:
 

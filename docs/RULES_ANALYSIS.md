@@ -1,5 +1,7 @@
 # Close Call: правила, код и границы доказательств
 
+> Stage2 trust audit: [HERMES_HANDOFF](HERMES_HANDOFF.md). Подпись seed, manifest match и local rules pin подтверждены отдельно; authority close-1, полнота архива и full ledger replay не подтверждены. Upstream Fold оставлен неизменным.
+
 Дата исследования: 26 сентября 2026. **DRAFT/UNVERIFIED**: локальная подготовка без участия.
 Проверяемый upstream commit: `66c1da36538e4b1c685417d2f66922906b13fea0`.
 Все ссылки на строки ниже относятся к этому commit. Ни один файл upstream не исправлен.

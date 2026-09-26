@@ -1,5 +1,7 @@
 # Исследование стратегий — только локально
 
+> Дополнение stage2: [48 final scenarios](STAGE2_REPORT.md) и [передача Hermes](HERMES_HANDOFF.md). Они явно разделяют trade P, previous reference, close H, global live mark и final S. Старые условные планы entry не гарантируют безопасный дедлайн; для late account требуется заранее подтверждённый mint. Место среди конкурентов остаётся UNKNOWN.
+
 **DRAFT/UNVERIFIED**, candidate package `66c1da36538e4b1c685417d2f66922906b13fea0`.
 Это анализ конкурсных POLF, не инструкция по реальным финансовым операциям. Прогноз NVDA не строился; вероятность выигрыша и будущий threshold неизвестны.
 

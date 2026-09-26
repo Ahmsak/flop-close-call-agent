@@ -47,7 +47,7 @@ def simulate(scenario):
         cfg.update(mint=start, fee_rate=fee)
         fold = Fold(cfg)
         fold.seed(scenario['seed_price'])
-        sweeps, history = [], []
+        sweeps, history, prices, not_submitted = [], [], [], []
         final_px = scenario['final_price']
         if amount(final_px) is None:
             raise ValueError('invalid final_price')
@@ -57,6 +57,9 @@ def simulate(scenario):
                 raise ValueError('sweep outside configured trading phase')
             trades = []
             for raw in sweep.get('trades', []):
+                if raw.get('counterparty_available',True) is False:
+                    not_submitted.append({'id':raw['id'],'sweep':n,'reason':'NO_COUNTERPARTY'})
+                    continue
                 if raw['side'] not in ('long', 'short', 'buy', 'sell'):
                     raise ValueError('side must be long/short/buy/sell')
                 if raw['owner'] == raw['counterparty']:
@@ -69,12 +72,17 @@ def simulate(scenario):
             result = fold.sweep(n, sweep['reference_price'], sweep['close_price'],
                                 [ids[k] for k in sweep.get('register', [])], trades)
             sweeps.append(result)
+            prices.append({'sweep':n,'trade_prices':[t['px'] for t in trades],
+                           'previous_reference_for_limits':sweep['reference_price'],
+                           'closing_reference_for_fee':sweep['close_price'],
+                           'global_price_for_live_board':str(fold.global_px),'hypothetical_final_S':final_px})
             for label, key in ids.items():
                 if key in fold.accounts:
                     account = fold.accounts[key]
                     history.append({'sweep': n, 'owner': label, 'cash': str(account.cash),
                                     'collateral': str(sum((abs(q)*p for q,p in account.lots), Decimal(0))),
                                     'fees': str(account.fees), 'position': str(account.position)})
+                    history[-1]['live_score']=str(account.value_at(fold.global_px)-fold.mint)
         final = fold.final(final_px)
         report = []
         s = Decimal(final_px)
@@ -96,7 +104,8 @@ def simulate(scenario):
                 'upstream_commit': '66c1da36538e4b1c685417d2f66922906b13fea0',
                 'counterfactual_parameters': start != '10000' or fee != '0.01',
                 'clawback': 'official max(base_fee, favorable_close_gap); never disabled',
-                'accounts': report, 'history': history, 'sweeps': sweeps, 'final': final}
+                'accounts': report, 'history': history, 'sweeps': sweeps, 'final': final,
+                'price_roles':prices,'not_submitted':not_submitted}
 
 
 def main():

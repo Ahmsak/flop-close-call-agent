@@ -1,5 +1,7 @@
 # Публичное состояние — read only
 
+> Исторический snapshot stage1. Более позднее наблюдение sweep279 и раздельные trust/counts: [STAGE2_REPORT](STAGE2_REPORT.md). Для нового snapshot использовать observer из [HERMES_HANDOFF](HERMES_HANDOFF.md); stale пересчитывается при чтении.
+
 Снимок получен **2026-09-26 10:02:51 UTC** (15:02:51 Asia/Qyzylorda). Последний общий для пяти комнат sweep **#264**, state timestamp **10:00:19.057634 UTC**. Это фиксированный снимок, не поток обновлений.
 
 | Показатель | Значение |

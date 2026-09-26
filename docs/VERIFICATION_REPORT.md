@@ -1,5 +1,7 @@
 # Проверка repository и локальных дополнений
 
+> Stage1 evidence сохранено ниже. Stage2: 50/50 local tests и 18/18 upstream tests PASS, verify/build --check PASS; новый observer и ограничения описаны в [HERMES_HANDOFF](HERMES_HANDOFF.md) и [STAGE2_REPORT](STAGE2_REPORT.md). Текущие remotes: upstream — официальный, origin — Ahmsak/flop-close-call-agent. Push пока заблокирован отсутствием Git credentials.
+
 26 сентября 2026. Candidate commit `66c1da36538e4b1c685417d2f66922906b13fea0`; **DRAFT/UNVERIFIED**. Оригинальные artifacts сохранены byte-for-byte. Никаких исправлений ради тестов.
 
 ## Окружение и clone

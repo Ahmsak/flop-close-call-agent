@@ -1,4 +1,6 @@
 # Public participant archives remain local, per upstream AGENTS.md.
+observer/
+stage2/
 *.txt
 *.json
 !provenance.json

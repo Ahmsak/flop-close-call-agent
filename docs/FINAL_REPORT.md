@@ -1,5 +1,7 @@
 # Итог подготовки
 
+> Исторический отчёт stage1. Актуальное продолжение: [HERMES_HANDOFF](HERMES_HANDOFF.md) и [STAGE2_REPORT](STAGE2_REPORT.md). Прежние сведения о remotes, GitHub, counts и условном времени entry ниже не являются текущим статусом.
+
 Рабочая копия подготовлена в `C:\Users\razgl\Documents\Codex\2026-09-26\files-pasted-by-the-user-ai\outputs\flop-close-call`.
 Запрошенный `C:\works\flop-close-call` недоступен для создания: Windows Permission denied сохранялся после разрешений. Это единственное отклонение по размещению; переписывание ACL/elevation не выполнялось.
 

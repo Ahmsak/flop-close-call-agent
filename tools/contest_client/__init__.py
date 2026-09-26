@@ -1,7 +1,8 @@
-"""Offline-first interface. No transport, key generation, signing or execution implementation."""
+"""Offline-first interface with explicit public GET refresh; execution stays disabled."""
 from copy import deepcopy
 from decimal import Decimal, localcontext
 import json
+import datetime as dt
 from pathlib import Path
 from tools.simulate_strategy import simulate
 from close_call_fold import amount
@@ -19,17 +20,32 @@ class ContestClient:
     def observe(self):
         if self.snapshot_path is None:
             return {'status': 'NO_LOCAL_SNAPSHOT', 'read_only': True}
-        return json.loads(self.snapshot_path.read_text(encoding='utf-8'))
+        snapshot=json.loads(self.snapshot_path.read_text(encoding='utf-8'))
+        now=dt.datetime.now(dt.timezone.utc)
+        try:
+            times=[snapshot.get('sweep_timestamp',snapshot['timestamp']),snapshot['reference_price']['time']]
+            ages=[(now-dt.datetime.fromisoformat(t.replace('Z','+00:00'))).total_seconds() for t in times]
+            snapshot['stale']=max(ages)>900 or min(ages)<-60
+        except (KeyError,TypeError,ValueError):snapshot['stale']=True
+        snapshot['read_at_utc']=now.isoformat()
+        return snapshot
+
+    def refresh_once(self, output=None):
+        from .observer import refresh, ROOT
+        destination=Path(output) if output else ROOT/'data/observer'
+        snapshot=refresh(destination)
+        if snapshot['status']!='REJECTED':self.snapshot_path=destination/'latest.json'
+        return snapshot
 
     def get_leaderboard(self):
         s = self.observe()
         return {'top': s.get('leaderboard', []), 'timestamp': s.get('timestamp'),
-                'authority': s.get('authority', 'UNVERIFIED'), 'complete': False}
+                'authority': s.get('authority', 'UNVERIFIED'), 'complete': False,'stale':s.get('stale',True)}
 
     def get_reference_price(self):
         s = self.observe()
         return {'reference': s.get('reference_price'), 'timestamp': s.get('timestamp'),
-                'status': 'SNAPSHOT_ONLY_NOT_EXECUTABLE'}
+                'status': 'SNAPSHOT_ONLY_NOT_EXECUTABLE','stale':s.get('stale',True)}
 
     def find_counterparties(self):
         return {'candidates': [], 'status': 'UNKNOWN_NO_VERIFIED_OFFER_ARCHIVE'}
