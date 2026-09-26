@@ -12,7 +12,7 @@
 - `origin`: https://github.com/Ahmsak/flop-close-call-agent.git
 - Официальный candidate commit: `66c1da36538e4b1c685417d2f66922906b13fea0`; тег `close-1` совпал. Manifest SHA-256: `bae09812e25eb6f1369c611f24964f7ea0acafddfc45301a16f33f941296dafa`.
 - Это обычный собственный repository с сохранением исходной Git history, не GitHub fork. LICENSE/NOTICE и manifest-covered artifacts сохранены.
-- GitHub repository создан пустым private. Затем пользователь запросил public; изменение остановлено GitHub на Confirm access (email reauthentication). До завершения этого шага public не подтверждён. Git credentials недоступны, push не выполнен, remote commit SHA отсутствует. Не выдавать локальный SHA за pushed SHA.
+- GitHub repository создан пустым private, затем по запросу пользователя переведён в **PUBLIC**. После подтверждения пользователем email reauthentication настройки GitHub показывают «This repository is currently public». Git credentials отдельно недоступны: браузерный вход не авторизует Git. Push пока не выполнен, remote commit SHA отсутствует. Не выдавать локальный SHA за pushed SHA.
 - Старые stage 1 отчёты сохранены как история. Этот handoff и STAGE2_REPORT имеют приоритет по текущему состоянию. Не считать прежние условные 08:45/08:50 UTC безопасными дедлайнами.
 
 ## Команды из корня repository
@@ -90,4 +90,4 @@ Candidate lock: **2026-10-04 09:00 UTC = 14:00 Asia/Almaty**, sweep #2556. Final
 
 Upstream verify 15 artifacts, build --check, 18 tests PASS. Наши 50 tests PASS, включая настоящую публичную seed signature и tamper; синтетические envelopes используют mock verifier, новых подписей не создают. Полная upstream design suite 1785 seasons прошла на stage1, не изменена и повторно не выдаётся за свежий запуск. История перед push проверяется audit_history; это pattern/path/size scan плюс review, не математическое доказательство отсутствия всех секретов.
 
-GitHub writes: создание пустого repository; смена видимости пока ожидает reauthentication. Issues/PR/comments/upstream writes: 0. Contest writes/signatures/new keys/funds: 0.
+GitHub writes: создание пустого repository и изменение видимости в PUBLIC. Issues/PR/comments/upstream writes: 0. Contest writes/signatures/new keys/funds: 0.
