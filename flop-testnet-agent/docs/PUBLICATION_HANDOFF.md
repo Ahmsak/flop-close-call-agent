@@ -61,3 +61,12 @@ of 81 discovered; the private-history regression remains excluded as described a
 No mission or live model call was run here. Operational location and closed model
 allowance are unchanged. Publication-only config.example.json and this handoff remain
 preserved; runtime and the real model-generated artifact are not published.
+
+### Delivery publication
+
+The completed one-shot delivery adapter and tests are published with anonymized
+acceptance evidence. A new SUPERSEDED guard for obsolete BLOCKED notices was added
+and tested only in this clone. The operational sibling was intentionally untouched
+in this publication task; it does not yet contain this new guard. Do not assume that
+publishing this branch deploys it, and do not run a second operational installation.
+Latest clone tests: 88 PASS, 0 FAIL, 1 private-history SKIP. No model or Telegram call.

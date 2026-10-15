@@ -7,6 +7,7 @@ from contextlib import contextmanager
 from datetime import datetime, timezone
 from pathlib import Path
 import time
+import hashlib
 
 from ops import canonical, digest, strict_json
 
@@ -205,22 +206,62 @@ class Durable:
             self.store.event(key,'automation_completed',evidence); self._mark('useful_work','CONFIRMED')
         return nid
 
-    def deliver(self,nid,adapter,policy):
+    def deliver(self,nid,adapter,policy,*,grant=None):
         p=policy.read()
-        if getattr(adapter,'environment',None)!='sandbox' or p.get('automation_sandbox_delivery') is not True:
+        live=getattr(adapter,'environment',None)=='telegram'
+        if not live and (getattr(adapter,'environment',None)!='sandbox' or p.get('automation_sandbox_delivery') is not True):
             raise PermissionError('DELIVERY_NOT_AUTHORIZED')
         with self.tx():
             row=dict(self.db.execute('SELECT * FROM automation_outbox WHERE id=?',(nid,)).fetchone())
-            if row['state']!='PENDING' or row['next_attempt']>self.clock() or row['attempts']>=3: return row
-            if digest(p)!=self.task(row['task_id'])['policy_hash']: raise PermissionError('POLICY_CHANGED')
+            # Keep obsolete blocked history, but never present it as current after
+            # completion. Match the exact block-notice key, not arbitrary notices.
+            if (row['state']=='PENDING' and row['reason'] is not None and
+                self.task(row['task_id'])['state']=='CONFIRMED' and
+                nid==digest([row['task_id'],'local-review','BLOCKED',row['reason']])):
+                self.db.execute("UPDATE automation_outbox SET state='SUPERSEDED' WHERE id=?",(nid,))
+                self.store.event(row['task_id'],'notification_superseded',{'notification_id':nid,'reason':'TASK_ALREADY_COMPLETED'})
+                return dict(self.db.execute('SELECT * FROM automation_outbox WHERE id=?',(nid,)).fetchone())
+            retry_local=(live and row['state']=='NOT_SENT' and grant and grant.get('retry_proven_not_sent') is True
+                         and row['receipt'] and strict_json(row['receipt']).get('requests')==0
+                         and not self.db.execute('SELECT 1 FROM metadata WHERE key=?',('telegram_wire:'+nid,)).fetchone())
+            if not retry_local and (row['state']!='PENDING' or row['next_attempt']>self.clock() or row['attempts']>=(1 if live else 3)): return row
+            if live:
+                task=self.task(row['task_id']); result=strict_json(task['result']) if task['result'] else {}
+                if (not grant or grant.get('status')!='OPEN' or grant.get('notification_id')!=nid or
+                    grant.get('task_id')!=task['id'] or grant.get('attempts')!=1 or
+                    grant.get('outbox_attempt',1)!=row['attempts']+1 or
+                    grant.get('expires',0)<=self.clock() or grant.get('chat_id')!=adapter.chat_id or
+                    grant.get('username')!=adapter.username or not str(adapter.chat_id).isdigit()):
+                    raise PermissionError('EXACT_DELIVERY_GRANT_REQUIRED')
+                if task['state']!='CONFIRMED' or (row['reason'] is not None and not retry_local) or nid!=digest([task['id'],'local-review']):
+                    raise PermissionError('COMPLETION_NOTICE_REQUIRED')
+                artifact=Path(result['artifact'])
+                if (str(artifact.resolve())!=grant.get('artifact') or
+                    digest(artifact.read_text(encoding='utf-8'))!=result['artifact_hash'] or
+                    hashlib.sha256(artifact.read_bytes()).hexdigest()!=grant.get('sha256')):
+                    raise PermissionError('ARTIFACT_CHANGED')
+                permission_key='delivery_permission:'+nid
+                if self.db.execute('SELECT 1 FROM metadata WHERE key=?',(permission_key,)).fetchone() and not retry_local:
+                    raise PermissionError('DELIVERY_PERMISSION_CLOSED')
+                if retry_local:
+                    self.store.event(row['task_id'],'delivery_local_block_resolved',{'notification_id':nid,'previous_attempts':row['attempts'],'previous_receipt':strict_json(row['receipt'])})
+                self.db.execute('INSERT OR REPLACE INTO metadata VALUES(?,?)',(permission_key,canonical({**grant,'status':'CLOSED'})))
+                self.store.event(row['task_id'],'delivery_intent',{'notification_id':nid,'grant_hash':digest(grant),'artifact_sha256':grant['sha256']})
+            elif digest(p)!=self.task(row['task_id'])['policy_hash']: raise PermissionError('POLICY_CHANGED')
             self.db.execute("UPDATE automation_outbox SET state='SENDING',attempts=attempts+1 WHERE id=?",(nid,))
         try:
-            response=adapter.send(nid,row['destination'],strict_json(self.task(row['task_id'])['result']))
+            payload=strict_json(self.task(row['task_id'])['result'])
+            if live: payload={**payload,'delivery_grant':grant}
+            response=adapter.send(nid,adapter.chat_id if live else row['destination'],payload)
         except Exception:
             response=None
         with self.tx():
             if response and response.get('accepted') is True and response.get('service_id'):
                 state,reason='SERVICE_ACCEPTED',None
+            elif live and response and response.get('rejected') is True:
+                state,reason='FAILED','SERVICE_REJECTED_NO_RETRY'
+            elif live and response and response.get('status')=='NOT_SENT' and response.get('requests')==0:
+                state,reason='NOT_SENT','LOCAL_PREFLIGHT_BLOCKED'
             elif response and response.get('definitely_not_sent') is True:
                 state,reason=('FAILED' if row['attempts']+1>=3 else 'PENDING'),'RETRY_BACKOFF'
             else: state,reason='UNKNOWN','RECONCILIATION_REQUIRED'

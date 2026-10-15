@@ -283,3 +283,92 @@ live delivery or FLOP operations were performed during publication. Existing mod
 allowance remains closed; neither configuration nor limits were copied or changed.
 Close Call checks: 18 PASS, generated files current, 15 manifest artifacts verified.
 Only reviewed component changes are staged; prior tools/ changes remain local.
+
+
+## Telegram delivery preflight — 2026-10-15
+
+One delivery was authorized subject to confirmed private owner binding. Existing
+completed task and completion outbox were found; the older BLOCKED notice was left
+untouched. Artifact digest matched the stored result. At this initial preflight stage
+the executor was sandbox-only; no live outbox extension had yet been activated.
+
+Existing Hermes configuration contained an allowed numeric home chat. Read-only
+Telegram getChat confirmed a private chat, but its authoritative username differed
+from the requested owner username and the local directory label. Delivery stopped:
+NOT_SENT, zero send requests, no message_id, USER_READ UNKNOWN. An owner-confirmed
+mapping for the configured numeric chat is required before any later authorization.
+No bot, gateway, webhook, model allowance or schedule was changed.
+
+At this initial stage telegram_bridge.py provided only a reusable read-only preflight.
+Tests reject username/ID/allowlist mismatches, groups and display-name
+matches alone. Private diagnostic evidence is only in operational runtime. One-time
+delivery permission CLOSED; task remains CONFIRMED, both outbox entries unchanged.
+No mission reexecution, new LLM calls, commit or push. These delivery-specific files
+and this section are synchronized in both copies; the working installation stays
+in the original sibling directory.
+
+Delivery-stage local suite: 83 tests PASS. Separate process reread confirms task
+CONFIRMED/attempts=1, completion outbox PENDING/attempts=0/receipt=null and
+unchanged two prior model actions. No sender rerun or additional network send.
+
+
+## Owner-confirmed Telegram delivery — 2026-10-15
+
+Owner resolved the username mismatch and confirmed the configured private account.
+Read-only getChat then verified numeric ID, private-chat type, allowlist and username.
+Exactly one saved HTML document with a historical-material disclaimer was accepted
+by Telegram with a message_id. Receipt, numeric recipient and grant remain private
+in operational runtime/SQLite. USER_READ remains UNKNOWN; no exactly-once guarantee.
+
+Existing Durable.deliver now supports a separate exact one-shot delivery grant bound
+to task, completion notification, recipient, username, artifact path/hash, expiry
+and one wire request. An atomic transaction claims SENDING and closes permission
+before calling the installed Hermes adapter. A second SQLite wire claim prevents
+repeat requests across processes. HTTP retries and redirects are disabled for sends;
+all message sends except the scoped document are blocked at the request boundary.
+
+First outbox invocation was NOT_SENT with requests=0: the installed Hermes caption
+extension list excluded HTML and attempted a separate text message, blocked locally.
+An isolated-process HTML-caption compatibility adjustment fixed this without editing
+Hermes files or gateway settings. An explicit proven-NOT_SENT recovery preserved the
+first receipt in the journal and used a new scoped grant; no automatic retry occurred.
+Final outbox invocation count is 2, but actual Telegram send requests is exactly 1.
+Unknown outcomes and any existing wire claim prohibit this local-block recovery.
+
+A new process read the stored SERVICE_ACCEPTED receipt and invoked the sender path
+with a transport that raises if called: no send occurred. Original task/result,
+two previous model actions, config hash and old BLOCKED notice remained unchanged.
+All one-shot permissions CLOSED. No LLM calls, mission reexecution or FLOP operations.
+88 local tests PASS, including receipt persistence, lost reply, no resend, scope/hash
+checks, and explicit local-only recovery. Both source copies are synchronized for
+these delivery files; no commit/push or operational installation migration.
+
+## Delivery publication and stale-notice regression
+
+Published delivery support comprises durable.py, telegram_bridge.py, deliver_once.py,
+synthetic delivery/owner-binding tests and this anonymized acceptance history.
+No owner chat ID, token, operational grants, receipts, runtime or generated result
+is included. The previous live check is historical evidence, not a new delivery.
+
+The live completion-only gate already rejected blocked notifications. The shared
+sandbox path lacked an explicit obsolete-notice guard. Durable.deliver now identifies
+the exact pending BLOCKED notice by its stable key and CONFIRMED parent task, then
+sets only that notice to SUPERSEDED inside the claim transaction. It retains the
+original reason, receipt and attempt counter and records notification_superseded.
+It never calls the transport for this notice. Already-sent or uncertain notices are
+not rewritten; unrelated notifications and completion notices are untouched.
+
+Regression: test_completed_task_block_notice_superseded_without_touching_others
+creates a blocked task, completes it, rejects sending the stale notice, and reopens
+SQLite to verify the guard persists across restart. It asserts all other notices
+are unchanged and the superseded event appears once. No live network is used.
+
+Fresh publication-copy suite: 89 discovered, 88 PASS, 0 FAIL, 1 SKIP (16.803 seconds).
+Skip: private saved 34-offer regression, whose operational SQLite was deliberately
+not copied. Close Call: 18 PASS; generated files current, 15 manifest artifacts
+verified, Fold/manifest unchanged. New live LLM calls and Telegram sends: zero.
+
+This new stale-notice guard was added only in the publication clone per scope.
+The operational sibling installation and its database/configuration were not modified
+or switched; deploying the new guard there is a separate synchronization step.
+Model/delivery grants remain closed. Existing tools/ changes are outside this commit.
