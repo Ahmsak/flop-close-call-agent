@@ -1,0 +1,607 @@
+{
+  "environment": "SYNTHETIC_ONLY",
+  "now": 1791975000,
+  "cases": [
+    {
+      "specification": {
+        "id": "synthetic-order",
+        "synthetic": true,
+        "category": "A",
+        "source": "fixture://trusted-contract",
+        "observed_at": 1791975000,
+        "deadline": 1791975600,
+        "asset": "TEST_USD",
+        "rails": [
+          "isolated-contract"
+        ],
+        "task": {
+          "workload": "invoice_totals_v1",
+          "input": "sku,quantity,unit_price\nA,2,3.50\nA,1,2\n"
+        },
+        "terms": {
+          "requester": "fixture buyer",
+          "direction": "buyer requests invoice aggregation"
+        },
+        "reward_terms": {
+          "amount": "5",
+          "unit": "TEST_USD",
+          "condition": "exact result accepted by fixture contract"
+        },
+        "acceptance": {
+          "kind": "exact_json",
+          "expected": {
+            "A": "9.00"
+          }
+        },
+        "submission": {
+          "origin": "http://127.0.0.1:1",
+          "room": "delivery",
+          "protocol": "technocore-signed-post"
+        },
+        "acceptance_evidence": "signed fixture requester receipt bound to result hash",
+        "reward_evidence": "isolated contract settlement record; never live money"
+      },
+      "facts": {
+        "eligibility": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "reward_basis": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "result_clear": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "acceptance_clear": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "interface_available": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "cost_bounded": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "direction": "buyer_order"
+      },
+      "expected_stage": "READY"
+    },
+    {
+      "specification": {
+        "id": "synthetic-contest",
+        "synthetic": true,
+        "category": "B",
+        "source": "fixture://trusted-contract",
+        "observed_at": 1791975000,
+        "deadline": 1791975600,
+        "asset": "TEST_USD",
+        "rails": [],
+        "task": {
+          "workload": "invoice_totals_v1",
+          "input": "sku,quantity,unit_price\nA,2,3.50\nA,1,2\n"
+        },
+        "terms": {
+          "requester": "fixture buyer",
+          "direction": "buyer requests invoice aggregation"
+        },
+        "reward_terms": {
+          "prize": "future 50 TEST_FLOP",
+          "condition": "winner chosen under fixture official rules"
+        },
+        "acceptance": {
+          "kind": "exact_json",
+          "expected": {
+            "A": "9.00"
+          }
+        },
+        "submission": {
+          "origin": "http://127.0.0.1:1",
+          "room": "delivery",
+          "protocol": "technocore-signed-post"
+        },
+        "acceptance_evidence": "signed fixture requester receipt bound to result hash",
+        "reward_evidence": "isolated contract settlement record; never live money"
+      },
+      "facts": {
+        "eligibility": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "reward_basis": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "result_clear": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "acceptance_clear": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "interface_available": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "cost_bounded": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "direction": "buyer_order",
+        "official_rules": true
+      },
+      "expected_stage": "READY"
+    },
+    {
+      "specification": {
+        "id": "synthetic-program",
+        "synthetic": true,
+        "category": "C",
+        "source": "fixture://trusted-contract",
+        "observed_at": 1791975000,
+        "deadline": null,
+        "asset": "TEST_USD",
+        "rails": [
+          "isolated-contract"
+        ],
+        "task": {
+          "workload": "invoice_totals_v1",
+          "input": "sku,quantity,unit_price\nA,2,3.50\nA,1,2\n"
+        },
+        "terms": {
+          "requester": "fixture buyer",
+          "direction": "buyer requests invoice aggregation"
+        },
+        "reward_terms": {
+          "amount": "5",
+          "unit": "TEST_USD",
+          "condition": "exact result accepted by fixture contract"
+        },
+        "acceptance": {
+          "kind": "exact_json",
+          "expected": {
+            "A": "9.00"
+          }
+        },
+        "submission": null,
+        "acceptance_evidence": "signed fixture requester receipt bound to result hash",
+        "reward_evidence": "isolated contract settlement record; never live money"
+      },
+      "facts": {
+        "eligibility": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "reward_basis": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "result_clear": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "acceptance_clear": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "interface_available": {
+          "value": "UNKNOWN",
+          "reason": "ONBOARDING_NOT_PUBLISHED"
+        },
+        "cost_bounded": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "direction": "buyer_order",
+        "official_rules": true
+      },
+      "expected_stage": "PREPARATION"
+    },
+    {
+      "specification": {
+        "id": "synthetic-flop-on-paper",
+        "synthetic": true,
+        "category": "A",
+        "source": "fixture://trusted-contract",
+        "observed_at": 1791975000,
+        "deadline": 1791975600,
+        "asset": "FLOP",
+        "rails": [
+          "paper"
+        ],
+        "task": {
+          "workload": "invoice_totals_v1",
+          "input": "sku,quantity,unit_price\nA,2,3.50\nA,1,2\n"
+        },
+        "terms": {
+          "requester": "fixture buyer",
+          "direction": "buyer requests invoice aggregation"
+        },
+        "reward_terms": {
+          "amount": "5",
+          "unit": "TEST_USD",
+          "condition": "exact result accepted by fixture contract"
+        },
+        "acceptance": {
+          "kind": "exact_json",
+          "expected": {
+            "A": "9.00"
+          }
+        },
+        "submission": {
+          "origin": "http://127.0.0.1:1",
+          "room": "delivery",
+          "protocol": "technocore-signed-post"
+        },
+        "acceptance_evidence": "signed fixture requester receipt bound to result hash",
+        "reward_evidence": "isolated contract settlement record; never live money"
+      },
+      "facts": {
+        "eligibility": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "reward_basis": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "result_clear": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "acceptance_clear": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "interface_available": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "cost_bounded": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "direction": "buyer_order"
+      },
+      "expected_stage": "REJECTED"
+    },
+    {
+      "specification": {
+        "id": "synthetic-service-offer",
+        "synthetic": true,
+        "category": "A",
+        "source": "fixture://trusted-contract",
+        "observed_at": 1791975000,
+        "deadline": 1791975600,
+        "asset": "TEST_USD",
+        "rails": [
+          "isolated-contract"
+        ],
+        "task": {
+          "workload": "invoice_totals_v1",
+          "input": "sku,quantity,unit_price\nA,2,3.50\nA,1,2\n"
+        },
+        "terms": {
+          "direction": "provider requests payment for its own services"
+        },
+        "reward_terms": {
+          "amount": "5",
+          "unit": "TEST_USD",
+          "condition": "exact result accepted by fixture contract"
+        },
+        "acceptance": {
+          "kind": "exact_json",
+          "expected": {
+            "A": "9.00"
+          }
+        },
+        "submission": {
+          "origin": "http://127.0.0.1:1",
+          "room": "delivery",
+          "protocol": "technocore-signed-post"
+        },
+        "acceptance_evidence": "signed fixture requester receipt bound to result hash",
+        "reward_evidence": "isolated contract settlement record; never live money"
+      },
+      "facts": {
+        "eligibility": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "reward_basis": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "result_clear": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "acceptance_clear": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "interface_available": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "cost_bounded": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "direction": "service_offer"
+      },
+      "expected_stage": "REJECTED"
+    },
+    {
+      "specification": {
+        "id": "synthetic-expired",
+        "synthetic": true,
+        "category": "A",
+        "source": "fixture://trusted-contract",
+        "observed_at": 1791975000,
+        "deadline": 1791974999,
+        "asset": "TEST_USD",
+        "rails": [
+          "isolated-contract"
+        ],
+        "task": {
+          "workload": "invoice_totals_v1",
+          "input": "sku,quantity,unit_price\nA,2,3.50\nA,1,2\n"
+        },
+        "terms": {
+          "requester": "fixture buyer",
+          "direction": "buyer requests invoice aggregation"
+        },
+        "reward_terms": {
+          "amount": "5",
+          "unit": "TEST_USD",
+          "condition": "exact result accepted by fixture contract"
+        },
+        "acceptance": {
+          "kind": "exact_json",
+          "expected": {
+            "A": "9.00"
+          }
+        },
+        "submission": {
+          "origin": "http://127.0.0.1:1",
+          "room": "delivery",
+          "protocol": "technocore-signed-post"
+        },
+        "acceptance_evidence": "signed fixture requester receipt bound to result hash",
+        "reward_evidence": "isolated contract settlement record; never live money"
+      },
+      "facts": {
+        "eligibility": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "reward_basis": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "result_clear": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "acceptance_clear": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "interface_available": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "cost_bounded": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "direction": "buyer_order"
+      },
+      "expected_stage": "HISTORY"
+    },
+    {
+      "specification": {
+        "id": "synthetic-conflicting",
+        "synthetic": true,
+        "category": "A",
+        "source": "fixture://trusted-contract",
+        "observed_at": 1791975000,
+        "deadline": 1791975600,
+        "asset": "TEST_USD",
+        "rails": [
+          "isolated-contract"
+        ],
+        "task": {
+          "workload": "invoice_totals_v1",
+          "input": "sku,quantity,unit_price\nA,2,3.50\nA,1,2\n"
+        },
+        "terms": {
+          "requester": "fixture buyer",
+          "direction": "buyer requests invoice aggregation"
+        },
+        "reward_terms": {
+          "amount": "5",
+          "unit": "TEST_USD",
+          "condition": "exact result accepted by fixture contract"
+        },
+        "acceptance": {
+          "kind": "exact_json",
+          "expected": {
+            "A": "9.00"
+          }
+        },
+        "submission": {
+          "origin": "http://127.0.0.1:1",
+          "room": "delivery",
+          "protocol": "technocore-signed-post"
+        },
+        "acceptance_evidence": "signed fixture requester receipt bound to result hash",
+        "reward_evidence": "isolated contract settlement record; never live money",
+        "contradictions": [
+          "Contract requires JSON; acceptance requires CSV"
+        ]
+      },
+      "facts": {
+        "eligibility": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "reward_basis": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "result_clear": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "acceptance_clear": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "interface_available": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "cost_bounded": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "direction": "buyer_order"
+      },
+      "expected_stage": "PREPARATION"
+    },
+    {
+      "specification": {
+        "id": "synthetic-unsupported",
+        "synthetic": true,
+        "category": "A",
+        "source": "fixture://trusted-contract",
+        "observed_at": 1791975000,
+        "deadline": 1791975600,
+        "asset": "TEST_USD",
+        "rails": [
+          "isolated-contract"
+        ],
+        "task": {
+          "workload": "image_annotation"
+        },
+        "terms": {
+          "requester": "fixture buyer",
+          "direction": "buyer requests invoice aggregation"
+        },
+        "reward_terms": {
+          "amount": "5",
+          "unit": "TEST_USD",
+          "condition": "exact result accepted by fixture contract"
+        },
+        "acceptance": {
+          "kind": "exact_json",
+          "expected": {
+            "A": "9.00"
+          }
+        },
+        "submission": {
+          "origin": "http://127.0.0.1:1",
+          "room": "delivery",
+          "protocol": "technocore-signed-post"
+        },
+        "acceptance_evidence": "signed fixture requester receipt bound to result hash",
+        "reward_evidence": "isolated contract settlement record; never live money"
+      },
+      "facts": {
+        "eligibility": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "reward_basis": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "result_clear": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "acceptance_clear": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "interface_available": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "cost_bounded": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "direction": "buyer_order"
+      },
+      "expected_stage": "PREPARATION"
+    },
+    {
+      "specification": {
+        "id": "synthetic-incomplete",
+        "synthetic": true,
+        "category": "A",
+        "source": "fixture://trusted-contract",
+        "observed_at": 1791975000,
+        "deadline": null,
+        "asset": "TEST_USD",
+        "rails": [
+          "isolated-contract"
+        ],
+        "task": {},
+        "terms": {
+          "requester": "fixture buyer",
+          "direction": "buyer requests invoice aggregation"
+        },
+        "reward_terms": {
+          "amount": "5",
+          "unit": "TEST_USD",
+          "condition": "exact result accepted by fixture contract"
+        },
+        "acceptance": {
+          "kind": "exact_json",
+          "expected": {
+            "A": "9.00"
+          }
+        },
+        "submission": null,
+        "acceptance_evidence": "signed fixture requester receipt bound to result hash",
+        "reward_evidence": "isolated contract settlement record; never live money"
+      },
+      "facts": {
+        "eligibility": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "reward_basis": {
+          "value": "UNKNOWN",
+          "reason": "PAYMENT_UNVERIFIED"
+        },
+        "result_clear": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "acceptance_clear": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "interface_available": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "cost_bounded": {
+          "value": "YES",
+          "reason": "SYNTHETIC_CONTRACT_EVIDENCE"
+        },
+        "direction": null
+      },
+      "expected_stage": "DISCOVERED"
+    }
+  ]
+}

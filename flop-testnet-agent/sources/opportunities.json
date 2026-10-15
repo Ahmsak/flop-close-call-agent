@@ -1,0 +1,96 @@
+[
+  {
+    "specification": {
+      "id": "close-1",
+      "category": "B",
+      "source": "https://github.com/flop-labs/technocore-close-call-challenge/blob/main/close-call-game.md",
+      "observed_at": 1791974506.0,
+      "max_age": 86400,
+      "deadline": 1791104400.0,
+      "task": {
+        "workload": "close_call_trading"
+      },
+      "terms": {
+        "organizer": "FLOP Labs",
+        "eligibility": "Confirm identity, registration and current published participation rules"
+      },
+      "reward_terms": "Top three share 1000000 FLOP after mainnet; claim per official rules",
+      "acceptance_evidence": "Official referee ledger",
+      "reward_evidence": "Actual payment to our bound account, separately from prize/allocation promise",
+      "submission": null,
+      "review_note": "Historical source review from 2026-10-14; no refresh performed by replay"
+    },
+    "facts": {
+      "official_rules": true,
+      "reward_basis": {
+        "value": "YES",
+        "reason": "OFFICIAL_FUTURE_REWARD_RULES_NOT_RECEIVED_MONEY"
+      }
+    },
+    "review_valid_until": 1792060906.0
+  },
+  {
+    "specification": {
+      "id": "sonnet-2",
+      "category": "B",
+      "source": "https://github.com/flop-labs/technocore-sonnet-challenge/blob/main/LAUNCH.md",
+      "observed_at": 1791974506.0,
+      "max_age": 86400,
+      "deadline": 1789732800.0,
+      "task": {
+        "workload": "collaborative_sonnet"
+      },
+      "terms": {
+        "organizer": "FLOP Labs",
+        "eligibility": "Confirm identity, registration and current published participation rules"
+      },
+      "reward_terms": "50000 FLOP winning poem pool plus 50000 eligible voter pool",
+      "acceptance_evidence": "Official referee ledger",
+      "reward_evidence": "Actual payment to our bound account, separately from prize/allocation promise",
+      "submission": null,
+      "review_note": "Historical source review from 2026-10-14; no refresh performed by replay"
+    },
+    "facts": {
+      "official_rules": true,
+      "reward_basis": {
+        "value": "YES",
+        "reason": "OFFICIAL_FUTURE_REWARD_RULES_NOT_RECEIVED_MONEY"
+      }
+    },
+    "review_valid_until": 1792060906.0
+  },
+  {
+    "specification": {
+      "id": "flop-testnet-agents",
+      "category": "C",
+      "source": "https://flop.finance/testnet/",
+      "observed_at": 1791974506.0,
+      "max_age": 86400,
+      "deadline": null,
+      "task": {
+        "workload": "settled_inference"
+      },
+      "terms": {
+        "organizer": "FLOP Labs",
+        "eligibility": "Confirm identity, registration and current published participation rules"
+      },
+      "reward_terms": "Future allocation from officially credited compute purchases; not arbitrary chat activity",
+      "acceptance_evidence": "Official finalized activity ledger and allocation snapshot",
+      "reward_evidence": "Actual payment to our bound account, separately from prize/allocation promise",
+      "submission": null,
+      "review_note": "Historical source review from 2026-10-14; no refresh performed by replay"
+    },
+    "facts": {
+      "official_rules": true,
+      "reward_basis": {
+        "value": "YES",
+        "reason": "OFFICIAL_FUTURE_REWARD_RULES_NOT_RECEIVED_MONEY"
+      },
+      "interface_available": {
+        "value": "UNKNOWN",
+        "reason": "OFFICIAL_ONBOARDING_NOT_LOCATED_IN_REVIEW"
+      }
+    },
+    "review_valid_until": 1792060906.0
+  }
+]

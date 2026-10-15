@@ -1,0 +1,609 @@
+<!doctype html>
+<!--
+  GENERATED FILE - DO NOT EDIT BY HAND.
+  Source: scripts/gen_intro_pages.py (docs/project-intro/intro-pages.json;
+  the paper pages also need `node whitepaper/build.mjs` first)
+  Wrapped for the PUBLIC apex by scripts/gen_flop_finance.py
+  Regenerate: python3 scripts/gen_flop_finance.py   (--check verifies sync)
+-->
+<!-- GENERATED FILE - DO NOT EDIT BY HAND. Source: whitepaper/testnet.html · Regenerate: node whitepaper/build.mjs && python3 scripts/gen_intro_pages.py -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Flop Network — Testnet</title>
+<!-- Fonts are progressive enhancement: if offline, the mono/sans fallbacks apply. -->
+
+
+<style type="text/css">@font-face {font-family:'Space Mono';font-style:normal;font-weight:400;src:url(/cf-fonts/s/space-mono/5.2.9/vietnamese/400/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:'Space Mono';font-style:normal;font-weight:400;src:url(/cf-fonts/s/space-mono/5.2.9/latin/400/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:'Space Mono';font-style:normal;font-weight:400;src:url(/cf-fonts/s/space-mono/5.2.9/latin-ext/400/normal.woff2);unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:'Space Mono';font-style:normal;font-weight:700;src:url(/cf-fonts/s/space-mono/5.2.9/latin-ext/700/normal.woff2);unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:'Space Mono';font-style:normal;font-weight:700;src:url(/cf-fonts/s/space-mono/5.2.9/latin/700/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:'Space Mono';font-style:normal;font-weight:700;src:url(/cf-fonts/s/space-mono/5.2.9/vietnamese/700/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.2.8/latin-ext/wght/normal.woff2);unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.2.8/vietnamese/wght/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.2.8/greek/wght/normal.woff2);unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.2.8/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.2.8/cyrillic/wght/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.2.8/cyrillic-ext/wght/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C8A,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.2.8/greek-ext/wght/normal.woff2);unicode-range:U+1F00-1FFF;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:500;src:url(/cf-fonts/v/inter/5.2.8/greek-ext/wght/normal.woff2);unicode-range:U+1F00-1FFF;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:500;src:url(/cf-fonts/v/inter/5.2.8/greek/wght/normal.woff2);unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:500;src:url(/cf-fonts/v/inter/5.2.8/cyrillic-ext/wght/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C8A,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:500;src:url(/cf-fonts/v/inter/5.2.8/latin-ext/wght/normal.woff2);unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:500;src:url(/cf-fonts/v/inter/5.2.8/vietnamese/wght/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:500;src:url(/cf-fonts/v/inter/5.2.8/cyrillic/wght/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:500;src:url(/cf-fonts/v/inter/5.2.8/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:600;src:url(/cf-fonts/v/inter/5.2.8/greek/wght/normal.woff2);unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:600;src:url(/cf-fonts/v/inter/5.2.8/cyrillic-ext/wght/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C8A,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:600;src:url(/cf-fonts/v/inter/5.2.8/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:600;src:url(/cf-fonts/v/inter/5.2.8/cyrillic/wght/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:600;src:url(/cf-fonts/v/inter/5.2.8/latin-ext/wght/normal.woff2);unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:600;src:url(/cf-fonts/v/inter/5.2.8/greek-ext/wght/normal.woff2);unicode-range:U+1F00-1FFF;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:600;src:url(/cf-fonts/v/inter/5.2.8/vietnamese/wght/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}</style>
+<style>
+  /* FLOP Network — Mascot V3.0 (Computational Architecture). Base deep-navy substrate +
+     FLOP Cyan primary signal, Electric Green for verified, Space Mono + Inter.
+     Tokens mirror ../DESIGN.md. Role split per DESIGN.md: cyan = headings AND links
+     (both text-safe at 7.6:1 on Base), cyan-hover = small code, green = verified/positive.
+     Blue and Grey are fill-only on this ground and deliberately absent as text. */
+  :root {
+      --accent:#00B4D8;
+      --accent-hover:#3DC5E0;
+      --verified:#32D74B;
+      --bg:#0A1128;
+      --surface:#151D32;
+      --surface-light:#232A3E;
+      --fg:#F5F7FA;
+      --muted:#A1A7AE;
+      --border:#232A3E;
+      --blue:#0466C8;
+      --error:#FF453A;
+      --bg-alt:#F5F7FA;
+      --surface-alt:#FFFFFF;
+      --fg-alt:#0A1128;
+      --accent-rgb:0,180,216;
+      --accent-hover-rgb:61,197,224;
+      --verified-rgb:50,215,75;
+      --bg-rgb:10,17,40;
+      --surface-rgb:21,29,50;
+      --surface-light-rgb:35,42,62;
+      --fg-rgb:245,247,250;
+      --muted-rgb:161,167,174;
+      --border-rgb:35,42,62;
+      --blue-rgb:4,102,200;
+      --error-rgb:255,69,58;
+      --bg-alt-rgb:245,247,250;
+      --surface-alt-rgb:255,255,255;
+      --fg-alt-rgb:10,17,40;
+    --mono:"Space Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    --sans:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  }
+  * { box-sizing:border-box; }
+  html { -webkit-text-size-adjust:100%; }
+  body { margin:0; background:var(--bg); color:var(--fg);
+         font:15px/1.65 var(--sans); font-weight:400;
+         text-rendering:optimizeLegibility; -webkit-font-smoothing:antialiased; }
+  main { max-width:880px; margin:0 auto; padding:3rem 1.5rem 6rem; }
+
+  /* Headings — Space Mono, grid-aligned, FLOP Cyan as the confident primary. */
+  h1,h2,h3,h4 { font-family:var(--mono); font-weight:700; line-height:1.2; }
+  h1 { font-size:2rem; margin:0 0 .4rem; color:var(--accent); letter-spacing:-.01em; }
+  h2 { font-size:1.4rem; margin:3rem 0 1rem; padding-top:1rem;
+       border-top:1px solid var(--border); }
+  h3 { font-size:1.08rem; margin:1.8rem 0 .5rem; color:var(--fg); }
+  h4 { font-size:.95rem; margin:1.4rem 0 .4rem; color:var(--muted); }
+
+  /* Section permalinks — the whole heading is a self-link to its own #id (share/deep-link a
+     section without view-source). Inherits the heading color so it doesn't read as body text;
+     a small "#" glyph fades in on hover as the copy-link affordance. */
+  h2 a.section-link, h3 a.section-link { color:inherit; border-bottom:none; }
+  h2 a.section-link:hover, h3 a.section-link:hover { color:var(--accent); }
+  a.section-link::after {
+    content:"#"; margin-left:.5em; color:var(--muted); opacity:0;
+    transition:opacity .15s;
+  }
+  a.section-link:hover::after, a.section-link:focus::after { opacity:1; }
+
+  p { margin:.85rem 0; }
+  a { color:var(--accent); text-decoration:none; border-bottom:1px solid transparent; }
+  a:hover { border-bottom-color:var(--accent); }
+  strong { color:var(--fg); font-weight:600; }
+  hr { border:none; border-top:1px solid var(--border); margin:2.5rem 0; }
+
+  /* Data voice — Space Mono for code, hashes, params. */
+  code { background:var(--surface); color:var(--accent-hover); padding:.1em .4em; border-radius:2px;
+         font-family:var(--mono); font-size:.86em; }
+  pre { background:var(--surface); border:1px solid var(--border); padding:1rem;
+        border-radius:4px; overflow:auto; }
+  pre code { background:none; color:var(--fg); padding:0; font-size:.85rem; line-height:1.55; }
+
+  blockquote { margin:1.4rem 0; padding:.8rem 1.1rem; border-left:2px solid var(--accent);
+               background:var(--surface); color:var(--muted); border-radius:0 4px 4px 0;
+               font-size:.96rem; }
+  blockquote p:first-child { margin-top:0; } blockquote p:last-child { margin-bottom:0; }
+
+  table { border-collapse:collapse; width:100%; margin:1.2rem 0; font-size:.9rem;
+          display:block; overflow-x:auto; }
+  th,td { border:1px solid var(--border); padding:.5rem .75rem; text-align:left; vertical-align:top; }
+  th { background:var(--surface); font-family:var(--mono); font-weight:700; font-size:.82rem;
+       text-transform:uppercase; letter-spacing:.03em; color:var(--muted); }
+  td code { font-size:.82em; }
+
+  /* ---- S-1-inspired front matter ---- */
+
+  /* Cover block: bold mission line + ticker-style metadata row. */
+  .cover { margin:1rem 0 2.5rem; padding-bottom:2rem; border-bottom:1px solid var(--border); }
+  .cover .kicker { font-family:var(--mono); font-size:.8rem; letter-spacing:.18em;
+                   text-transform:uppercase; color:var(--accent); margin:0 0 1rem; }
+  .cover .mission { font-family:var(--mono); font-weight:700; font-size:1.6rem; line-height:1.3;
+                    color:var(--fg); margin:0 0 1.5rem; max-width:36ch; }
+  .cover .mission em { color:var(--accent); font-style:normal; }
+  .cover .meta { display:flex; flex-wrap:wrap; gap:1.5rem; font-family:var(--mono);
+                 font-size:.78rem; color:var(--muted); }
+  .cover .meta b { display:block; color:var(--fg); font-weight:700; font-size:.86rem; margin-top:.15rem; }
+
+  /* Key-metrics band: big Bond Gold numbers, mono labels — scannable by humans + agents. */
+  .metrics { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+             gap:1px; background:var(--border); border:1px solid var(--border);
+             border-radius:4px; overflow:hidden; margin:2rem 0; }
+  .metrics .metric { background:var(--surface); padding:1.1rem 1rem; }
+  .metrics .num { font-family:var(--mono); font-weight:700; font-size:1.5rem; color:var(--accent);
+                  line-height:1.1; }
+  .metrics .lbl { font-family:var(--mono); font-size:.72rem; letter-spacing:.04em;
+                  text-transform:uppercase; color:var(--muted); margin-top:.35rem; }
+
+  /* Definition / aside callout: highlights a key term for fast comprehension. */
+  .def { background:var(--surface); border:1px solid var(--border); border-left:2px solid var(--accent);
+         border-radius:0 4px 4px 0; padding:.85rem 1.1rem; margin:1.4rem 0; }
+  .def .term { font-family:var(--mono); font-weight:700; font-size:.8rem; letter-spacing:.04em;
+               text-transform:uppercase; color:var(--accent); display:block; margin-bottom:.3rem; }
+  .def p { margin:.2rem 0; font-size:.95rem; }
+
+  /* Diagrams: build-time SVG on a Dark Substrate card, grid-aligned. */
+  figure.diagram { margin:1.8rem 0; padding:1.4rem 1rem; background:var(--surface);
+                   border:1px solid var(--border); border-radius:4px; text-align:center; }
+  figure.diagram svg { max-width:100%; height:auto; }
+  /* Raster figures. Scoped to main: the nav lockup sets its own height and must not
+     be caught by height:auto. Without this a full-resolution PNG renders at its
+     intrinsic width and overflows both the reading column and the page. */
+  main img { max-width:100%; height:auto; }
+  /* A "plate" is a graphic that already carries its own ground, title and framing.
+     Wrapping one in the diagram card gives it a second border and a lighter band
+     around a darker image, so the card chrome comes off and only the caption stays. */
+  figure.plate { padding:0; background:none; border:none; }
+  figure.plate img { border-radius:4px; display:block; }
+  figure.diagram svg foreignObject,
+  figure.diagram svg foreignObject *,
+  figure.diagram svg .nodeLabel,
+  figure.diagram svg .edgeLabel {
+    color:var(--fg) !important;
+    background:transparent !important;
+  }
+  figure.diagram figcaption { font-family:var(--mono); font-size:.74rem; letter-spacing:.04em;
+                              text-transform:uppercase; color:var(--muted); margin-top:.9rem; }
+
+  .draft-banner { font-family:var(--mono); font-size:.74rem; color:var(--muted);
+                  border:1px dashed var(--border); border-radius:4px; padding:.55rem .9rem;
+                  margin-bottom:2rem; }
+  .draft-banner code { background:none; color:var(--accent-hover); padding:0; }
+
+  @media (max-width:560px){ .cover .mission{ font-size:1.3rem; } h1{ font-size:1.6rem; } }
+
+  /* Compact table of contents — build.mjs injects a collapsible <details class="toc">
+     after the title for long papers (>=6 sections). 2-column, monospace, no JS. */
+  .toc { margin:1.5rem 0 2.5rem; border:1px solid var(--border); border-radius:6px;
+         background:var(--surface); padding:.2rem 1rem .9rem; }
+  .toc > summary { font-family:var(--mono); font-weight:700; font-size:.78rem; letter-spacing:.1em;
+         text-transform:uppercase; color:var(--muted); cursor:pointer; padding:.7rem .2rem; list-style:none; }
+  .toc > summary::-webkit-details-marker { display:none; }
+  .toc > summary::before { content:"▸ "; color:var(--accent); }
+  .toc[open] > summary::before { content:"▾ "; }
+  .toc ol { list-style:none; margin:.3rem 0 0; padding:0;
+            columns:2; column-gap:2.4rem; font-family:var(--mono); font-size:.82rem; }
+  .toc li { break-inside:avoid; margin:.22rem 0; line-height:1.3; }
+  .toc li.l3 { padding-left:1.1rem; }
+  .toc li.l3 a { color:var(--muted); }
+  .toc a { border:none; }
+  .toc a:hover { color:var(--accent-hover); }
+  @media (max-width:560px){ .toc ol { columns:1; } }
+
+  /* Print: Ice White substrate per DESIGN.md. FLOP Cyan (2.3:1) and Electric Green (1.8:1)
+     fail as text on Ice White, so print accents collapse to Base — dark text on the light
+     substrate (17.4:1 AAA). This is the theme-inversion rule from DESIGN.md. */
+  @media print {
+    .toc { display:none; }
+    body{ background:var(--bg-alt); color:var(--fg-alt); } main{ padding:0; }
+    h1{ color:var(--fg-alt); } a{ color:var(--fg-alt); } code{ color:var(--fg-alt); background:var(--surface-alt); }
+    pre,blockquote,th,.metrics .metric,.def,figure.diagram{ background:var(--surface-alt); }
+    .metrics .num,.cover .kicker,.cover .mission em,.def .term{ color:var(--fg-alt); }
+  }
+
+  /* ── project-intro chrome · scripts/gen_intro_pages.py ── */
+  :root {
+    --green: #00B4D8; --green-dim: #3DC5E0; --teal: #32D74B;
+    --black: #0A1128; --charcoal: #151D32; --dark-grey: #232A3E;
+    --mid-grey: #A1A7AE; --light-grey: #A1A7AE; --white: #FFFFFF;
+    --green-rgb: 0,180,216; --black-rgb: 10,17,40;
+    --charcoal-rgb: 21,29,50; --dark-grey-rgb: 35,42,62;
+    --s-1: 4px; --s-2: 8px; --s-3: 16px; --s-4: 24px; --s-5: 32px;
+  }
+  /* The set's ground, same 32px grid as the brief pages. This block is injected
+     after the paper's own <style>, so it wins over the flat background build.mjs
+     gives a standalone paper. */
+  body {
+    background-image:
+      linear-gradient(rgba(var(--dark-grey-rgb),.46) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(var(--dark-grey-rgb),.46) 1px, transparent 1px);
+    background-size: 32px 32px; background-position: -1px -1px;
+  }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 var(--s-4); }
+  main > .intro-nav { margin-bottom: var(--s-5); }
+  .intro-nav {
+    display: flex; align-items: center; gap: 32px; overflow: visible;
+    margin: 0 0 64px; padding-bottom: 12px; border-bottom: 1px solid var(--dark-grey);
+    font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase;
+    /* Pinned: the strip is injected into three templates whose body line-heights differ
+       (1.6 briefs, 1.65 papers, 1.45 revenue), which moved it between pages. */
+    line-height: 1.6;
+  }
+  .intro-nav a {
+    position: relative; flex: 0 0 auto; color: var(--light-grey); padding: 4px 0;
+    text-decoration: none;
+  }
+  .intro-nav a:hover { color: var(--white); }
+  .intro-nav a.active { color: var(--white); }
+  .intro-nav a.active::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: -17px; height: 2px;
+    background: var(--green);
+  }
+  .intro-nav-group { position: relative; flex: 0 0 auto; }
+  .intro-nav-group > summary {
+    position: relative; display: block; list-style: none; cursor: pointer;
+    color: var(--light-grey); padding: 4px 0;
+  }
+  .intro-nav-group > summary::-webkit-details-marker { display: none; }
+  .intro-nav-group > summary:hover, .intro-nav-group[open] > summary,
+  .intro-nav-group.has-active > summary { color: var(--white); }
+  .intro-nav-group.has-active > summary::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: -17px; height: 2px;
+    background: var(--green);
+  }
+  /* Literal lengths: this block is injected into the revenue template too, which has no
+     --s-N or --r-N scale (see the comment above INTRO_NAV_CSS). */
+  .intro-nav-menu {
+    position: absolute; top: calc(100% + 14px); left: -16px; z-index: 30;
+    display: flex; flex-direction: column; gap: 6px; min-width: 180px; padding: 12px 16px;
+    background: var(--black); border: 1px solid var(--dark-grey); border-radius: 6px;
+  }
+  .intro-nav-menu > a.active::after { bottom: -2px; }
+  .intro-footer-link { color: inherit; text-decoration: none; border-bottom: none; }
+  .intro-footer-link:hover { color: var(--white); }
+  /* V1.0 minimum logotype width is 120px; the shared nav_css() 22px would ship 98px. */
+  .topnav .brand img { height: 28px; }
+  .nav-context {
+    color: var(--mid-grey); font-family: var(--mono); font-size: 11px;
+    letter-spacing: .12em; white-space: nowrap;
+  }
+  /* Phones wrap the strip onto two rows rather than scroll it: flop.finance strips the
+     script that would scroll the active entry into view (its CSP allows no inline script).
+     The underline moves under its own label, since the strip's bottom border is a row away. */
+  @media (max-width: 680px) {
+    .intro-nav { flex-wrap: wrap; row-gap: 10px; gap: 24px; margin-bottom: 48px; }
+    .intro-nav > a.active::after,
+    .intro-nav-group.has-active > summary::after { bottom: -2px; }
+    /* Shared so the logo lands on the same gutter everywhere. STYLE has a generic .wrap
+       rule that covered the brief pages; the papers and the revenue page did not, so the
+       mark sat at 24px there and 16px here — a visible jump when moving between them.
+       LITERAL 16px, not var(--s-3): this block is injected into three documents and the
+       revenue template carries its own token set with no --s-N scale, where an undefined
+       var() makes the declaration invalid and the padding collapses to 0. */
+    .topnav .wrap { padding-left: 16px; padding-right: 16px; }
+  }
+
+  /* ── unified top nav · scripts/landing_chrome.py (shared across index/params/links) ── */
+  .topnav { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(8px);
+    background: rgba(10,17,40,.85); border-bottom: 1px solid var(--dark-grey); }
+  .topnav .wrap { display: flex; align-items: center; gap: 28px; height: 60px;
+    padding-top: 0; padding-bottom: 0; }   /* override pages whose .wrap adds vertical padding */
+  .brand { display: inline-flex; align-items: center; flex: 0 0 auto; }
+  .brand img { height: 22px; width: auto; display: block; }
+  .topnav .navlinks { display: flex; align-items: center; gap: 26px;
+    font-family: var(--mono); font-size: 12px; letter-spacing: .04em; }
+  .topnav .navlinks > a, .dd > button { color: var(--light-grey); background: none;
+    border: 0; font: inherit; letter-spacing: inherit; cursor: pointer; padding: 0;
+    transition: color .15s; }
+  .topnav .navlinks > a:hover, .dd > button:hover, .dd.open > button { color: var(--white); }
+  .topnav .spacer { flex: 1 1 auto; }
+  .topnav .right { display: inline-flex; align-items: center; gap: 18px; flex: 0 0 auto; }
+  .dd { position: relative; }
+  .dd > button::after { content: "\25BE"; margin-left: 5px; font-size: 10px; opacity: .7;
+    display: inline-block; transition: transform .15s; }
+  .dd.open > button::after { transform: rotate(180deg); }
+  .dd .menu { position: absolute; top: calc(100% + 12px); left: 50%; transform: translateX(-50%);
+    min-width: 190px; background: #151D32; border: 1px solid var(--dark-grey); border-radius: 9px;
+    padding: 6px; display: none; flex-direction: column; gap: 2px;
+    box-shadow: 0 14px 34px rgba(0,0,0,.55); }
+  .dd.open .menu { display: flex; }   /* click-toggled (nav_js), not hover — hover dropdowns are unusable */
+  .dd .menu a { color: var(--light-grey); font-family: var(--mono); font-size: 12px;
+    padding: 9px 12px; border-radius: 6px; transition: background .15s, color .15s; }
+  .dd .menu a:hover { color: var(--white); background: rgba(255,255,255,.06); }
+  .navcta { display: inline-flex; align-items: center; padding: 9px 16px; border-radius: 6px;
+    background: #00B4D8; color: #0A1128; font-family: var(--mono); font-weight: 700;
+    font-size: 12px; letter-spacing: .04em; white-space: nowrap; transition: background .15s; }
+  .navcta:hover { background: #3DC5E0; }
+  /* language dropdown (.dd.lang): globe + 2-letter CODE trigger (reads as a language picker,
+     consistent); each row = CODE + native name so a visitor in the wrong language can navigate
+     out by their code. Right-aligned, scrolls when there are many locales. */
+  .dd.lang > button { letter-spacing: 0; display: inline-flex; align-items: center; gap: 6px; }
+  .dd.lang .globe { flex: none; opacity: .8; }
+  .dd.lang .menu { left: auto; right: 0; transform: none; min-width: 172px;
+    max-height: 62vh; overflow-y: auto; }
+  .dd.lang .menu a { display: flex; align-items: baseline; gap: 10px; }
+  .dd.lang .menu a .lc { flex: none; min-width: 18px; font-size: 11px; letter-spacing: .06em; opacity: .6; }
+  .dd.lang .menu a:hover .lc { opacity: .85; }
+  .dd.lang .menu a.active, .dd.lang .menu a.active .lc { color: #00B4D8; opacity: 1; }
+  @media (max-width: 720px) {
+    .topnav .wrap { gap: 14px; }
+    .topnav .navlinks { display: none; }   /* collapse links to logo + lang + CTA (signal, not noise) */
+  }
+
+  /* After the shared nav CSS so these win: the paper's underline-on-hover link style
+     is kept off the bars. The .topnav .wrap width is deliberately NOT overridden — it
+     inherits the 1120px .wrap above, matching the six brief pages. */
+  .topnav a, .intro-nav a, .topnav a:hover, .intro-nav a:hover { border-bottom: none; }
+
+  /* ── Frame alignment ──
+     template.html sets `main { max-width:880px }` for the standalone paper served from
+     /papers/. On the intro surface that made this the only page whose logo, nav strip and
+     content sat on a different left edge than the other six (x≈223 vs x≈104 at 1280w) —
+     the whole page read as a different site. Widen the frame to the shared 1120px; the
+     paper's own 1.5rem side padding already equals var(--s-4), so the edges line up.
+     Prose then needs its own cap, or lines run ~1070px and become unreadable: hold body
+     copy to a reading measure and let the wide elements (tables, mermaid figures, the
+     two-column TOC) use the full frame — those were the elements the 880px column was
+     squeezing, so they gain from the change rather than merely tolerating it. */
+  main { max-width: 1120px; }
+
+  /* ── One reading measure ──
+     This was `max-width: 74ch` on the prose elements. `ch` resolves against each
+     element's OWN font-size, so at 1280px wide the same rule put h2 at 1014px, h3 at
+     783, blockquote at 717 and p at 700 — while the callout divs and tables, matched by
+     nothing here, ran the full 1072. Five different right edges on one page, which is
+     what made the teaser read as ragged: the text did not line up with the boxes beside
+     it. A length unit gives every one of them the same edge.
+
+     Everything in the document body shares this measure, tables and the metrics band
+     included. A table that ran wider than the paragraph above it was the complaint, and
+     "wide content earns the full frame" turned out to be the wrong instinct: it is only
+     defensible when the page is mostly wide content (the Yellow Paper), and it reads as
+     broken on a narrative page where one table sticks out past everything around it.
+     Tables keep `overflow-x: auto` from template.html, so one whose content genuinely
+     needs more room scrolls inside the column rather than widening the page.
+
+     Keep this list in sync with the block below: an element in NEITHER silently defaults
+     to the full frame, which is how .def and .metrics drifted wide in the first place. */
+  main { --measure: 52rem; }
+  main > p, main > ul, main > ol, main > blockquote, main > dl,
+  main > h1, main > h2, main > h3, main > h4, main > h5, main > h6,
+  main > .def, main > .tablewrap, main > figure.diagram,
+  main > .metrics, main > .cover { max-width: var(--measure); }
+
+  /* template.html gives tables `display:block; overflow-x:auto` so a wide one scrolls
+     instead of stretching the page. But `display:block` also stops the table's own
+     `width:100%` from doing anything — the internal layout sizes to its content, so a
+     narrow table's borders stopped short of the column: 855px and 926px against a 936px
+     text edge on this page. Move the scrolling to a wrapper (added in render_paper_page)
+     and let the table be a table again, and every table ends exactly where the prose
+     does. Mobile still scrolls, because the wrapper is what overflows. */
+  main > .tablewrap { overflow-x: auto; }
+  /* A long identifier is one unbreakable word to the line breaker, and a paper is
+     full of them: `CheckerVerdict` in prose and `pallet_flop_poui` inside a section
+     title pushed the WHOLE Yellow Paper sideways — measured at 99px of horizontal
+     scroll on a 390px screen, which is the failure mode where every line of the
+     document is then cut off on the right. break-word rather than anywhere: it only
+     breaks a word that cannot fit on a line of its own, so ordinary prose is
+     untouched. Block code needs nothing — it already sits in a scroll wrapper. */
+  main code, main a { overflow-wrap: break-word; }
+  .tablewrap > table { display: table; width: 100%; }
+
+  /* Chrome only: the nav strip and the generated-file banner. The cover is NOT chrome — its
+     title, contents box and metadata row are the first thing anyone reads, so it belongs in
+     the body column with everything else. Leaving it on the frame left the contents box as
+     the one element still running past the text beneath it. */
+  main > .draft-banner { max-width: 100%; }
+
+  /* template.html sets `main { padding: 3rem 1.5rem 6rem }` with no small-screen rule, so
+     paper content kept a 24px gutter while the brief pages dropped to 16px. Match them. */
+  @media (max-width: 680px) {
+    main { padding: var(--s-5) var(--s-3) 48px; }
+    .wrap { padding-left: var(--s-3); padding-right: var(--s-3); }
+  }
+</style>
+<link rel="canonical" href="https://flop.finance/testnet/" />
+<link rel="icon" href="/assets/flop-chip-favicon.svg" type="image/svg+xml" />
+<meta name="description" content="The Flop Testnet: timeline, who can take part, onboarding, and the work that earns a share of the genesis airdrop. Draft." />
+<meta name="theme-color" content="#0A1128" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="FLOP" />
+<meta property="og:title" content="The Flop Network — Testnet" />
+<meta property="og:description" content="The Flop Testnet: timeline, who can take part, onboarding, and the work that earns a share of the genesis airdrop. Draft." />
+<meta property="og:url" content="https://flop.finance/testnet/" />
+<meta property="og:image" content="https://flop.finance/assets/og.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="The FLOP logotype in Ice White with the accent Chip, on a navy ground." />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@flop_labs" />
+<!-- No hreflang alternates: these pages are English only, so a self-referencing
+     alternate would be the only entry and says nothing the canonical does not. -->
+</head>
+<body>
+<nav class="topnav">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="FLOP Network"><img src="/assets/flop-lockup-reverse-1c.svg" alt="FLOP" /></a>
+    <div class="spacer"></div>
+    <span class="nav-context">PROJECT INTRO</span>
+  </div>
+</nav>
+<main>
+<div class="intro-nav" aria-label="Project intro pages">
+      <a href="/intro/">Overview</a>
+      <a href="/whitepaper/">Whitepaper</a>
+      <a class="active" aria-current="page" href="/testnet/">Testnet</a>
+      <a href="/airdrop/">Airdrop</a>
+      <details class="intro-nav-group">
+        <summary>Roles&nbsp;&#9662;</summary>
+        <span class="intro-nav-menu">
+          <a href="/intro/miner/">Miner</a>
+          <a href="/intro/validator/">Validator</a>
+          <a href="/intro/agent/">Agent</a>
+          <a href="/intro/verification/">Verification</a>
+          <a href="/intro/revenue/">Revenue model</a>
+        </span>
+      </details>
+      <a href="/intro/yellowpaper/">Yellow paper</a>
+    </div>
+<div class="draft-banner">Draft. Dates are provisional: the testnet opens when its readiness criteria are met.</div>
+<div class="cover">
+  <p class="kicker">The Flop Network · Testnet</p>
+  <h1 class="mission">The testnet <em>is where the network is earned</em>.</h1>
+<details class="toc" open><summary>Contents</summary><ol><li class="l2"><a href="#01-what-the-testnet-is">01 What the testnet is</a></li><li class="l2"><a href="#02-timeline">02 Timeline</a></li><li class="l2"><a href="#03-who-can-take-part">03 Who can take part</a></li><li class="l2"><a href="#04-recommended-hardware">04 Recommended hardware</a></li><li class="l2"><a href="#05-onboarding">05 Onboarding</a></li><li class="l2"><a href="#06-what-counts">06 What counts</a></li></ol></details>
+  <div class="meta">
+    <span>Status<b>Draft</b></span>
+    <span>Opens<b>Q4 2026</b></span>
+    <span>Length<b>About 90 days</b></span>
+    <span>Mainnet<b>Q1 2027</b></span>
+    <span>Definitive spec<b>Yellow Paper (not yet final)</b></span>
+  </div>
+</div><div class="def">
+  <span class="term">Dates and rules are provisional</span>
+  <p>The testnet opens when its readiness criteria are met, and may be extended if they are not.
+  Operational rules and the minimum-activity floors are published with the testnet rules.</p>
+</div><h2 id="01-what-the-testnet-is"><a id="sec-01"></a>01 What the testnet is</h2>
+<p>The Flop Testnet is the pre-launch operating period of the network and the sole route to the
+genesis airdrop. Miners serve production inference, validators produce blocks and verify work,
+and agents purchase compute. Testnet tokens carry no value; the work performed with them is what
+earns a share of the genesis airdrop. How that work converts into $FLOP at genesis is set out in
+the <a href="/airdrop/">Airdrop</a> page, and the network itself in the <a href="/whitepaper/">Whitepaper</a>.</p>
+<h2 id="02-timeline"><a id="sec-02"></a>02 Timeline</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th align="left">Phase</th>
+<th align="left">When</th>
+<th align="left">What happens</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>Testnet opens</strong></td>
+<td align="left">Q4 2026</td>
+<td align="left">Onboarding opens for miners, validators and agents.</td>
+</tr>
+<tr>
+<td align="left"><strong>Testnet runs</strong></td>
+<td align="left">About 90 days</td>
+<td align="left">Work is verified and recorded on the testnet chain.</td>
+</tr>
+<tr>
+<td align="left"><strong>Snapshot</strong></td>
+<td align="left">Close of testnet</td>
+<td align="left">The record is frozen at a published, finalized block height. Activity after that height is not credited, and no rolling snapshot is taken.</td>
+</tr>
+<tr>
+<td align="left"><strong>Review</strong></td>
+<td align="left">Before genesis</td>
+<td align="left">The complete allocation list and its hash are published, so every participant can verify their entry and lodge a dispute within the stated window.</td>
+</tr>
+<tr>
+<td align="left"><strong>Genesis</strong></td>
+<td align="left">Q1 2027</td>
+<td align="left">Mainnet launches with the allocation written into the genesis block. Testnet chain state is not migrated; only the allocation is carried forward.</td>
+</tr>
+</tbody></table></div>
+<h2 id="03-who-can-take-part"><a id="sec-03"></a>03 Who can take part</h2>
+<p>Participation is open to any party operating the hardware a role requires. The stake a testnet
+miner or validator must post is sponsored by the network, so the cost of entry is limited to
+equipment and operating effort. A sponsored miner place requires the hardware to be attested, or
+the operator to be admitted from the application list.</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th align="left">Role</th>
+<th align="left">What you need</th>
+<th align="left">What you do</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>Miner</strong></td>
+<td align="left">A GPU, or a cluster of GPUs, meeting the recommended miner specification</td>
+<td align="left">Serve inference sessions for agents and prove the work was performed</td>
+</tr>
+<tr>
+<td align="left"><strong>Validator</strong></td>
+<td align="left">The validator node specification</td>
+<td align="left">Produce blocks, verify miners&#39; work and store network data; admission to the mainnet set is by testnet ranking</td>
+</tr>
+<tr>
+<td align="left"><strong>Agent</strong></td>
+<td align="left">A decentralised identifier (DID) and a wallet, with access to the test-token faucet</td>
+<td align="left">Purchase inference, or transact with other agents on technocore.chat</td>
+</tr>
+</tbody></table></div>
+<p>To register interest before the testnet opens, apply as a
+<a href="https://flop.finance/apply/miner">miner</a> or as a
+<a href="https://flop.finance/apply/validator">validator</a>.</p>
+<h2 id="04-recommended-hardware"><a id="sec-04"></a>04 Recommended hardware</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th align="left">Role</th>
+<th align="left">Recommended specifications</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>Miner</strong></td>
+<td align="left">A single GPU, or a cluster of GPUs, with 16 GB+ VRAM per unit</td>
+</tr>
+<tr>
+<td align="left"><strong>Validator (provisional)</strong></td>
+<td align="left">8+ core CPU • 64 GB RAM • 4 TB NVMe storage (2 TB minimum) • 1 Gbps redundant connection</td>
+</tr>
+</tbody></table></div>
+<p>These are recommended specifications and subject to refinement before the testnet opens.</p>
+<h2 id="05-onboarding"><a id="sec-05"></a>05 Onboarding</h2>
+<p>Onboarding documentation for each role is published when the testnet opens. In summary:</p>
+<ul>
+<li><strong>Miners</strong> — install the miner client, register and calibrate the hardware, and begin accepting
+sessions; earnings and verification status are visible from the first session served.</li>
+<li><strong>Validators</strong> — deploy the node specification, register on the testnet and maintain
+availability; ranking is visible throughout.</li>
+<li><strong>Agents</strong> — create a DID and a wallet, draw from the faucet, and begin purchasing inference or
+transacting with other agents on technocore.chat.</li>
+</ul>
+<h2 id="06-what-counts"><a id="sec-06"></a>06 What counts</h2>
+<p>The airdrop rewards work the network can verify, not activity for its own sake.</p>
+<ul>
+<li><strong>Miners</strong> — verified compute served: inference that passes verification, measured in
+floating-point operations. Idle or misrepresented hardware earns nothing.</li>
+<li><strong>Validators</strong> — a ranking on testnet performance, measured on-chain against a single published
+set of criteria.</li>
+<li><strong>Agents</strong> — compute purchased in settled sessions. Holding test tokens earns nothing.</li>
+<li><strong>Minimum activity</strong> — each role has a floor below which no allocation is earned, so dormant
+accounts do not dilute those that did the work.</li>
+</ul>
+<p>Four rules keep the record fair:</p>
+<ul>
+<li><strong>One participant, one score</strong> — wallets under common control are scored as a single
+participant; dividing activity across accounts earns no additional allocation.</li>
+<li><strong>Independent demand only</strong> — spend routed to a miner under common control, or circulated
+between wallets under common control, is not credited as demand.</li>
+<li><strong>Fraud forfeits</strong> — an account flagged for manufactured activity forfeits its allocation,
+subject to appeal within the review window.</li>
+<li><strong>Security disclosure</strong> — vulnerabilities reported responsibly during the testnet, privately to <a href="mailto:security@flop.finance">security@flop.finance</a>,
+could be eligible for a reward from the ecosystem reserve; exploiting a vulnerability forfeits
+eligibility.</li>
+</ul>
+
+    <footer>
+      <span>FLOP Network &middot; Project intro</span>
+      <span><a class="intro-footer-link" href="https://gpus.flop.finance/#overview" target="_blank" rel="noopener">GPU market&nbsp;&#8599;</a></span>
+      <span>Draft &middot; Updated 2026-10-05</span>
+    </footer>
+</main>
+
+<script>
+  (() => {
+    const groups = [...document.querySelectorAll('.intro-nav-group')];
+    if (!groups.length) return;
+    document.addEventListener('click', (event) => {
+      const inside = event.target.closest('.intro-nav-group');
+      groups.forEach((group) => { if (group !== inside) group.open = false; });
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape') return;
+      const open = groups.find((group) => group.open);
+      if (!open) return;
+      open.open = false;
+      open.querySelector('summary').focus();
+    });
+  })();
+</script>
+<!-- Cloudflare Pages Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "2c3a630a01284c71a8cfbf10db1c75db"}'></script><!-- Cloudflare Pages Analytics --><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon='{"version":"2024.11.0","token":"81ccefe1eb5e48fcb5e3294a233a055c","spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>

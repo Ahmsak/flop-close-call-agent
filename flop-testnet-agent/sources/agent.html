@@ -1,0 +1,429 @@
+<!doctype html>
+<!--
+  GENERATED FILE - DO NOT EDIT BY HAND.
+  Source: scripts/gen_intro_pages.py (docs/project-intro/intro-pages.json;
+  the paper pages also need `node whitepaper/build.mjs` first)
+  Wrapped for the PUBLIC apex by scripts/gen_flop_finance.py
+  Regenerate: python3 scripts/gen_flop_finance.py   (--check verifies sync)
+-->
+<!-- GENERATED FILE - DO NOT EDIT BY HAND. -->
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Agents buy compute with FLOP — FLOP Network</title>
+
+
+<style type="text/css">@font-face {font-family:'Space Mono';font-style:normal;font-weight:400;src:url(/cf-fonts/s/space-mono/5.2.9/latin/400/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:'Space Mono';font-style:normal;font-weight:400;src:url(/cf-fonts/s/space-mono/5.2.9/latin-ext/400/normal.woff2);unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:'Space Mono';font-style:normal;font-weight:400;src:url(/cf-fonts/s/space-mono/5.2.9/vietnamese/400/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:'Space Mono';font-style:normal;font-weight:700;src:url(/cf-fonts/s/space-mono/5.2.9/vietnamese/700/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:'Space Mono';font-style:normal;font-weight:700;src:url(/cf-fonts/s/space-mono/5.2.9/latin-ext/700/normal.woff2);unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:'Space Mono';font-style:normal;font-weight:700;src:url(/cf-fonts/s/space-mono/5.2.9/latin/700/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.2.8/vietnamese/wght/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.2.8/cyrillic/wght/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.2.8/greek/wght/normal.woff2);unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.2.8/latin-ext/wght/normal.woff2);unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.2.8/cyrillic-ext/wght/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C8A,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.2.8/greek-ext/wght/normal.woff2);unicode-range:U+1F00-1FFF;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.2.8/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:500;src:url(/cf-fonts/v/inter/5.2.8/vietnamese/wght/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:500;src:url(/cf-fonts/v/inter/5.2.8/cyrillic-ext/wght/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C8A,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:500;src:url(/cf-fonts/v/inter/5.2.8/cyrillic/wght/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:500;src:url(/cf-fonts/v/inter/5.2.8/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:500;src:url(/cf-fonts/v/inter/5.2.8/greek/wght/normal.woff2);unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:500;src:url(/cf-fonts/v/inter/5.2.8/latin-ext/wght/normal.woff2);unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:500;src:url(/cf-fonts/v/inter/5.2.8/greek-ext/wght/normal.woff2);unicode-range:U+1F00-1FFF;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:600;src:url(/cf-fonts/v/inter/5.2.8/greek/wght/normal.woff2);unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:600;src:url(/cf-fonts/v/inter/5.2.8/greek-ext/wght/normal.woff2);unicode-range:U+1F00-1FFF;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:600;src:url(/cf-fonts/v/inter/5.2.8/cyrillic-ext/wght/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C8A,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:600;src:url(/cf-fonts/v/inter/5.2.8/cyrillic/wght/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:600;src:url(/cf-fonts/v/inter/5.2.8/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:600;src:url(/cf-fonts/v/inter/5.2.8/latin-ext/wght/normal.woff2);unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:600;src:url(/cf-fonts/v/inter/5.2.8/vietnamese/wght/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}</style>
+<style>
+  :root {
+    /* Palette sourced from DESIGN.md at build time (scripts/design_tokens.py) */
+    --green: #00B4D8; --green-dim: #3DC5E0; --teal: #32D74B;
+    --black: #0A1128; --charcoal: #151D32; --dark-grey: #232A3E;
+    --mid-grey: #A1A7AE; --light-grey: #A1A7AE; --white: #FFFFFF;
+    --green-rgb: 0,180,216; --black-rgb: 10,17,40;
+    --charcoal-rgb: 21,29,50; --dark-grey-rgb: 35,42,62;
+    --mono: "Space Mono", ui-monospace, monospace;
+    --sans: "Inter", system-ui, sans-serif;
+    --r-md: 4px; --r-lg: 8px;
+    --s-1: 4px; --s-2: 8px; --s-3: 16px; --s-4: 24px; --s-5: 32px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--black); color: var(--white); font-family: var(--sans);
+    font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased;
+    background-image:
+      linear-gradient(rgba(var(--dark-grey-rgb),.46) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(var(--dark-grey-rgb),.46) 1px, transparent 1px);
+    background-size: 32px 32px; background-position: -1px -1px;
+  }
+  a { color: inherit; text-decoration: none; }
+  a:focus-visible { outline: 2px solid var(--green); outline-offset: 4px; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 var(--s-4); }
+  main.wrap { padding-top: 48px; padding-bottom: 72px; }
+  .intro-nav {
+    display: flex; align-items: center; gap: 32px; overflow: visible;
+    margin: 0 0 64px; padding-bottom: 12px; border-bottom: 1px solid var(--dark-grey);
+    font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase;
+    /* Pinned: the strip is injected into three templates whose body line-heights differ
+       (1.6 briefs, 1.65 papers, 1.45 revenue), which moved it between pages. */
+    line-height: 1.6;
+  }
+  .intro-nav a {
+    position: relative; flex: 0 0 auto; color: var(--light-grey); padding: 4px 0;
+    text-decoration: none;
+  }
+  .intro-nav a:hover { color: var(--white); }
+  .intro-nav a.active { color: var(--white); }
+  .intro-nav a.active::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: -17px; height: 2px;
+    background: var(--green);
+  }
+  .intro-nav-group { position: relative; flex: 0 0 auto; }
+  .intro-nav-group > summary {
+    position: relative; display: block; list-style: none; cursor: pointer;
+    color: var(--light-grey); padding: 4px 0;
+  }
+  .intro-nav-group > summary::-webkit-details-marker { display: none; }
+  .intro-nav-group > summary:hover, .intro-nav-group[open] > summary,
+  .intro-nav-group.has-active > summary { color: var(--white); }
+  .intro-nav-group.has-active > summary::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: -17px; height: 2px;
+    background: var(--green);
+  }
+  /* Literal lengths: this block is injected into the revenue template too, which has no
+     --s-N or --r-N scale (see the comment above INTRO_NAV_CSS). */
+  .intro-nav-menu {
+    position: absolute; top: calc(100% + 14px); left: -16px; z-index: 30;
+    display: flex; flex-direction: column; gap: 6px; min-width: 180px; padding: 12px 16px;
+    background: var(--black); border: 1px solid var(--dark-grey); border-radius: 6px;
+  }
+  .intro-nav-menu > a.active::after { bottom: -2px; }
+  .intro-footer-link { color: inherit; text-decoration: none; border-bottom: none; }
+  .intro-footer-link:hover { color: var(--white); }
+  /* V1.0 minimum logotype width is 120px; the shared nav_css() 22px would ship 98px. */
+  .topnav .brand img { height: 28px; }
+  .nav-context {
+    color: var(--mid-grey); font-family: var(--mono); font-size: 11px;
+    letter-spacing: .12em; white-space: nowrap;
+  }
+  /* Phones wrap the strip onto two rows rather than scroll it: flop.finance strips the
+     script that would scroll the active entry into view (its CSP allows no inline script).
+     The underline moves under its own label, since the strip's bottom border is a row away. */
+  @media (max-width: 680px) {
+    .intro-nav { flex-wrap: wrap; row-gap: 10px; gap: 24px; margin-bottom: 48px; }
+    .intro-nav > a.active::after,
+    .intro-nav-group.has-active > summary::after { bottom: -2px; }
+    /* Shared so the logo lands on the same gutter everywhere. STYLE has a generic .wrap
+       rule that covered the brief pages; the papers and the revenue page did not, so the
+       mark sat at 24px there and 16px here — a visible jump when moving between them.
+       LITERAL 16px, not var(--s-3): this block is injected into three documents and the
+       revenue template carries its own token set with no --s-N scale, where an undefined
+       var() makes the declaration invalid and the padding collapses to 0. */
+    .topnav .wrap { padding-left: 16px; padding-right: 16px; }
+  }
+  .hero {
+    display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(280px, .75fr);
+    gap: 64px; align-items: end;
+  }
+  .eyebrow, .group-label {
+    font-family: var(--mono); font-size: 11px; color: var(--green); letter-spacing: .16em;
+    text-transform: uppercase;
+  }
+  .eyebrow { display: flex; align-items: center; gap: 10px; margin-bottom: var(--s-4); }
+  .eyebrow::before { content: ""; width: 8px; height: 8px; background: var(--green); }
+  h1 {
+    max-width: 820px; margin: 0 0 var(--s-4); font-family: var(--mono); font-weight: 700;
+    font-size: clamp(42px, 5.4vw, 72px); line-height: 1.02; letter-spacing: -.045em;
+  }
+  .lede { max-width: 68ch; margin: 0; color: var(--light-grey); font-size: 18px; line-height: 1.6; }
+  .panel { border-left: 2px solid var(--teal); padding: 4px 0 4px var(--s-4); }
+  .panel h2, .group-label {
+    margin: 0 0 var(--s-3); font-family: var(--mono); font-size: 11px;
+    letter-spacing: .14em; text-transform: uppercase; color: var(--mid-grey);
+  }
+  .hero-list { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--s-3); }
+  .hero-list li { color: var(--white); font-size: 14px; line-height: 1.5; }
+  .stats {
+    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 64px;
+    border: 1px solid var(--dark-grey); border-radius: var(--r-md); background: var(--charcoal);
+  }
+  .stats-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .stat { min-height: 152px; padding: var(--s-4); }
+  .stat + .stat { border-left: 1px solid var(--dark-grey); }
+  .stat .k { font-family: var(--mono); color: var(--mid-grey); font-size: 11px; text-transform: uppercase; letter-spacing: .08em; }
+  .stat .v { margin: 12px 0 8px; font-family: var(--mono); color: var(--green); font-size: 28px; font-weight: 700; line-height: 1.1; }
+  .stat .d { max-width: 34ch; color: var(--light-grey); font-size: 13px; line-height: 1.5; }
+  .group { margin-top: 88px; }
+  .group-head { display: grid; grid-template-columns: 220px 1fr; border-bottom: 1px solid var(--dark-grey); }
+  .group-head h2 { margin: 0 0 var(--s-4); font-family: var(--mono); font-size: 28px; line-height: 1.2; }
+  .sections { display: grid; }
+  .section {
+    display: grid; grid-template-columns: 220px minmax(0, .9fr) minmax(280px, 1.1fr);
+    gap: var(--s-5); padding: var(--s-5) 0; border-bottom: 1px solid var(--dark-grey);
+  }
+  .section h3 { margin: 0; font-family: var(--mono); font-size: 17px; line-height: 1.4; }
+  .section p { max-width: 62ch; margin: 0; color: var(--light-grey); }
+  .bullets { margin: 0; padding: 0; list-style: none; color: var(--white); }
+  .bullets li { position: relative; margin: 0 0 10px; padding-left: 20px; font-size: 14px; }
+  .bullets li::before { content: ""; position: absolute; left: 0; top: 9px; width: 6px; height: 6px; background: var(--teal); }
+  .flow {
+    position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+    border: 1px solid var(--dark-grey); border-radius: var(--r-md); background: var(--charcoal);
+  }
+  .flow::before { content: ""; position: absolute; top: 39px; left: 12.5%; right: 12.5%; height: 1px; background: var(--green); }
+  .step { position: relative; min-height: 190px; padding: var(--s-4); }
+  .step + .step { border-left: 1px solid var(--dark-grey); }
+  .step .node {
+    position: relative; z-index: 1; width: 12px; height: 12px; margin: 9px 0 var(--s-4);
+    border: 3px solid var(--charcoal); outline: 1px solid var(--green); background: var(--green);
+  }
+  .step .n { font-family: var(--mono); color: var(--white); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }
+  .step .t { margin-top: 10px; color: var(--light-grey); font-size: 13px; line-height: 1.55; }
+  .sources { display: flex; flex-wrap: wrap; gap: var(--s-2); margin-top: 56px; }
+  .sources a {
+    font-family: var(--mono); font-size: 12px; color: var(--light-grey);
+    border: 1px solid var(--dark-grey); border-radius: var(--r-md); padding: 9px 12px;
+    background: rgba(var(--charcoal-rgb),.7);
+  }
+  .sources a:hover { border-color: var(--green-dim); color: var(--white); }
+  footer {
+    display: flex; justify-content: space-between; gap: var(--s-3); margin-top: 64px;
+    padding-top: var(--s-4); border-top: 1px solid var(--dark-grey);
+    color: var(--mid-grey); font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: .06em;
+  }
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; gap: var(--s-5); align-items: start; }
+    .panel { max-width: 620px; }
+    .section { grid-template-columns: 180px 1fr; }
+    .section .bullets { grid-column: 2; }
+    .group-head { grid-template-columns: 180px 1fr; }
+    .stats-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .stats-4 .stat:nth-child(3) { border-left: 0; }
+    .stats-4 .stat:nth-child(n + 3) { border-top: 1px solid var(--dark-grey); }
+  }
+  @media (max-width: 680px) {
+    main.wrap { padding-top: var(--s-5); padding-bottom: 48px; }
+    .wrap { padding-left: var(--s-3); padding-right: var(--s-3); }
+    h1 { font-size: 38px; letter-spacing: -.035em; }
+    .lede { font-size: 16px; }
+    .stats, .flow { grid-template-columns: 1fr; }
+    .stat { min-height: 0; }
+    .stats-4 { grid-template-columns: 1fr; }
+    .stat + .stat, .stats-4 .stat:nth-child(2), .step + .step { border-left: 0; border-top: 1px solid var(--dark-grey); }
+    .group { margin-top: 64px; }
+    .group-head { display: block; }
+    .group-label { margin-bottom: var(--s-2); }
+    .group-head h2 { font-size: 24px; }
+    .section { display: block; padding: var(--s-4) 0; }
+    .section h3, .section p { margin-bottom: var(--s-3); }
+    .flow::before { top: 40px; bottom: 40px; left: 29px; right: auto; width: 1px; height: auto; }
+    .step { min-height: 0; padding: var(--s-4) var(--s-4) var(--s-4) 64px; }
+    .step .node { position: absolute; left: 23px; top: 24px; margin: 0; }
+    footer { flex-direction: column; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+
+  /* ── unified top nav · scripts/landing_chrome.py (shared across index/params/links) ── */
+  .topnav { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(8px);
+    background: rgba(10,17,40,.85); border-bottom: 1px solid var(--dark-grey); }
+  .topnav .wrap { display: flex; align-items: center; gap: 28px; height: 60px;
+    padding-top: 0; padding-bottom: 0; }   /* override pages whose .wrap adds vertical padding */
+  .brand { display: inline-flex; align-items: center; flex: 0 0 auto; }
+  .brand img { height: 22px; width: auto; display: block; }
+  .topnav .navlinks { display: flex; align-items: center; gap: 26px;
+    font-family: var(--mono); font-size: 12px; letter-spacing: .04em; }
+  .topnav .navlinks > a, .dd > button { color: var(--light-grey); background: none;
+    border: 0; font: inherit; letter-spacing: inherit; cursor: pointer; padding: 0;
+    transition: color .15s; }
+  .topnav .navlinks > a:hover, .dd > button:hover, .dd.open > button { color: var(--white); }
+  .topnav .spacer { flex: 1 1 auto; }
+  .topnav .right { display: inline-flex; align-items: center; gap: 18px; flex: 0 0 auto; }
+  .dd { position: relative; }
+  .dd > button::after { content: "\25BE"; margin-left: 5px; font-size: 10px; opacity: .7;
+    display: inline-block; transition: transform .15s; }
+  .dd.open > button::after { transform: rotate(180deg); }
+  .dd .menu { position: absolute; top: calc(100% + 12px); left: 50%; transform: translateX(-50%);
+    min-width: 190px; background: #151D32; border: 1px solid var(--dark-grey); border-radius: 9px;
+    padding: 6px; display: none; flex-direction: column; gap: 2px;
+    box-shadow: 0 14px 34px rgba(0,0,0,.55); }
+  .dd.open .menu { display: flex; }   /* click-toggled (nav_js), not hover — hover dropdowns are unusable */
+  .dd .menu a { color: var(--light-grey); font-family: var(--mono); font-size: 12px;
+    padding: 9px 12px; border-radius: 6px; transition: background .15s, color .15s; }
+  .dd .menu a:hover { color: var(--white); background: rgba(255,255,255,.06); }
+  .navcta { display: inline-flex; align-items: center; padding: 9px 16px; border-radius: 6px;
+    background: #00B4D8; color: #0A1128; font-family: var(--mono); font-weight: 700;
+    font-size: 12px; letter-spacing: .04em; white-space: nowrap; transition: background .15s; }
+  .navcta:hover { background: #3DC5E0; }
+  /* language dropdown (.dd.lang): globe + 2-letter CODE trigger (reads as a language picker,
+     consistent); each row = CODE + native name so a visitor in the wrong language can navigate
+     out by their code. Right-aligned, scrolls when there are many locales. */
+  .dd.lang > button { letter-spacing: 0; display: inline-flex; align-items: center; gap: 6px; }
+  .dd.lang .globe { flex: none; opacity: .8; }
+  .dd.lang .menu { left: auto; right: 0; transform: none; min-width: 172px;
+    max-height: 62vh; overflow-y: auto; }
+  .dd.lang .menu a { display: flex; align-items: baseline; gap: 10px; }
+  .dd.lang .menu a .lc { flex: none; min-width: 18px; font-size: 11px; letter-spacing: .06em; opacity: .6; }
+  .dd.lang .menu a:hover .lc { opacity: .85; }
+  .dd.lang .menu a.active, .dd.lang .menu a.active .lc { color: #00B4D8; opacity: 1; }
+  @media (max-width: 720px) {
+    .topnav .wrap { gap: 14px; }
+    .topnav .navlinks { display: none; }   /* collapse links to logo + lang + CTA (signal, not noise) */
+  }
+
+</style>
+<link rel="canonical" href="https://flop.finance/intro/agent/" />
+<link rel="icon" href="/assets/flop-chip-favicon.svg" type="image/svg+xml" />
+<meta name="description" content="A FLOP agent posts a session request and pays miners in FLOP to run inference." />
+<meta name="theme-color" content="#0A1128" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="FLOP" />
+<meta property="og:title" content="Agents buy compute with FLOP — FLOP Network" />
+<meta property="og:description" content="A FLOP agent posts a session request and pays miners in FLOP to run inference." />
+<meta property="og:url" content="https://flop.finance/intro/agent/" />
+<meta property="og:image" content="https://flop.finance/assets/og.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="The FLOP logotype in Ice White with the accent Chip, on a navy ground." />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@flop_labs" />
+<!-- No hreflang alternates: these pages are English only, so a self-referencing
+     alternate would be the only entry and says nothing the canonical does not. -->
+</head>
+<body>
+<nav class="topnav">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="FLOP Network"><img src="/assets/flop-lockup-reverse-1c.svg" alt="FLOP" /></a>
+    <div class="spacer"></div>
+    <span class="nav-context">PROJECT INTRO</span>
+  </div>
+</nav>
+  <main class="wrap">
+    <div class="intro-nav" aria-label="Project intro pages">
+      <a href="/intro/">Overview</a>
+      <a href="/whitepaper/">Whitepaper</a>
+      <a href="/testnet/">Testnet</a>
+      <a href="/airdrop/">Airdrop</a>
+      <details class="intro-nav-group has-active">
+        <summary>Roles&nbsp;&#9662;</summary>
+        <span class="intro-nav-menu">
+          <a href="/intro/miner/">Miner</a>
+          <a href="/intro/validator/">Validator</a>
+          <a class="active" aria-current="page" href="/intro/agent/">Agent</a>
+          <a href="/intro/verification/">Verification</a>
+          <a href="/intro/revenue/">Revenue model</a>
+        </span>
+      </details>
+      <a href="/intro/yellowpaper/">Yellow paper</a>
+    </div>
+
+    <div class="hero">
+      <div>
+        <div class="eyebrow">Compute buyer · Draft whitepaper</div>
+        <h1>Agents buy compute with FLOP</h1>
+        <p class="lede">A FLOP agent posts a session request and pays miners in FLOP to run inference. The account-based chain lets an agent convert currency into compute at any time, with spend limits enforced on-chain.</p>
+      </div>
+      <aside class="panel" aria-label="Key points">
+        <h2>Key points</h2>
+        <ul class="hero-list">
+          <li>Post a session request to the mempool and pick a capable miner.</li>
+          <li>Convert FLOP into compute and intelligence whenever you want.</li>
+          <li>Bound spending with pre-set limits, delegation, and escrow.</li>
+        </ul>
+      </aside>
+    </div>
+
+    <div class="stats stats-3">
+      <div class="stat">
+        <div class="k">Session request</div>
+        <div class="v">5 fields</div>
+        <div class="d">Model-weight hash, max latency, FLOPs, a confidentiality flag, and the fee.</div>
+      </div>
+      <div class="stat">
+        <div class="k">Settlement</div>
+        <div class="v">PoUI proof</div>
+        <div class="d">The miner returns activation commitments and a co-signed transcript; a hardware quote only on the optional HARD tier.</div>
+      </div>
+      <div class="stat">
+        <div class="k">Cross-chain</div>
+        <div class="v">HTLC</div>
+        <div class="d">Swap FLOP for other cryptocurrencies agent-to-agent.</div>
+      </div>
+    </div>
+
+    <div class="group">
+      <div class="group-head">
+        <div class="group-label">Protocol brief</div>
+        <h2>What to know</h2>
+      </div>
+      <div class="sections">
+      <section class="section">
+        <h3>Requesting inference</h3>
+        <p>Agents create a session request in the mempool. A capable miner accepts, runs the task, and returns a proof. If the work is wrong, the agent can challenge it and the network adjudicates.</p>
+        <ul class="bullets">
+          <li>A request pins a model-weight hash, max latency, compute in FLOPs, a confidentiality flag, and the fee.</li>
+          <li>The miner opens a secure, private connection and runs the inference.</li>
+          <li>If a task is not completed as given, the agent can challenge the result.</li>
+        </ul>
+      </section>
+      <section class="section">
+        <h3>Account features and spend control</h3>
+        <p>The account-based chain gives agents the primitives to operate safely at scale: transfers, delegation, staking, vesting, collaborative escrow, and a declarative spend-condition layer.</p>
+        <ul class="bullets">
+          <li>Set pre-set spend limits and delegate bounded authority via proxies.</li>
+          <li>Use multisig, timelock or vesting, and multi-party escrow pools.</li>
+          <li>Delegate stake to miners or validators to earn a share of rewards.</li>
+        </ul>
+      </section>
+      <section class="section">
+        <h3>Swaps and the airdrop</h3>
+        <p>Native hashlock timelocks let an agent escrow FLOP against another chain&#x27;s asset, powering agent-to-agent sub-economies. A testnet airdrop seeds agent supply, and while it is locked it can only buy compute.</p>
+        <ul class="bullets">
+          <li>An HTLC exchanges FLOP for external crypto once the counter-transfer confirms.</li>
+          <li>Locked agent airdrop can be spent only on compute: opening or topping up inference sessions.</li>
+          <li>When it becomes liquid is not yet set; the Yellow Paper keeps the agent release schedule open.</li>
+        </ul>
+      </section>
+    </div>
+    </div>
+
+    <div class="group">
+      <div class="group-head">
+        <div class="group-label">Execution path</div>
+        <h2>How it works</h2>
+      </div>
+      <div class="flow">
+      <div class="step">
+        <div class="node" aria-hidden="true"></div>
+        <div class="n">01 / Request</div>
+        <div class="t">Post a session request: model hash, latency, FLOPs, confidentiality, and fee.</div>
+      </div>
+      <div class="step">
+        <div class="node" aria-hidden="true"></div>
+        <div class="n">02 / Match</div>
+        <div class="t">A capable miner accepts and opens a secure, private connection.</div>
+      </div>
+      <div class="step">
+        <div class="node" aria-hidden="true"></div>
+        <div class="n">03 / Prove</div>
+        <div class="t">The miner runs the task and returns the proof. Confidential-computing hardware is an optional tier, not a requirement.</div>
+      </div>
+      <div class="step">
+        <div class="node" aria-hidden="true"></div>
+        <div class="n">04 / Settle</div>
+        <div class="t">Pay in FLOP on settlement, or challenge if the work is wrong.</div>
+      </div>
+    </div>
+    </div>
+
+    <footer>
+      <span>FLOP Network &middot; Project intro</span>
+      <span><a class="intro-footer-link" href="https://gpus.flop.finance/#overview" target="_blank" rel="noopener">GPU market&nbsp;&#8599;</a></span>
+      <span>Draft &middot; Updated 2026-10-05</span>
+    </footer>
+  </main>
+
+
+<script>
+  (() => {
+    const groups = [...document.querySelectorAll('.intro-nav-group')];
+    if (!groups.length) return;
+    document.addEventListener('click', (event) => {
+      const inside = event.target.closest('.intro-nav-group');
+      groups.forEach((group) => { if (group !== inside) group.open = false; });
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape') return;
+      const open = groups.find((group) => group.open);
+      if (!open) return;
+      open.open = false;
+      open.querySelector('summary').focus();
+    });
+  })();
+</script>
+<!-- Cloudflare Pages Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "2c3a630a01284c71a8cfbf10db1c75db"}'></script><!-- Cloudflare Pages Analytics --><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon='{"version":"2024.11.0","token":"81ccefe1eb5e48fcb5e3294a233a055c","spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>
