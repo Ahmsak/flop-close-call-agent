@@ -1,0 +1,32 @@
+[
+  {
+    "url": "https://flop.finance/testnet/",
+    "file": "testnet.html",
+    "fetched_utc": "2026-10-08T10:32:36.5078772Z",
+    "sha256": "ad9654ba7cadf4bc2e25ab32ac1a1449ff3c4980f411b1e8155d7587d08d0ab0"
+  },
+  {
+    "url": "https://flop.finance/airdrop/",
+    "file": "airdrop.html",
+    "fetched_utc": "2026-10-08T10:32:37.2051738Z",
+    "sha256": "a3e8e239713ccfe788276f70459fc102a8040a9d1f2aae661fe0f265499fb826"
+  },
+  {
+    "url": "https://flop.finance/intro/agent/",
+    "file": "agent.html",
+    "fetched_utc": "2026-10-08T10:32:37.5109260Z",
+    "sha256": "d44846fbe6a00d637e3ff84a833c0ec3a841d0c27f890e7fcfaad9bd131530e5"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/flop-labs/yellowpaper/3c97bbc8d6ba68cf2ea003ab88bc154aafdf105e/CHANGELOG.md",
+    "file": "yellowpaper-changelog.md",
+    "fetched_utc": "2026-10-08T10:32:38.3763319Z",
+    "sha256": "1ae684a7a36ef395a3aa26f0850e651b73e4348cb7f5b0187e76de5bb4f8b879"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/flop-labs/yellowpaper/3c97bbc8d6ba68cf2ea003ab88bc154aafdf105e/README.md",
+    "file": "yellowpaper-readme.md",
+    "fetched_utc": "2026-10-08T10:32:39.0148413Z",
+    "sha256": "b3da44ac04b3205807c48bfb8c6222e0ad838954d8a7a8327f98681db18cafb9"
+  }
+]

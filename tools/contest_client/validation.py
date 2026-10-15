@@ -7,6 +7,7 @@ class PartialArchiveError(ValueError): pass
 
 
 def validated_replay(events, config=None):
+    events=list(events)  # Validate and replay the same one-shot input.
     lock=(config or {}).get('lock_sweep',2556)
     seeded=False;final=False;previous=0
     for event in events:

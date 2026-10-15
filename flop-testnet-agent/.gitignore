@@ -1,0 +1,17 @@
+__pycache__/
+runtime/
+*.sqlite
+*.sqlite-journal
+*.sqlite-wal
+*.sqlite-shm
+*grant*.json
+config.json
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+.pytest_cache/
+dist/
+*.pem
+*.key

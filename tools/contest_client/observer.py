@@ -32,6 +32,7 @@ def utcnow(): return dt.datetime.now(dt.timezone.utc)
 
 
 def timestamp(value):
+    if not isinstance(value,str): raise ValueError('timestamp requires string')
     date = dt.datetime.fromisoformat(value.replace('Z','+00:00'))
     if date.tzinfo is None: raise ValueError('timestamp requires timezone')
     return date.astimezone(dt.timezone.utc)
@@ -219,6 +220,8 @@ def analyze(raw_rooms, *, now=None, verifier=verify_record, pin_valid=True, max_
     if not common:
         result.update(status='REJECTED',reason='NO_COMMON_SWEEP');return result
     n=max(common);current={room:index[room][n][1] for room in ROOMS}
+    result['observation_digest']=hashlib.sha256(json.dumps(current,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+    result['final_records']=[b for _,b in parsed['d-close1-price'] if b.get('t')=='final']
     hashes={v.get('file') for v in current.values()}
     if len(hashes)!=1 or not all(isinstance(h,str) and re.fullmatch('[0-9a-f]{64}',h) for h in hashes):
         issues.append({'kind':'cross_room_archive_hash_mismatch'})
@@ -262,6 +265,35 @@ def analyze(raw_rooms, *, now=None, verifier=verify_record, pin_valid=True, max_
     return result
 
 
+def promote(output,snapshot):
+    """Serialize promotion; keep the previous observation on conflict or rollback."""
+    output=Path(output);output.mkdir(parents=True,exist_ok=True)
+    lock=output/'.promotion.lock'
+    try: fd=os.open(lock,os.O_CREAT|os.O_EXCL|os.O_WRONLY)
+    except FileExistsError:
+        snapshot.update(status='REJECTED',reason='PROMOTION_LOCKED');return
+    try:
+        previous=output/'latest.json'
+        if previous.exists():
+            try:
+                old=strict_json(previous.read_text(encoding='utf-8'))
+                before,after=old['latest_common_sweep'],snapshot['latest_common_sweep']
+                if type(before) is not int or type(after) is not int:raise ValueError('bad_sweep')
+                reason=None
+                if after<before:reason='SWEEP_ROLLBACK'
+                elif after==before and (not old.get('observation_digest') or old['observation_digest']!=snapshot.get('observation_digest')):
+                    reason='SAME_SWEEP_CONFLICT_OR_UNVERIFIABLE'
+                elif old.get('final_records') and (after!=before or old['final_records']!=snapshot.get('final_records')):
+                    reason='FINAL_OBSERVATION_CHANGED'
+                if reason:
+                    snapshot.update(status='REJECTED',reason=reason);return
+            except (ValueError,KeyError,TypeError):
+                snapshot.update(status='REJECTED',reason='PREVIOUS_SNAPSHOT_UNVERIFIABLE');return
+        save_json(previous,snapshot)
+    finally:
+        os.close(fd);lock.unlink()
+
+
 def refresh(output=ROOT/'data/observer', *, fetcher=fetch):
     output=Path(output);run=output/utcnow().strftime('%Y%m%dT%H%M%S%fZ')
     raw_rooms={};sources=[]
@@ -277,9 +309,9 @@ def refresh(output=ROOT/'data/observer', *, fetcher=fetch):
         snapshot['trading_room_faults']=faults
     snapshot['trading_room_scope']='Raw retained window, individually checked; not mixed into common-sweep referee counts'
     snapshot['sources']=sources;snapshot['evidence_directory']=str(run.resolve())
-    save_json(run/'snapshot.json',snapshot)
     # Failed verification is recorded but cannot replace a prior verified observation.
-    if snapshot['status']!='REJECTED':save_json(output/'latest.json',snapshot)
+    if snapshot['status']!='REJECTED':promote(output,snapshot)
+    save_json(run/'snapshot.json',snapshot)
     save_json(output/'last_attempt.json',{'path':str(run/'snapshot.json'),'status':snapshot['status']})
     return snapshot
 

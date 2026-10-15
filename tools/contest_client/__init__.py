@@ -26,7 +26,7 @@ class ContestClient:
             times=[snapshot.get('sweep_timestamp',snapshot['timestamp']),snapshot['reference_price']['time']]
             ages=[(now-dt.datetime.fromisoformat(t.replace('Z','+00:00'))).total_seconds() for t in times]
             snapshot['stale']=max(ages)>900 or min(ages)<-60
-        except (KeyError,TypeError,ValueError):snapshot['stale']=True
+        except (KeyError,TypeError,ValueError,AttributeError):snapshot['stale']=True
         snapshot['read_at_utc']=now.isoformat()
         return snapshot
 

@@ -1,0 +1,10 @@
+{
+  "unit": "SYNTHETIC_TEST_UNITS",
+  "budget": "100",
+  "reserve": "20",
+  "workloads": [
+    {"name": "Structured extraction with known answers", "count": 10, "max_total_cost": "2", "unit": "SYNTHETIC_TEST_UNITS"},
+    {"name": "Source-grounded summaries", "count": 10, "max_total_cost": "4", "unit": "SYNTHETIC_TEST_UNITS"},
+    {"name": "Code tasks with executable checks", "count": 10, "max_total_cost": "5", "unit": "SYNTHETIC_TEST_UNITS"}
+  ]
+}

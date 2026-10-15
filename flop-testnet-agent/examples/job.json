@@ -1,0 +1,4 @@
+{
+  "workload": "invoice_totals_v1",
+  "input": "sku,quantity,unit_price\nA,2,3.50\nB,1,4\nA,1,2\n"
+}
