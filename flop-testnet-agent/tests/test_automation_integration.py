@@ -13,6 +13,23 @@ from test_mission import DOCS,Scripted
 from test_source_discovery import EVENT,page,NOW
 
 class IntegrationTests(unittest.TestCase):
+    def test_budget_resume_only_unissued_step(self):
+        p=self.policy.read();p['automation_daily_units']['model']=1;self.path.write_text(canonical(p))
+        result=guarded_run(DOCS,self.root/'resume-budget',self.store,self.policy,Scripted)
+        self.assertEqual(result['status'],'BLOCKED')
+        self.assertEqual(self.store.db.execute('SELECT COUNT(*) FROM automation_actions').fetchone()[0],1)
+        p['automation_daily_units']['model']=2;p['automation_task_allowlist']=[result['task_id']]
+        self.path.write_text(canonical(p))
+        done=guarded_run(DOCS,self.root/'resume-budget',self.store,self.policy,Scripted,resume_blocked=True)
+        self.assertEqual(done['status'],'LOCAL_COMPLETE')
+        self.assertEqual(self.store.db.execute('SELECT COUNT(*) FROM automation_actions').fetchone()[0],2)
+
+    def test_malformed_policy_cannot_grant_resume_or_delivery(self):
+        p=self.policy.read()
+        for change in ({'automation_task_allowlist':'a-task-id'},{'automation_sandbox_delivery':'false'}):
+            self.path.write_text(canonical({**p,**change}))
+            with self.assertRaises(PermissionError):self.policy.read()
+
     def setUp(self):
         self.temp=tempfile.TemporaryDirectory(); self.addCleanup(self.temp.cleanup); self.root=Path(self.temp.name)
         self.store=Store(self.root/'state.sqlite',create=True); self.addCleanup(self.store.close)
@@ -37,6 +54,10 @@ class IntegrationTests(unittest.TestCase):
         self.assertIsNone(q.health()['marks']['sources'])
         self.assertIsNone(q.health()['marks']['model'])
         self.assertEqual(self.store.db.execute('SELECT state FROM automation_actions').fetchone()[0],'UNKNOWN')
+        p=self.policy.read();p['automation_task_allowlist']=[result['task_id']];self.path.write_text(canonical(p))
+        def forbidden(path):raise AssertionError('unknown model response must not be retried')
+        again=guarded_run(DOCS,self.root/'failed',self.store,self.policy,forbidden,resume_blocked=True)
+        self.assertEqual(again['status'],'UNKNOWN')
 
     def test_readonly_retains_task_and_notice_across_database_reopen(self):
         def forbidden(p): raise AssertionError('model forbidden')

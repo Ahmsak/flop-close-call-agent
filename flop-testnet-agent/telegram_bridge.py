@@ -8,13 +8,16 @@ from pathlib import Path
 import sys
 import hashlib
 import sqlite3
+import time
 
 
-def claim_wire(database,grant):
+def claim_wire(database,grant,*,clock=time.time):
     """One durable wire attempt, including across child-process restarts."""
     c=sqlite3.connect('file:'+Path(database).resolve().as_posix()+'?mode=rw',uri=True)
     try:
         c.execute('BEGIN IMMEDIATE')
+        if type(grant.get('expires')) not in (int,float) or not clock()<grant['expires']:
+            raise PermissionError('DELIVERY_GRANT_EXPIRED')
         nid=grant['notification_id']
         row=c.execute('SELECT state,attempts,task_id FROM automation_outbox WHERE id=?',(nid,)).fetchone()
         permission=c.execute('SELECT value FROM metadata WHERE key=?',('delivery_permission:'+nid,)).fetchone()
@@ -23,6 +26,47 @@ def claim_wire(database,grant):
         c.execute('INSERT INTO metadata VALUES(?,?)',('telegram_wire:'+nid,json.dumps({'requests':1})))
         c.commit()
     finally:c.close()
+
+
+def response_excerpt(status,body):
+    """Allowlist API evidence; never retain raw responses, URLs or headers."""
+    excerpt={}
+    if type(status) is int:excerpt['http_status']=status
+    if not isinstance(body,dict):return excerpt
+    if type(body.get('ok')) is bool:excerpt['ok']=body['ok']
+    result=body.get('result')
+    if not isinstance(result,dict):return excerpt
+    safe={}
+    for key in ('message_id','date'):
+        if type(result.get(key)) is int:safe[key]=result[key]
+    for group,fields in (('from',('id','username')),('chat',('id','type')),('document',('file_name','file_size'))):
+        value=result.get(group)
+        if not isinstance(value,dict):continue
+        selected={}
+        for key in fields:
+            item=value.get(key)
+            if key in ('id','file_size'):
+                if type(item) is int:selected[key]=item
+            elif isinstance(item,str) and len(item)<=255:
+                if key=='username' and (not item.isascii() or not item.replace('_','').isalnum()):continue
+                if key=='type' and item not in ('private','group','supergroup','channel'):continue
+                if key=='file_name' and any(c in item for c in ('/', '\\', ':','\n','\r')):continue
+                selected[key]=item
+        if selected:safe[group]=selected
+    if safe:excerpt['result']=safe
+    return excerpt
+
+
+def delivery_result(status,body,chat,requests,artifact_hash):
+    excerpt=response_excerpt(status,body)
+    result={'status':'UNKNOWN' if requests else 'NOT_SENT','requests':requests,'response_excerpt':excerpt}
+    message=excerpt.get('result',{})
+    if excerpt.get('ok') is True and message.get('message_id') and str(message.get('chat',{}).get('id'))==chat:
+        result.update(accepted=True,service_id=str(message['message_id']),chat_id=chat,artifact_sha256=artifact_hash)
+        result.pop('status')
+    elif excerpt.get('ok') is False:
+        result.update(rejected=True);result.pop('status')
+    return result
 
 
 def check_owner(home_chat, allowed_users, chat, expected_username):
@@ -36,6 +80,7 @@ def check_owner(home_chat, allowed_users, chat, expected_username):
 
 
 async def probe(home, expected_username,send_spec=None):
+    requests=0
     sys.path.insert(0,str(home/'hermes-agent'))
     os.environ['HERMES_HOME']=str(home)  # this subprocess only
     logging.disable(logging.CRITICAL)
@@ -70,9 +115,9 @@ async def probe(home, expected_username,send_spec=None):
                 options.update(transport=httpx.AsyncHTTPTransport(retries=0,proxy=kwargs.get('proxy')),follow_redirects=False)
                 kwargs['httpx_kwargs']=options
                 original_init(self,*args,**kwargs)
-            requests=0; response=None
+            response=None; http_status=None
             async def guarded(self,url,method,*args,**kwargs):
-                nonlocal requests,response
+                nonlocal requests,response,http_status
                 endpoint=url.rsplit('/',1)[-1]
                 if endpoint=='getMe':return await original(self,url,method,*args,**kwargs)
                 if endpoint!='sendDocument' or requests:raise PermissionError('SEND_NOT_ALLOWED')
@@ -84,6 +129,7 @@ async def probe(home, expected_username,send_spec=None):
                 claim_wire(send_spec['database'],grant)
                 requests=1
                 reply=await original(self,url,method,*args,**kwargs)
+                http_status=reply[0]
                 try:response=json.loads(reply[1])
                 except Exception:pass
                 return reply
@@ -104,17 +150,10 @@ async def probe(home, expected_username,send_spec=None):
             finally:
                 HTTPXRequest.do_request=original
                 HTTPXRequest.__init__=original_init
-            if response and response.get('ok') is True:
-                message=response.get('result',{})
-                if message.get('message_id') and str(message.get('chat',{}).get('id'))==chat:
-                    return {'accepted':True,'service_id':str(message['message_id']),'requests':requests,
-                            'chat_id':chat,'artifact_sha256':grant['sha256']}
-            if response and response.get('ok') is False:
-                return {'rejected':True,'error_code':response.get('error_code'),'requests':requests}
-            return {'status':'UNKNOWN' if requests else 'NOT_SENT','requests':requests}
+            return delivery_result(http_status,response,chat,requests,grant['sha256'])
         return {**result,'chat_id':str(target.id),'type':target.type,'username':target.username}
     except Exception:
-        return {'status':'NOT_SENT','reason':'CONNECTION_CHECK_FAILED','requests':0}
+        return {'status':'UNKNOWN' if requests else 'NOT_SENT','reason':'CONNECTION_CHECK_FAILED','requests':requests}
 
 
 if __name__=='__main__':

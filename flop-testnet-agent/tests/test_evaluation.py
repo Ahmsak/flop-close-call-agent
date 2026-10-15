@@ -5,6 +5,13 @@ import unittest
 from evaluation import audit, score
 
 class AccountingTests(unittest.TestCase):
+    def test_legacy_comparison_cannot_bypass_durable_permission(self):
+        from evaluation import compare
+        from unittest.mock import patch
+        with tempfile.TemporaryDirectory() as tmp, patch('evaluation.CodexDecision',side_effect=AssertionError('no model')):
+            with self.assertRaisesRegex(PermissionError,'LEGACY_COMPARISON_CLOSED'):
+                compare(Path(tmp)/'unused')
+            self.assertEqual(list(Path(tmp).iterdir()),[])
     def test_counters_not_added_twice_and_state_checked(self):
         with tempfile.TemporaryDirectory() as tmp:
             path=Path(tmp)

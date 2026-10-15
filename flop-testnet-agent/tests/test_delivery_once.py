@@ -28,8 +28,8 @@ class OneShotTests(unittest.TestCase):
             def send(self,nid,destination,payload):
                 self.calls+=1
                 assert parent.q.db.execute('SELECT state FROM automation_outbox WHERE id=?',(nid,)).fetchone()[0]=='SENDING'
-                claim_wire(parent.root/'state.sqlite',payload['delivery_grant'])
-                with parent.assertRaises(Exception):claim_wire(parent.root/'state.sqlite',payload['delivery_grant'])
+                claim_wire(parent.root/'state.sqlite',payload['delivery_grant'],clock=lambda:100)
+                with parent.assertRaises(Exception):claim_wire(parent.root/'state.sqlite',payload['delivery_grant'],clock=lambda:100)
                 if response is None:raise TimeoutError('reply lost')
                 return response
         return Adapter()
@@ -41,6 +41,29 @@ class OneShotTests(unittest.TestCase):
         try:self.assertEqual(Durable(reopened).deliver(self.nid,a,self.policy,grant=self.grant)['state'],'SERVICE_ACCEPTED')
         finally:reopened.close()
         self.assertEqual(a.calls,1)
+
+    def test_grant_expiry_rechecked_at_wire_boundary(self):
+        parent=self
+        class Expired:
+            environment='telegram';chat_id='123';username='fixture'
+            def send(self,nid,destination,payload):
+                with parent.assertRaisesRegex(PermissionError,'DELIVERY_GRANT_EXPIRED'):
+                    claim_wire(parent.root/'state.sqlite',payload['delivery_grant'],clock=lambda:200)
+                return {'status':'NOT_SENT','requests':0}
+        self.assertEqual(self.q.deliver(self.nid,Expired(),self.policy,grant=self.grant)['state'],'NOT_SENT')
+        self.assertIsNone(self.q.db.execute('SELECT value FROM metadata WHERE key=?',('telegram_wire:'+self.nid,)).fetchone())
+
+    def test_safe_api_excerpt_persists_after_restart(self):
+        from telegram_bridge import delivery_result
+        reply=delivery_result(200,{'ok':True,'result':{'message_id':42,'date':1700000000,
+            'from':{'id':99,'username':'fixture_bot'},'chat':{'id':123,'type':'private'},
+            'document':{'file_name':'result.html','file_size':1234}}},'123',1,self.grant['sha256'])
+        self.q.deliver(self.nid,self.adapter(reply),self.policy,grant=self.grant)
+        reopened=Store(self.root/'state.sqlite')
+        try:
+            saved=reopened.db.execute('SELECT receipt FROM automation_outbox WHERE id=?',(self.nid,)).fetchone()[0]
+            self.assertEqual(json.loads(saved)['response_excerpt'],reply['response_excerpt'])
+        finally:reopened.close()
 
     def test_unknown_never_retried(self):
         a=self.adapter(None)

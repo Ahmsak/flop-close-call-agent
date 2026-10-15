@@ -76,40 +76,9 @@ def prepare(target):
     return docs
 
 def compare(target):
-    docs=prepare(target)
-    contract=strict_json((target/'contract.json').read_text(encoding='utf-8'))
-    if contract['source_hash']!=digest(docs) or contract['task']!=TASK: raise ValueError('CONTRACT_CHANGED')
-    class TaskDecision(CodexDecision):
-        def decide(self,context,step,remaining):
-            if step>3: raise RuntimeError('COMPARISON_MODEL_CALL_CAP')
-            context={**context,'assigned_task':TASK,'instruction':'This assigned task replaces the general choice of mission. Maximum 3 decisions: read only what you need, then write.'}
-            return super().decide(context,step,remaining)
-    app=run(docs,target/'application',TaskDecision)
-    baseline=target/'baseline'; baseline.mkdir(exist_ok=True)
-    if not (baseline/'attempt.json').exists():
-        write(baseline/'attempt.json',{'status':'IN_FLIGHT','started_at':time.time()})
-        start=time.monotonic()
-        try:
-            provider=CodexDecision(baseline)
-            # Inline sources give baseline all information without application tool roundtrips.
-            context={'assigned_task':TASK,'instruction':'Single direct answer, all source documents are provided below. Return write with the finished brief, or stop. No follow-up calls.',
-                     'documents':docs,'history':[], 'steps_remaining':1}
-            decision,usage=provider.decide(context,1,90)
-            write(baseline/'decision.json',decision)
-            brief=strict_json(decision['arguments'])
-            if decision['tool']=='write':
-                write(baseline/'brief.json',brief)
-                (baseline/'result.html').write_text(render(brief,docs),encoding='utf-8')
-            write(baseline/'attempt.json',{'status':'RETURNED','usage':usage,'seconds':time.monotonic()-start})
-        except Exception as error:
-            write(baseline/'attempt.json',{'status':'FAILED_NO_RETRY','error':str(error),'seconds':time.monotonic()-start})
-    result={'contract':contract,'application_status':app['status']}
-    for label in ('application','baseline'):
-        folder=target/label
-        brief=folder/'brief.json'
-        result[label]={'usage':audit(folder),'score':score(strict_json(brief.read_text(encoding='utf-8')),docs) if brief.exists() else None}
-    write(target/'comparison.json',result)
-    return result
+    # Historical paired trial predates durable reservations and its grant is closed.
+    # Keep accounting/quality readers, but do not expose an unbudgeted model path.
+    raise PermissionError('LEGACY_COMPARISON_CLOSED_USE_DURABLE_MISSION')
 
 if __name__=='__main__':
     import sys

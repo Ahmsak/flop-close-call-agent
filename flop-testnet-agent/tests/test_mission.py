@@ -22,6 +22,12 @@ class Scripted:
         return {'tool':tool,'reason':'TEST_DOUBLE','arguments':json.dumps(args)},[]
 
 class MissionTests(unittest.TestCase):
+    def test_render_does_not_activate_external_script_urls(self):
+        from mission import render
+        for url in ('javascript:alert(1)','data:text/html,<script>alert(1)</script>','https://user:password@example.com/'):
+            output=render(BRIEF,{'s':{**DOCS['s'],'source':url}})
+            self.assertNotIn('href=',output);self.assertNotIn('<script>',output)
+        self.assertIn('href="https://flop.finance/testnet/"',render(BRIEF,DOCS))
     def test_complete_restart_and_artifact_loss(self):
         with tempfile.TemporaryDirectory() as path:
             result=run(DOCS,path,Scripted)

@@ -35,7 +35,7 @@ def guarded_run(docs,directory,store,policy,provider_factory=None,*,allow_model=
             if state['steps'] and state['steps'][-1].get('outcome')=='IN_FLIGHT':
                 aid=digest([key,'model-'+str(len(state['steps']))])
                 action=queue.db.execute('SELECT state FROM automation_actions WHERE id=?',(aid,)).fetchone()
-                if action and action[0]=='CONFIRMED':
+                if (action and action[0]=='CONFIRMED') or (resume_blocked and state['status']=='BLOCKED' and action is None):
                     state['steps'].pop(); state['status']='RUNNING'
                     statefile.write_text(json.dumps(state,ensure_ascii=False,indent=2),encoding='utf-8')
         class Guarded:

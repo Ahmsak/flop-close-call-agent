@@ -31,6 +31,11 @@ class Policy:
         caps=policy.get('automation_daily_units',{})
         if not isinstance(caps,dict) or any(type(v)!=int or v<0 for v in caps.values()):
             raise PermissionError('POLICY_BUDGET_INVALID')
+        allowed=policy.get('automation_task_allowlist',[])
+        if not isinstance(allowed,list) or any(not isinstance(x,str) or not x for x in allowed):
+            raise PermissionError('POLICY_TASK_ALLOWLIST_INVALID')
+        if type(policy.get('automation_sandbox_delivery',False)) is not bool:
+            raise PermissionError('POLICY_SANDBOX_DELIVERY_INVALID')
         return policy
 
 class Durable:

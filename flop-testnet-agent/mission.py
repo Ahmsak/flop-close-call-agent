@@ -124,14 +124,21 @@ def check_brief(brief, docs, read):
             'delivery':'NOT_SENT','acceptance':'UNKNOWN','reward':'UNKNOWN'}
 
 def render(brief, docs):
+    from urllib.parse import urlsplit
     esc = lambda x: html.escape(str(x))
     parts=['<!doctype html><meta charset="utf-8"><title>'+esc(brief['title'])+'</title>',
            '<style>body{max-width:900px;margin:40px auto;font:18px/1.6 system-ui;padding:20px}blockquote{border-left:3px solid #aaa;padding-left:20px}small{color:#555}</style>',
            '<h1>'+esc(brief['title'])+'</h1><p>'+esc(brief['beneficiary'])+'</p><p>'+esc(brief['need'])+'</p>']
     for claim in brief['claims']:
         doc = docs[claim['document']]
+        source=str(doc['source'])
+        try:
+            url=urlsplit(source)
+            safe=url.scheme in ('http','https') and bool(url.hostname) and not url.username and not url.password
+        except ValueError:safe=False
+        link='<a href="'+esc(source)+'">Источник</a>' if safe else esc(source)
         parts += ['<h2>'+esc(claim['statement'])+'</h2><blockquote>'+esc(claim['quote'])+'</blockquote>',
-                  '<p><a href="'+esc(doc['source'])+'">Источник</a> · observed_at='+esc(doc['observed_at'])+'</p>']
+                  '<p>'+link+' · observed_at='+esc(doc['observed_at'])+'</p>']
     parts += ['<h2>Практический следующий шаг</h2><p>'+esc(brief['next_action'])+'</p>',
               '<h2>Ограничения</h2><ul>'+''.join('<li>'+esc(x)+'</li>' for x in brief['limitations'])+'</ul>',
               '<small>Локальная подготовка. Доставка не выполнена; принятие и награда UNKNOWN. '

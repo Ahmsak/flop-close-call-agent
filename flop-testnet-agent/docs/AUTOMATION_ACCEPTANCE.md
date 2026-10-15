@@ -372,3 +372,38 @@ This new stale-notice guard was added only in the publication clone per scope.
 The operational sibling installation and its database/configuration were not modified
 or switched; deploying the new guard there is a separate synchronization step.
 Model/delivery grants remain closed. Existing tools/ changes are outside this commit.
+
+
+## User-confirmed delivery acceptance
+
+The user subsequently confirmed that the previously delivered message is visible
+in the Hermes Agent chat. Single-delivery end-to-end acceptance is CLOSED_BY_USER_CONFIRMATION,
+limited to message visibility. Opening and reading the attached file remain UNKNOWN.
+The earlier MESSAGE_NOT_SEEN report is retained as historically valid; the new
+confirmation resolves it without deleting or rewriting the earlier evidence.
+SERVICE_ACCEPTED and the service receipt are unchanged. Private confirmation and
+receipt details remain only in operational runtime/SQLite.
+
+Separate logging limitation remains open: the original Telegram response, result.from
+and result.date were not retained. No missing historical fields were reconstructed.
+No resend, model call, mission execution, cron, permanent delivery, commit or push.
+One-time delivery and model permissions remain closed.
+
+
+## Release-audit follow-up (offline only)
+
+See [RELEASE_AUDIT](../../docs/RELEASE_AUDIT.md) for the fresh candidate tests.
+Future Telegram attempts retain an allowlisted response excerpt, if present:
+HTTP status, ok, message ID, sender ID/username, chat ID/type, service date and
+file name/size. Missing optional metadata does not invalidate an otherwise
+confirmed response. No historic receipt was repaired or recreated. The old
+logging gap remains a limitation of the prior delivery.
+
+Grant expiry is checked again at the wire claim. Malformed post-send responses
+stay UNKNOWN. The completed-task SUPERSEDED regression remains in place.
+Only explicitly authorized budget-blocked steps with no action intent may be
+resumed; UNKNOWN actions are not replayed. The old standalone paired-evaluation
+live path is closed because it predates durable permissions. Saved-log auditing
+still works. These changes are published source only, not an operational upgrade.
+User confirmation closed single-message visibility acceptance; file opening and
+reading remain UNKNOWN. Model and delivery permissions remain closed.

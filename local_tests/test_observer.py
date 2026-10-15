@@ -48,6 +48,32 @@ def change(raw,room,fn):
 
 
 class ObserverTests(unittest.TestCase):
+    def test_numeric_reference_time_rejected_and_client_stale(self):
+        raw=fixtures()
+        def mutate(rows):
+            b=json.loads(rows[-1]['text']);b['ref']['time']=123;rows[-1]['text']=json.dumps(b)
+        change(raw,'d-close1-price',mutate)
+        snapshot=self.analyze(raw)
+        self.assertEqual(snapshot['status'],'REJECTED')
+        with tempfile.TemporaryDirectory() as d:
+            path=Path(d)/'snapshot.json';path.write_text(json.dumps(snapshot))
+            self.assertTrue(ContestClient(path).observe()['stale'])
+
+    def test_promotion_rollback_conflict_final_and_lock(self):
+        with tempfile.TemporaryDirectory() as d:
+            snapshot=self.analyze();o.promote(d,snapshot)
+            path=Path(d)/'latest.json';saved=path.read_bytes()
+            for changed,reason in (({'latest_common_sweep':0},'SWEEP_ROLLBACK'),
+                                   ({'observation_digest':'changed'},'SAME_SWEEP_CONFLICT_OR_UNVERIFIABLE')):
+                candidate={**snapshot,**changed};o.promote(d,candidate)
+                self.assertEqual(candidate['reason'],reason);self.assertEqual(path.read_bytes(),saved)
+            final={**snapshot,'final_records':[{'t':'final','px':'100'}]};o.promote(d,final)
+            saved=path.read_bytes();o.promote(d,snapshot)
+            self.assertEqual(snapshot['reason'],'FINAL_OBSERVATION_CHANGED');self.assertEqual(path.read_bytes(),saved)
+            (Path(d)/'.promotion.lock').write_text('other process')
+            candidate=self.analyze();o.promote(d,candidate)
+            self.assertEqual(candidate['reason'],'PROMOTION_LOCKED');self.assertEqual(path.read_bytes(),saved)
+
     def analyze(self,raw=None,**kw):return o.analyze(raw or fixtures(),now=NOW,verifier=fake_verify,**kw)
     def test_partial_counts_not_people(self):
         s=self.analyze();self.assertEqual(s['status'],'PARTIAL')
@@ -170,6 +196,8 @@ class TransportTests(unittest.TestCase):
 
 
 class ReplayTests(unittest.TestCase):
+    def test_one_shot_iterator_matches_list(self):
+        self.assertEqual(validated_replay(iter(self.events()),{'lock_sweep':1}),validated_replay(self.events(),{'lock_sweep':1}))
     def events(self):return [{'t':'seed','px':'100'},{'t':'sweep','n':1,'ref':'100','close':'100','owners':[],'trades':[]},{'t':'final','px':'101'}]
     def test_terminal_phase(self):
         e=self.events();e.append(e[1])
