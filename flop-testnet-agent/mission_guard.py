@@ -4,7 +4,7 @@ from pathlib import Path
 from durable import Durable
 from ops import canonical, digest, strict_json
 
-def guarded_run(docs,directory,store,policy,provider_factory=None,*,allow_model=True):
+def guarded_run(docs,directory,store,policy,provider_factory=None,*,allow_model=True,resume_blocked=False):
     from mission import run, CodexDecision, MODEL
     directory=Path(directory); statefile=directory/'state.json'
     queue=Durable(store)
@@ -26,6 +26,7 @@ def guarded_run(docs,directory,store,policy,provider_factory=None,*,allow_model=
         if reason:
             nid=queue.block(key,reason)
             return {'status':queue.task(key)['state'],'reason':reason,'task_id':key,'outbox_id':nid,'delivery':'DELIVERY_NOT_TESTED'}
+        if resume_blocked: queue.resume_blocked(key,policy)
         fence=queue.claim(key,owner,120)
         if fence is None: return {'status':queue.task(key)['state'],'task_id':key,'reason':'LEASE_OR_RECONCILIATION_REQUIRED'}
         # A durable successful model response can repair a crash before JSON checkpoint.

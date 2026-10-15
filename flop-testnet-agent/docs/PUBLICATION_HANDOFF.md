@@ -51,3 +51,13 @@ tools/verify_public_snapshot.py remain local and are excluded from this publicat
 
 Integration base: c5d287e6d8a3b28ff496c52b777fe67f6bef139d, verified against origin before
 creating integration/testnet-agent. No existing branch or upstream was changed.
+
+### Follow-up publication: saved-task resume
+
+Synchronized the completed task-scoped resume changes from the operational sibling:
+durable.py, mission.py, mission_guard.py, its integration regression test and the
+acceptance report. Current publication test result: 80 PASS, 0 FAIL, 1 SKIP out
+of 81 discovered; the private-history regression remains excluded as described above.
+No mission or live model call was run here. Operational location and closed model
+allowance are unchanged. Publication-only config.example.json and this handoff remain
+preserved; runtime and the real model-generated artifact are not published.

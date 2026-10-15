@@ -58,6 +58,19 @@ class IntegrationTests(unittest.TestCase):
         self.assertEqual(Durable(self.store).task(result['task_id'])['state'],'BLOCKED')
         self.assertIsNotNone(result['outbox_id'])
 
+    def test_explicit_task_scoped_resume_then_restart(self):
+        result=guarded_run(DOCS,self.root/'resume',self.store,self.policy,allow_model=False)
+        denied=guarded_run(DOCS,self.root/'resume',self.store,self.policy,Scripted,resume_blocked=True)
+        self.assertEqual(denied['reason'],'TASK_RESUME_NOT_AUTHORIZED')
+        p=json.loads(self.path.read_text());p['automation_task_allowlist']=[result['task_id']]
+        self.path.write_text(canonical(p))
+        done=guarded_run(DOCS,self.root/'resume',self.store,self.policy,Scripted,resume_blocked=True)
+        self.assertEqual(done['status'],'LOCAL_COMPLETE')
+        def forbidden(p):raise AssertionError('no repeat')
+        again=guarded_run(DOCS,self.root/'resume',self.store,self.policy,forbidden,resume_blocked=True)
+        self.assertEqual(again['status'],'LOCAL_COMPLETE')
+        self.assertEqual(self.store.db.execute('SELECT COUNT(*) FROM automation_actions').fetchone()[0],2)
+
     def test_completed_json_repairs_missing_sqlite_completion_without_model(self):
         from mission import run
         run(DOCS,self.root/'repair',Scripted)

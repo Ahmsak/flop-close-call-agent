@@ -213,6 +213,7 @@ def main():
     parser=argparse.ArgumentParser(); parser.add_argument('--run',default='runtime/mission-live')
     parser.add_argument('--input',type=Path,help='Separate bounded public-input control corpus')
     parser.add_argument('--read-only',action='store_true',help='Refresh bounded official discovery; persist mission; prohibit model and delivery')
+    parser.add_argument('--resume-blocked',action='store_true',help='Resume a blocked task explicitly listed in owner policy')
     args=parser.parse_args()
     target=(ROOT/args.run).resolve()
     if not target.is_relative_to(ROOT/'runtime'): raise ValueError('OUTPUT_OUTSIDE_RUNTIME')
@@ -243,7 +244,7 @@ def main():
     from durable import Policy
     from mission_guard import guarded_run
     store=Store(ROOT/'runtime/state.sqlite')
-    try: result=guarded_run(docs,target,store,Policy(ROOT/'config.json'),allow_model=not args.read_only)
+    try: result=guarded_run(docs,target,store,Policy(ROOT/'config.json'),allow_model=not args.read_only,resume_blocked=args.resume_blocked)
     finally: store.close()
     print(json.dumps({k:v for k,v in result.items() if k not in ('steps','read')},ensure_ascii=False,indent=2))
 

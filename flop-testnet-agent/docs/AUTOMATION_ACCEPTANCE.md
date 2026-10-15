@@ -248,3 +248,38 @@ fixtures, not owner credentials. No operational identity/key material is exporte
 
 Repeat from the project directory:
 `./run.ps1 mission --read-only --run runtime/mission-readonly-20261015`
+
+## Authorized saved-task model execution — 2026-10-15
+
+Owner explicitly requested model analysis of the saved task. Added explicit
+--resume-blocked with a task-scoped owner policy allowlist and a regression test.
+The saved task
+resumed from BLOCKED and is now CONFIRMED. Existing ChatGPT login / gpt-6.1-sol
+performed two real calls in 33.578 seconds. Provider reports 30,556 input tokens,
+1,042 output tokens and a reasoning_output_tokens field totaling 27. No price inferred.
+
+Result: runtime/mission-readonly-20261015/result.html and brief.json; six claims
+with exact quotes pass the existing validator. This historical evidence brief is
+not proof of current eligibility, settlement or semantic correctness.
+
+A separate process restart returned LOCAL_COMPLETE without new calls: task attempts
+remain 1, both action IDs remain CONFIRMED and provider log hashes are unchanged.
+Evidence: runtime/mission-readonly-20261015/model-restart-verification.json.
+Two local outbox records remain PENDING with zero attempts (previous blocked notice
+and completion notice). No delivery. Temporary model allowance restored to the
+previous zero-budget configuration after execution. 81 tests passed before live run.
+
+The completed changes are now synchronized for publication in integration/testnet-agent.
+This publication does not run mission or extend model authorization. Runtime evidence
+and the generated brief remain only in the original operational installation.
+
+### Publication verification of this update
+
+Fresh tests in the publication copy: 81 discovered, 80 PASS, 0 FAIL, 1 SKIP
+(15.291 seconds). The skipped test needs the private saved 34-offer SQLite history;
+that history was not copied, and its replay was not verified in this run.
+Model responses in tests are scripted fixtures; no live LLM calls, mission launches,
+live delivery or FLOP operations were performed during publication. Existing model
+allowance remains closed; neither configuration nor limits were copied or changed.
+Close Call checks: 18 PASS, generated files current, 15 manifest artifacts verified.
+Only reviewed component changes are staged; prior tools/ changes remain local.

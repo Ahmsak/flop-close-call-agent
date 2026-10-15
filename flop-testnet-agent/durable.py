@@ -96,6 +96,19 @@ class Durable:
 
     def task(self,key): return dict(self.db.execute('SELECT * FROM automation_tasks WHERE id=?',(key,)).fetchone())
 
+    def resume_blocked(self,key,policy):
+        """Explicit owner-authorized resume; cannot revive ambiguous external work."""
+        p=policy.read()
+        if key not in p.get('automation_task_allowlist',[]):
+            raise PermissionError('TASK_RESUME_NOT_AUTHORIZED')
+        with self.tx():
+            row=self.task(key)
+            if row['state']!='BLOCKED': return
+            if self.db.execute("SELECT 1 FROM automation_actions WHERE task_id=? AND state IN ('SENDING','UNKNOWN')",(key,)).fetchone():
+                raise PermissionError('RECONCILIATION_REQUIRED')
+            self.db.execute("UPDATE automation_tasks SET state='PENDING',policy_hash=?,reason=NULL,lease=0 WHERE id=?",(digest(p),key))
+            self.store.event(key,'automation_resumed',{'policy_hash':digest(p)})
+
     def claim(self,key,worker,seconds=30):
         if not 0<seconds<=120: raise ValueError('LEASE_LIMIT')
         with self.tx():
@@ -122,6 +135,8 @@ class Durable:
         with self.tx():
             row=self.owned(key,worker,fence); p=policy.read()
             if digest(p)!=row['policy_hash']: raise PermissionError('POLICY_CHANGED')
+            if 'automation_task_allowlist' in p and key not in p['automation_task_allowlist']:
+                raise PermissionError('TASK_NOT_AUTHORIZED')
             if model is not None and model!=p.get('automation_model'): raise PermissionError('MODEL_NOT_AUTHORIZED')
             aid=digest([key,action]); old=self.db.execute('SELECT * FROM automation_actions WHERE id=?',(aid,)).fetchone()
             if old: return dict(old)  # Caller may not re-execute an existing intent.
