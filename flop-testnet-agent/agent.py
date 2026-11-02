@@ -98,7 +98,7 @@ def main():
         sys.stdout.reconfigure(encoding='utf-8')
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('command', choices=('readiness', 'plan', 'audit', 'init', 'state', 'doctor',
-                                           'find', 'work', 'prepare', 'execute', 'verify', 'reward', 'demo', 'backup'))
+                                           'find', 'work', 'prepare', 'execute', 'verify', 'reward', 'demo', 'backup', 'gateway-models', 'testnet-readiness'))
     parser.add_argument('input', type=Path, nargs='?')
     parser.add_argument('--db', type=Path, default=Path(__file__).parent/'runtime'/'state.sqlite')
     parser.add_argument('--config', type=Path, default=Path(__file__).parent/'config.json')
@@ -108,11 +108,36 @@ def main():
     parser.add_argument('--replay', action='store_true', help='find: saved discovery events, no network')
     parser.add_argument('--as-of', help='replay-only ISO timestamp for a historical decision')
     parser.add_argument('--output', type=Path, help='save full result and print a compact index')
+    parser.add_argument('--gateway-network', choices=('devnet', 'testnet'), default=None)
+    parser.add_argument('--gateway-journal', type=Path, help='gateway-models: explicitly selected existing Store; no initialization')
+    parser.add_argument('--launch-journal', type=Path, help='testnet-readiness: explicitly selected existing Store only')
     args = parser.parse_args()
+    if args.launch_journal and args.command != 'testnet-readiness':
+        parser.error('--launch-journal requires testnet-readiness')
+    if (args.gateway_network or args.gateway_journal) and args.command != 'gateway-models':
+        parser.error('--gateway-network/--gateway-journal require gateway-models')
     if (args.replay or args.as_of) and args.command != 'find':
         parser.error('--replay/--as-of are find options')
     try:
-        if args.command in ('readiness', 'plan', 'audit'):
+        if args.command == 'testnet-readiness':
+            from testnet_readiness import check
+            from ops import Store
+            journal = Store(args.launch_journal) if args.launch_journal else None
+            try:
+                result = check(store=journal)
+            finally:
+                if journal is not None: journal.close()
+        elif args.command == 'gateway-models':
+            from flop_gateway import discover_models
+            # Public discovery never loads private config, the default DB or Operator.
+            from ops import Store
+            journal = Store(args.gateway_journal) if args.gateway_journal else None
+            try:
+                result = discover_models(network=args.gateway_network or 'devnet', store=journal)
+            finally:
+                if journal is not None:
+                    journal.close()
+        elif args.command in ('readiness', 'plan', 'audit'):
             result = globals()[args.command](json.loads(args.input.read_text(encoding='utf-8-sig')))
         elif args.command == 'demo':
             from sandbox import demo
@@ -169,6 +194,8 @@ def main():
                           'selected':result['selected'], 'output':str(args.output.resolve()),
                           'candidate_count':len(result['candidates']), 'plan':result['plan']}
         print(json.dumps(result, indent=2, ensure_ascii=False))
+        if args.command == 'gateway-models' and result['status'] != 'OK':
+            raise SystemExit(2)
     except Exception as error:
         print(json.dumps({'status': 'ERROR', 'error': type(error).__name__, 'detail': str(error)}, ensure_ascii=False))
         raise SystemExit(2)

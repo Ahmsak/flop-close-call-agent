@@ -407,3 +407,213 @@ live path is closed because it predates durable permissions. Saved-log auditing
 still works. These changes are published source only, not an operational upgrade.
 User confirmation closed single-message visibility acceptance; file opening and
 reading remain UNKNOWN. Model and delivery permissions remain closed.
+
+## P0-B: public gateway discovery — 2026-11-02
+
+Development worktree only: flop-testnet-agent-dev-f4a19e0, branch
+codex/p0-a-f4a19e0, base f4a19e06808b4e92d3bbcae4ee2593f351b9d6d4.
+No deployment or change to the operational sibling installation.
+
+Added flop_gateway.py and the existing CLI's gateway-models command.
+Only a fixed public GET https://api.flop.network/v1/models is available.
+No method/URL/body/credential injection surface, proxy credentials, redirects,
+automatic retries, signatures, wallet operations or inference. No SDK installed.
+The devnet profile is not verified chain identity; testnet profile is blocked.
+JSON/schema validation covers the discovery subset; extensions and prices are
+discarded, and no receipt/settlement validation is claimed. Responses are capped
+at 512 KiB; socket-operation timeout is 8 seconds, not a total DNS/stream deadline.
+Failures retain safe local reason codes and HTTP status, not remote error bodies.
+No pagination follow-up. Empty listing is not proof of absence of inference supply.
+
+Default CLI path opens neither private configuration nor SQLite. Optional explicit
+--gateway-journal uses an existing Store and records one evidence event; it never
+initializes a database. Existing --output writes JSON when explicitly requested.
+The smoke used only --output, not --gateway-journal.
+
+Offline suite: 111 discovered, 110 PASS, 0 FAIL/ERROR, 1 SKIP, 19.463 seconds.
+All previous 96 passing tests remain passing; 14 new tests cover transport scope,
+errors, redirects, schema/size validation, profiles, CLI isolation and journal
+persistence. Skip remains the private 34-offer replay; no private database copied.
+The first run had a new test asserting an instance where build_opener accepts a
+handler class. Corrected that test assertion; the full second run passed.
+Synthetic temporary stores, loopback fixtures, inherited external-network and
+non-Python-subprocess blocking, and bytecode-disabled execution were used.
+
+One live adapter invocation, one request attempt, HTTP 200, one returned model:
+qwen/qwen2.5-0.5b-instruct. No retry or redirect request.
+Result: status=OK, network_profile=devnet, network_identity_verified=false,
+testnet_ready=false, inference_available=UNKNOWN, execution=EXECUTION_DISABLED.
+Response SHA-256:
+454d3df1bc8ba44034f82a0aa47df5dcad5a57cfa5402a449a9b37e3ee4e2457
+This proves catalog retrieval only, not inference access, metering or settlement.
+Local evidence is outside Git under deployment-private/p0-b-20261102/
+(gateway-smoke.json and offline-tests.txt); no operational receipt is published.
+
+Git diff --check passed; changed code, tests and documentation were reviewed for
+credentials/private identifiers. Existing P0-A AGENTS/RUNBOOK additions retained.
+No operational SQLite access, model call, Telegram send, faucet, signed request,
+transaction, permission change, scheduler, commit or push. No runtime/config
+created in the development component. Stop after P0-B.
+
+Next authorized stage needs network/account admission, scoped inference authority,
+monetary/compute/fee caps, durable idempotency and correlation, live reconciliation,
+and verified receipt/finalized settlement evidence. A 200 model list grants none.
+## P0-C: provisional durable inference preparation (offline only)
+
+Extended the existing Durable class and existing Store with additive
+automation_inference storage. No second database, executor or network sender.
+prepare_inference binds task/slot to immutable operation/idempotency identity,
+session correlation, network, model and canonical-request fingerprint.
+Same-slot changed input is rejected; a duplicate returns its original ID.
+
+Local state: PREPARED -> AUTHORIZED -> SUBMITTED -> UNKNOWN or verified terminal
+CONFIRMED/FAILED. The submission transition commits BEFORE any future wire call;
+the current implementation performs no wire call. After an uncertain attempt,
+restart cannot authorize a resend. Only trusted offline reconciliation can resolve
+UNKNOWN, with identity, finality, closed escrow and bounded actual-cost checks.
+Optional/provisional request/channel/transaction/receipt references are recorded
+with terminal evidence; these are not asserted official FLOP API contracts.
+
+Money is nonnegative arbitrary-precision integer units, stored as decimal TEXT.
+Floats/bools/strings are rejected at monetary inputs. BEGIN IMMEDIATE covers shared
+daily/session reservation and journal events atomically. Reservation conservatively
+adds inference, escrow and fees. Outstanding holds survive day boundaries; settled
+actual costs count on reconciliation day and across the lifetime of the session.
+UNKNOWN never releases money. Confirmed cap breaches freeze new reservations in
+the affected network/unit domain. Failed work may still have confirmed fees.
+Terminal release plus actual spend and evidence event are one transaction.
+
+Fresh final suite: 130 discovered, 129 PASS, 0 FAIL/ERROR, 1 SKIP (21.374 seconds).
+All previous 110 passing tests remain passing; 19 inference tests added.
+Skip remains the private 34-offer replay; no private database copied or opened.
+Tests cover additive/repeated migration, identity collisions, exact large units,
+component/day/session caps, concurrent connections, stale/future prices, scope,
+unknown evidence, terminal release, rollback on event failure and real child
+process os._exit before/after a synthetic external effect. Restart attempts are
+blocked without repeating that effect. All data/identities are synthetic.
+Inherited test audit hooks blocked external network and non-Python subprocesses;
+loopback legacy tests remain allowed. Full log: deployment-private/p0-c-offline/tests.txt.
+
+git diff --check passed; changes scanned for private identifiers/key/token patterns.
+P0-A/B changes preserved. Only durable.py, tests/test_inference_durable.py, README.md
+and this report changed for P0-C. No runtime/config was created in this worktree.
+Working installation and private SQLite were not opened or changed. No real model,
+Telegram, gateway POST, faucet, wallet, signature, transaction, SDK, cron, commit/push.
+
+Limits: sandbox policy and trusted local reader only. No official quote verification,
+live receipt verifier, live lookup, signer or send/replay implementation. Expired
+unsubmitted authorization holds remain reserved; cancellation/repricing is not
+implemented. No exactly-once delivery guarantee. Session IDs and unit domains must
+come from trusted orchestration. Existing model missions do not route to this
+provisional ledger. Deployment and any live execution require a separate stage.
+Stop at P0-C; P0-D/P1 not started.
+
+## P0-D: offline FLOP inference evidence (2026-11-02)
+
+Implemented in flop_evidence.py and Durable.reconcile_evidence using the existing
+Store metadata and journal transaction. No additional database, executor, operation
+states or migration. Optional genesis is pinned in new operation specs and checked
+against policy; legacy operations without genesis are UNVERIFIABLE, not upgraded.
+
+Evidence levels are separate from operation states: GATEWAY_ACCEPTED and
+INFERENCE_COMPLETED are GATEWAY_REPORTED observations. The operation remains UNKNOWN,
+held reservation is unchanged, and confirmed spend is not inferred. SETTLEMENT_FINALIZED
+is intentionally unreachable: independent cryptographic finality verification is
+UNSUPPORTED. A claimed finalized=true, transaction hash or forged receipt never
+releases money. The existing P0-C terminal reader remains a trusted sandbox test seam;
+the offline reader cannot be used through that seam.
+
+Official sources reviewed (bounded public documentation/package reads only):
+- https://docs.flop.network/docs/sdk-references
+- https://docs.flop.network/docs/send-to-specific-miner
+- @flop-labs/contracts 0.1.1, package/dist/generated/types.d.ts:
+  ChatCompletionResponse JSON text subset; object/id/model/created/choices/usage.
+  Supported subset requires assistant text, stop/length and consistent integer token
+  counts. Streams, tool calls and other variants are unsupported. cost_flop and
+  gflops_used remain unverified reported numbers; no conversion to confirmed units.
+- @flop-labs/client 0.2.1 README: structural validation does not verify signatures,
+  payment, inclusion or finality. x_flop_receipt is an unverified extension, not
+  accepted settlement proof.
+- @flop-labs/sdk 0.4.0 direct-session and compute-channel declarations describe
+  receipt signature/hash/accumulator/model checks, genesis/finalized channel context,
+  and distinguish settlement posted from settled. This stage does NOT implement
+  those cryptographic checks or a chain proof verifier. SDK was not installed/run.
+
+flop-local-capture-v1 is explicitly a LOCAL capture envelope, not an official FLOP
+wire format. HTTP 202 acceptance is a local observation convention, not a claim that
+FLOP publishes a 202 receipt API. Local bindings include operation/idempotency/
+correlation IDs, network/genesis, fingerprint, model and unit, plus optional channel,
+transaction and receipt references. They establish consistency, NOT authenticity;
+a fabricated matching completion cannot be distinguished cryptographically here.
+Settlement claims require exact integer units but are always UNVERIFIABLE.
+
+Same capture is idempotent after restart. Request/completion/receipt identifiers are
+claimed atomically per genesis to reject cross-operation reuse. Conflicting bodies,
+claims, or changed/disappearing references do not overwrite previous observations.
+Malformed, missing or unavailable evidence does not release holds or establish failure.
+Classification and ownership claims share a transaction with journal evidence; an
+injected crash rolls back all of them. No raw completion text or receipt is journaled.
+
+Final verification: 146 discovered, 145 PASS, 0 FAIL/ERROR, 1 SKIP.
+All 129 P0-C passing tests remain passing; 16 synthetic offline evidence tests added.
+The skip is the existing private 34-offer replay; private SQLite was not opened/copied.
+Temporary databases cover repeated initialization/migration, atomic reservations,
+process crash/recovery, rollback, replay, conflicting evidence and premature release.
+Inherited test audit hooks block external sockets/DNS and non-Python subprocesses;
+legacy loopback tests remain allowed. Log: deployment-private/p0-d-offline/tests.txt.
+
+P0-D files: flop_evidence.py, durable.py, tests/test_flop_evidence.py,
+tests/fixtures/flop_completion.json, README.md and this report. Existing P0-A/B/C
+changes preserved. No operational installation/configuration/runtime/permissions,
+EXECUTION_DISABLED or launcher changes. No model, Telegram, inference, signed request,
+wallet, faucet, transaction, cron, commit/push. No gateway/RPC reads in this stage.
+
+Remaining before real inference: independently trusted network/genesis/runtime and
+channel state, authenticated request capture, official receipt verification with
+trusted attestation/model/input/output bindings, finality and closed-escrow proof,
+exact-cost reconciliation, and separately authorized transport/budget/signing.
+Local captures alone cannot make a financial operation CONFIRMED. P1 not started.
+
+
+## P1-E: Testnet launch readiness (2026-11-02)
+
+Added local UNVERIFIED testnet profile, testnet-readiness CLI command, fixed public
+source review and Day-1 supplement. Existing PublicReader/specification/Durable source
+checkpoints and Store journal reused. No new executor/database, no changes to inference
+states, budgets, outbox or evidence finality policy. Default private config/DB unopened.
+Only explicitly selected existing --launch-journal receives local snapshot writes.
+The live command read five official URLs, all HTTP 200, yet returned UNVERIFIED with
+can_execute=false and EXECUTION_DISABLED. No independent launch artifact verifier is
+implemented: even a fabricated complete local profile never yields OPEN/READY.
+Unknown formats remain visible as discovery candidates; automatic parsing of future
+onboarding/signature schemes is not claimed. No calendar-based activation.
+
+Actual live results: docs/acceptance/p1e-live.json. Container release manifest is
+available, but is not a Testnet launch artifact bound to genesis. Network page remains
+planned/unreleased. FAQ participation wording requires interpretation alongside it.
+No pre-launch DID cutoff found within reviewed pages/search; future changes unknown.
+
+Full offline suite: 158 tests, 157 PASS, 0 FAIL/ERROR, 1 SKIP, 24.209s.
+All previous 145 passing tests preserved, 12 new tests. Skip: private 34-offer replay.
+External sockets/DNS blocked during suite; loopback legacy tests allowed. Tests cover
+missing genesis, forged source, wrong network, incompatible release, closed faucet,
+contradictory sources, future/stale data, single-GET/date false readiness, fabricated
+VERIFIED profile, default private-state isolation, restart/dedup and last_success.
+Log: docs/acceptance/p1e-tests.txt. No real secrets/SQLite copied.
+
+Only development worktree changed. No wallet, faucet contact, enrollment, signature,
+inference, real-money action, Telegram, cron, SDK installation, commit or push.
+Remaining: independently authenticated Testnet artifacts, actual DID/account flow,
+qualified runtime/client, scoped owner authorization, price/budget, live Durable
+transport and finality verifier. No live execution readiness claimed.
+
+
+## Local history checkpoint — 2026-11-02
+
+Reviewed accumulated P0-A documentation and P0-B/C/D/P1-E source/test changes.
+Fresh pre-commit offline suite: 158 tests, 157 PASS, 0 FAIL/ERROR, 1 SKIP, 23.822s.
+External network and non-Python children blocked; legacy loopback fixtures allowed.
+Private replay remains skipped. Included source snapshots are public documents; test
+logs contain test names/results only. No private state, credentials or deployment
+artifacts included. Added ignore rules for custody/tool/archive paths. This checkpoint
+is local Git history only, not deployment, publication or authorization for Testnet.

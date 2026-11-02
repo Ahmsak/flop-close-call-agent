@@ -25,6 +25,12 @@ SIGNAL = re.compile(r'contest|challenge|prize|reward|airdrop|testnet|bounty|allo
 
 def official(url):
     p = urlsplit(url)
+    # Exact public launch documents only; no faucet or arbitrary docs URLs.
+    if url in ('https://docs.flop.network/networks/testnet',
+               'https://docs.flop.network/docs/testnet-and-timeline',
+               'https://docs.flop.network/docs/sdk-references',
+               'https://flop.network/releases.json'):
+        return True
     return (p.scheme == 'https' and not p.username and not p.password and p.port in (None, 443)
             and (p.hostname == 'flop.finance' or
                  p.hostname == 'github.com' and p.path.startswith('/flop-labs/') or

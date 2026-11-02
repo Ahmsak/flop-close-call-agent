@@ -12,6 +12,16 @@ import hashlib
 from ops import canonical, digest, strict_json
 
 DDL = [
+    # Local provisional inference ledger in the SAME Store; no live sender.
+    '''CREATE TABLE IF NOT EXISTS automation_inference(
+        id TEXT PRIMARY KEY, task_id TEXT NOT NULL, slot TEXT NOT NULL,
+        idempotency_key TEXT UNIQUE NOT NULL, correlation_id TEXT NOT NULL,
+        network TEXT NOT NULL, model TEXT NOT NULL, fingerprint TEXT NOT NULL,
+        spec TEXT NOT NULL, state TEXT NOT NULL CHECK(state IN
+        ('PREPARED','AUTHORIZED','SUBMITTED','CONFIRMED','FAILED','UNKNOWN')),
+        policy_hash TEXT, authorized_day TEXT, settled_day TEXT,
+        held TEXT NOT NULL DEFAULT '0', spent TEXT NOT NULL DEFAULT '0',
+        evidence TEXT, reason TEXT, UNIQUE(task_id,slot))''',
     'CREATE TABLE IF NOT EXISTS automation_sources(id TEXT PRIMARY KEY,cursor TEXT,status TEXT,last_success REAL,last_attempt REAL,evidence TEXT)',
     'CREATE TABLE IF NOT EXISTS automation_events(source_id TEXT,event_id TEXT,version TEXT,published REAL,discovered REAL,evidence TEXT,PRIMARY KEY(source_id,event_id,version))',
     'CREATE TABLE IF NOT EXISTS automation_tasks(id TEXT PRIMARY KEY,spec TEXT,policy_hash TEXT,state TEXT,owner TEXT,lease REAL DEFAULT 0,fence INTEGER DEFAULT 0,attempts INTEGER DEFAULT 0,result TEXT,reason TEXT)',
@@ -58,6 +68,229 @@ class Durable:
 
     def mark(self,kind,status):
         with self.tx(): self._mark(kind,status)
+
+    def inference(self, operation):
+        row=self.db.execute('SELECT * FROM automation_inference WHERE id=?',(operation,)).fetchone()
+        if row is None: raise ValueError('INFERENCE_NOT_FOUND')
+        return dict(row)
+
+    @staticmethod
+    def _money(value):
+        # Python arbitrary-precision ints; SQLite stores decimal TEXT, never REAL/SUM.
+        if type(value) is not int or value<0: raise ValueError('EXACT_NONNEGATIVE_UNITS_REQUIRED')
+        return value
+
+    def prepare_inference(self, task_id, slot, *, session, network, model,
+                          request_fingerprint, unit, price_at, price_expires,
+                          inference_cap, escrow_cap, fee_cap, genesis=None):
+        """Provisional LOCAL/SANDBOX contract. No prompt, credential or signer stored.
+
+        Fingerprint must be the hash of the complete canonical future request.
+        Same task/slot never creates a second paid operation on changed inputs.
+        No field here implies an official API, price attestation or network readiness.
+        """
+        import re
+        for value in (task_id,slot,session,network,model,unit):
+            if not isinstance(value,str) or not 1<=len(value)<=256 or any(ord(c)<33 for c in value):
+                raise ValueError('INFERENCE_ID_INVALID')
+        if not re.fullmatch('[0-9a-f]{64}',request_fingerprint): raise ValueError('FINGERPRINT_INVALID')
+        if type(price_at) is not int or type(price_expires) is not int or price_at>=price_expires:
+            raise ValueError('PRICE_TIME_INVALID')
+        caps=[self._money(x) for x in (inference_cap,escrow_cap,fee_cap)]
+        if genesis is not None and not re.fullmatch('0x[0-9a-f]{64}',genesis):
+            raise ValueError('GENESIS_INVALID')
+        spec={'environment':'sandbox','provisional':True,'session':session,'network':network,
+              'model':model,'fingerprint':request_fingerprint,'unit':unit,
+              'price_at':price_at,'price_expires':price_expires,
+              'inference_cap':caps[0],'escrow_cap':caps[1],'fee_cap':caps[2]}
+        if genesis is not None: spec['genesis']=genesis
+        key=digest(['inference-v1',task_id,slot])
+        with self.tx():
+            self.task(task_id)  # Link to the existing task layer, not another executor.
+            old=self.db.execute('SELECT * FROM automation_inference WHERE id=?',(key,)).fetchone()
+            if old:
+                if old['spec']!=canonical(spec): raise ValueError('OPERATION_IDENTITY_CONFLICT')
+                return key
+            self.db.execute('''INSERT INTO automation_inference
+                (id,task_id,slot,idempotency_key,correlation_id,network,model,fingerprint,spec,state)
+                VALUES(?,?,?,?,?,?,?,?,?,'PREPARED')''',
+                (key,task_id,slot,key,digest(['inference-session-v1',network,unit,session]),
+                 network,model,request_fingerprint,canonical(spec)))
+            self.store.event(key,'inference_prepared',{'spec_hash':digest(spec),'environment':'sandbox'})
+        return key
+
+    def _inference_policy(self, row, policy):
+        p=policy.read(); spec=strict_json(row['spec']); limits=p.get('automation_inference',{})
+        if spec.get('genesis') is not None and limits.get('genesis')!=spec['genesis']:
+            raise PermissionError('GENESIS_NOT_AUTHORIZED')
+        if (limits.get('environment')!='sandbox' or spec['environment']!='sandbox'
+                or row['id'] not in limits.get('operation_allowlist',[])
+                or row['network']!=limits.get('network') or spec['unit']!=limits.get('unit')):
+            raise PermissionError('INFERENCE_SCOPE_NOT_AUTHORIZED')
+        for field in ('inference_cap','escrow_cap','fee_cap','daily_cap','session_cap'):
+            self._money(limits.get(field))
+        if not spec['price_at']<=self.clock()<spec['price_expires']:
+            raise PermissionError('STALE_OR_FUTURE_PRICE')
+        for field in ('inference_cap','escrow_cap','fee_cap'):
+            if spec[field]>limits[field]: raise PermissionError('INFERENCE_COMPONENT_CAP')
+        return p,limits,spec
+
+    def authorize_inference(self, operation, policy):
+        """Atomically reserve worst-case inference + escrow + fees (conservative).
+
+        Pending reservations from ALL days count against today's cap. Session caps
+        are lifetime per explicit session, shared across tasks. Already settled
+        charges count on the UTC reconciliation day. Unknown never frees money.
+        """
+        with self.tx():
+            row=self.inference(operation)
+            if row['state']!='PREPARED': raise RuntimeError('INFERENCE_NOT_PREPARED')
+            p,limits,spec=self._inference_policy(row,policy)
+            day=datetime.fromtimestamp(self.clock(),timezone.utc).date().isoformat()
+            daily=session=0
+            for old in self.db.execute('SELECT * FROM automation_inference WHERE network=?',(row['network'],)):
+                oldspec=strict_json(old['spec'])
+                if oldspec['unit']!=spec['unit']: continue
+                if old['reason']=='SETTLEMENT_CAP_BREACH':
+                    raise PermissionError('INFERENCE_BUDGET_RECONCILIATION_REQUIRED')
+                held,spent=int(old['held']),int(old['spent'])
+                daily+=held+(spent if old['settled_day']==day else 0)
+                if old['correlation_id']==row['correlation_id']: session+=held+spent
+            reserve=sum(spec[k] for k in ('inference_cap','escrow_cap','fee_cap'))
+            if daily+reserve>limits['daily_cap'] or session+reserve>limits['session_cap']:
+                raise PermissionError('INFERENCE_BUDGET_EXHAUSTED')
+            self.db.execute("UPDATE automation_inference SET state='AUTHORIZED',held=?,policy_hash=?,authorized_day=? WHERE id=?",
+                            (str(reserve),digest(p),day,operation))
+            self.store.event(operation,'inference_authorized',{'held':str(reserve),'unit':spec['unit'],'day':day})
+        return self.inference(operation)
+
+    def submit_inference_intent(self, operation, policy):
+        """LOCAL write-ahead transition ONLY, deliberately no callable transport.
+
+        A future authorized sender must commit this before touching the network.
+        SUBMITTED means a possible attempt, not delivery. No second transition is
+        allowed, including after a crash immediately before the actual wire call.
+        """
+        with self.tx():
+            row=self.inference(operation)
+            if row['state']!='AUTHORIZED': raise RuntimeError('INFERENCE_RESEND_FORBIDDEN')
+            p,_,_=self._inference_policy(row,policy)
+            if digest(p)!=row['policy_hash']: raise PermissionError('POLICY_CHANGED')
+            day=datetime.fromtimestamp(self.clock(),timezone.utc).date().isoformat()
+            if day!=row['authorized_day']: raise PermissionError('AUTHORIZATION_DAY_EXPIRED')
+            self.db.execute("UPDATE automation_inference SET state='SUBMITTED' WHERE id=?",(operation,))
+            self.store.event(operation,'inference_submit_intent',{'environment':'sandbox','network_send':False})
+        return self.inference(operation)
+
+    def recover_inference(self, operation):
+        """Timeout/restart cannot establish no charge. Never returns to AUTHORIZED."""
+        with self.tx():
+            row=self.inference(operation)
+            if row['state']=='SUBMITTED':
+                self.db.execute("UPDATE automation_inference SET state='UNKNOWN',reason='RECONCILIATION_REQUIRED' WHERE id=?",(operation,))
+                self.store.event(operation,'inference_unknown',{'held':row['held']})
+        return self.inference(operation)
+
+    def reconcile_evidence(self, operation, reader):
+        """Offline evidence observation; does NOT invoke sandbox terminal settlement.
+
+        Metadata keys in the same Store retain bindings, replay claims and highest
+        evidence level. No migration, new operation states or monetary release.
+        """
+        from flop_evidence import classify, expected_identity
+        if getattr(reader,'environment',None)!='offline' or getattr(reader,'read_only',None) is not True:
+            raise PermissionError('OFFLINE_EVIDENCE_READER_REQUIRED')
+        row=self.recover_inference(operation)
+        if row['state']!='UNKNOWN': raise RuntimeError('INFERENCE_NOT_UNCERTAIN')
+        expected=expected_identity(row)
+        try:
+            capture=reader.lookup(dict(expected))
+        except Exception:
+            capture=None
+        result=({'level':None,'status':'UNKNOWN','reason':'READ_UNAVAILABLE_OR_MISSING',
+                 'settlement':'UNKNOWN','can_release_reservation':False} if capture is None
+                else classify(expected,capture))
+        key='inference_evidence:'+operation
+        with self.tx():
+            if self.inference(operation)['state']!='UNKNOWN': raise RuntimeError('INFERENCE_STATE_CHANGED')
+            saved=self.db.execute('SELECT value FROM metadata WHERE key=?',(key,)).fetchone()
+            old=strict_json(saved[0]) if saved else None
+            if old and old.get('capture_hash') and old.get('capture_hash')==result.get('capture_hash'):
+                return {**old,'replay':'DUPLICATE_SAME_OPERATION'}
+            if result.get('level') is not None:
+                claims=[('gateway_request_id',result['gateway_request_id'])]
+                if result.get('completion_id'): claims.append(('completion_id',result['completion_id']))
+                if result.get('refs',{}).get('receipt_id'): claims.append(('receipt_id',result['refs']['receipt_id']))
+                conflict=False
+                for kind,reference in claims:
+                    claimkey='inference_evidence_ref:'+digest([expected['genesis'],kind,reference])
+                    existing=self.db.execute('SELECT value FROM metadata WHERE key=?',(claimkey,)).fetchone()
+                    if existing and existing[0]!=operation: conflict=True
+                if old and (old.get('gateway_request_id')!=result['gateway_request_id']
+                            or old.get('response_hash') and old['response_hash']!=result.get('response_hash')
+                            or old.get('settlement_claim_hash') and old['settlement_claim_hash']!=result.get('settlement_claim_hash')
+                            or any(v is not None and v!=result.get('refs',{}).get(k)
+                                   for k,v in old.get('refs',{}).items())):
+                    conflict=True
+                if conflict:
+                    result={**result,'level':None,'status':'REJECTED_EVIDENCE','reason':'REPLAY_OR_CONFLICT'}
+                else:
+                    for kind,reference in claims:
+                        claimkey='inference_evidence_ref:'+digest([expected['genesis'],kind,reference])
+                        self.db.execute('INSERT OR IGNORE INTO metadata VALUES(?,?)',(claimkey,operation))
+                    self.db.execute('INSERT OR REPLACE INTO metadata VALUES(?,?)',(key,canonical(result)))
+            self.store.event(operation,'inference_evidence_observed',result)
+        return result
+
+    def reconcile_inference(self, operation, reader):
+        """Read-only EXTERNAL lookup contract; local terminal accounting is atomic.
+
+        Only offline, trusted sandbox readers supported. lookup(identity) returns
+        None or provisional evidence; verify(identity,evidence) must independently
+        verify it. A response field saying 'verified' alone is never sufficient.
+        No real endpoint/receipt verifier or retry/replay is implemented here.
+        """
+        if getattr(reader,'environment',None)!='sandbox' or getattr(reader,'read_only',None) is not True:
+            raise PermissionError('NO_LIVE_INFERENCE_RECONCILIATION')
+        row=self.recover_inference(operation)
+        if row['state'] in ('CONFIRMED','FAILED'): return row
+        if row['state']!='UNKNOWN': raise RuntimeError('INFERENCE_NOT_UNCERTAIN')
+        identity={k:row[k] for k in ('id','idempotency_key','correlation_id','network','model','fingerprint')}
+        try:
+            evidence=reader.lookup(dict(identity))
+            if evidence is None: return row
+            if reader.verify(dict(identity),evidence) is not True: raise ValueError('UNVERIFIED_TERMINAL')
+            if (evidence.get('identity')!=identity or evidence.get('state') not in ('CONFIRMED','FAILED')
+                    or evidence.get('finalized') is not True or evidence.get('escrow_closed') is not True):
+                raise ValueError('UNVERIFIED_TERMINAL')
+            spec=strict_json(row['spec'])
+            paid=self._money(evidence.get('inference_units')); fees=self._money(evidence.get('fee_units'))
+            if paid>spec['inference_cap'] or fees>spec['fee_cap']: raise ValueError('SETTLEMENT_CAP_BREACH')
+            # Optional/provisional correlations, not official wire-schema assertions.
+            refs={k:evidence.get(k) for k in ('gateway_request_id','channel_id','transaction_hash','receipt_id')}
+            if any(v is not None and (not isinstance(v,str) or not 1<=len(v)<=256) for v in refs.values()):
+                raise ValueError('REFERENCE_INVALID')
+            safe={'identity':identity,'state':evidence['state'],'finality_status':'VERIFIED_SANDBOX_FINAL',
+                  'settlement_status':'CLOSED','inference_units':str(paid),'fee_units':str(fees),
+                  'optional_provisional_refs':refs,'evidence_hash':digest(evidence)}
+        except Exception as error:
+            # No evidence, malformed evidence or verifier outage never releases funds.
+            if isinstance(error,ValueError) and str(error)=='SETTLEMENT_CAP_BREACH':
+                with self.tx():
+                    current=self.inference(operation)
+                    if current['state']=='UNKNOWN' and current['reason']!='SETTLEMENT_CAP_BREACH':
+                        self.db.execute("UPDATE automation_inference SET reason='SETTLEMENT_CAP_BREACH' WHERE id=?",(operation,))
+                        self.store.event(operation,'inference_cap_breach',{'held':current['held']})
+            return self.inference(operation)
+        with self.tx():
+            current=self.inference(operation)
+            if current['state']!='UNKNOWN': return current
+            day=datetime.fromtimestamp(self.clock(),timezone.utc).date().isoformat()
+            self.db.execute('''UPDATE automation_inference SET state=?,held='0',spent=?,
+                settled_day=?,evidence=?,reason=NULL WHERE id=?''',
+                (safe['state'],str(paid+fees),day,canonical(safe),operation))
+            self.store.event(operation,'inference_terminal',safe)
+        return self.inference(operation)
 
     def _mark(self,kind,status):
         self.db.execute('INSERT OR REPLACE INTO automation_health VALUES(?,?,?)',(kind,self.clock(),status))

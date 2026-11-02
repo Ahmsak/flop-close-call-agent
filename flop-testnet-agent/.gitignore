@@ -15,3 +15,14 @@ venv/
 dist/
 *.pem
 *.key
+
+# Local tool installations, custody and deployment material
+.flop/
+deployment-private/
+node_modules/
+npm-cache/
+*.tgz
+*.zip
+devnet-enroll-wallet.json
+devnet-wallet-agent-key.json
+devnet-agent-key.json

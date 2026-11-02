@@ -1,0 +1,8 @@
+{
+  "id": "synthetic-completion-1",
+  "object": "chat.completion",
+  "created": 100000,
+  "model": "fixture/model",
+  "choices": [{"index": 0, "message": {"role": "assistant", "content": "Synthetic offline response"}, "finish_reason": "stop"}],
+  "usage": {"prompt_tokens": 5, "completion_tokens": 3, "total_tokens": 8, "cost_flop": 0.001}
+}

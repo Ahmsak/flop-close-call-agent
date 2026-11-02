@@ -1,5 +1,84 @@
 # FLOP operator
 
+## Provisional inference accounting (P0-C, offline only)
+
+The existing Durable class now has prepare_inference, authorize_inference,
+submit_inference_intent, recover_inference and reconcile_inference. The additive
+automation_inference table lives in the existing Store, linked to automation_tasks.
+No new executor, CLI paid command, transport, signer or database is introduced.
+Legacy Technocore operations, model missions and outbox retain their existing paths.
+
+Identity: stable task/slot operation ID and idempotency key, explicit session-derived
+correlation ID, network, model and full canonical-request fingerprint. Changed inputs
+under the same task/slot are rejected. Stored specs are provisional sandbox contracts,
+not official gateway payloads or price verification. No request body/keys are stored.
+
+PREPARED -> AUTHORIZED -> SUBMITTED -> CONFIRMED / FAILED / UNKNOWN.
+UNKNOWN may become a verified terminal state through reconciliation only; it cannot
+be reauthorized or submitted again. SUBMITTED is a committed write-ahead intent,
+not proof of a wire request. Recovering it makes it UNKNOWN. Crash after intent but
+before wire deliberately sacrifices automatic retry to prevent duplicate charges.
+
+Policy.read still requires EXECUTION_DISABLED and real_money_budget=0. Optional
+automation_inference policy is sandbox-only: environment, network, unit,
+operation_allowlist, inference_cap, escrow_cap, fee_cap, daily_cap, session_cap.
+Missing policy fails closed. Authorization checks price_at/price_expires and scope;
+the intent boundary rechecks them, the policy hash and the original UTC day.
+An expired authorization retains its reservation; cancellation/repricing is not
+implemented. No local setting enables real FLOP execution in this stage.
+
+All amounts are nonnegative Python integers in an explicit raw-unit domain; bool,
+float, decimal strings and negative values are rejected. SQLite stores exact TEXT;
+accounting uses Python integer sums under BEGIN IMMEDIATE. Conservative reservation
+is inference_cap + escrow_cap + fee_cap, even when escrow might cover inference.
+All outstanding holds, including previous days, count against today's cap. Terminal
+actual inference/fees count on the UTC reconciliation day and for the lifetime of
+the explicit session. Changing unit/network defines a different budget domain, not
+a conversion. Session IDs must be assigned by trusted orchestration, not task text.
+
+Reservations release only after a trusted offline reader independently verifies
+matching identity, terminal CONFIRMED/FAILED, finality, closed escrow and bounded
+actual inference/fee amounts. FAILED may still incur fees. Missing evidence,
+timeouts, lookup errors, nonfinal or over-cap evidence retain UNKNOWN and all funds.
+Local settlement and the evidence event commit atomically. No exactly-once network
+guarantee is claimed. Cap breaches block new reservations in the same network/unit
+domain and require manual resolution; no automatic release.
+
+Reconciliation contract: trusted reader.environment='sandbox', read_only=True,
+lookup(identity) and verify(identity,evidence). These are local test interfaces,
+not guessed FLOP endpoints; a server's verified=true field is insufficient.
+Optional/provisional gateway_request_id, channel_id, transaction_hash and receipt_id
+are retained with verified terminal evidence. Real receipt/finality verification,
+price attestation, signer isolation and live reconciliation remain unimplemented.
+Raw response payloads are not journaled; selected references and evidence hash are.
+
+Migration is additive/idempotent on Durable initialization. No existing rows or
+automation_schema version are rewritten. Work on temporary test stores only until
+a separately authorized deployment/migration; old code does not enforce this ledger
+and must not be used to operate future inference reservations.
+
+## Public gateway model discovery (P0-B, development worktree only)
+
+From this component directory with the existing Python environment:
+`python -B agent.py gateway-models`
+
+One unauthenticated GET to https://api.flop.network/v1/models; no retries,
+redirects, environment proxies, custom endpoints, wallet/signing or inference.
+8-second socket-operation timeout (not a total DNS/streaming deadline), 512 KiB
+response limit, validated JSON discovery subset and projected model IDs. Extensions
+and prices are not verified or used for spending. No pagination is followed.
+`--gateway-network testnet` fails closed without a request: the configured profile
+is devnet, not verified chain identity or testnet readiness. HTTP 200 does not prove
+inference availability, receipt validity or settlement. Failures return exit code 2.
+
+By default no config or database is opened. Existing `--output PATH` saves the JSON
+result if explicitly requested. Optional `--gateway-journal EXISTING_DB` records a
+`gateway_model_discovery` event using the existing Store (local write, no migration
+or database creation). It is independent of the legacy `--db` option; no default
+operational database is selected. Error bodies and arbitrary headers are omitted.
+No new SDK/dependency. This feature is not deployed to the working installation.
+Reference: https://docs.flop.network/docs/sdk-references
+
 One CLI for the existing agent. Python 3.10+ and cryptography (requirements.txt).
 Existing plan, audit and readiness inputs remain supported.
 
@@ -169,3 +248,15 @@ Each run directory pins immutable mission inputs; refreshes still save separate
 intake files. Use a new run directory for a new mission over changed inputs.
 Reusing the directory resumes the same task; it does not mean all later events
 were analyzed. No automatic unblocking or live notification channel is enabled.
+
+
+## Offline FLOP evidence (P0-D)
+
+`flop_evidence.OfflineEvidenceReader` supplies saved local captures to
+`Durable.reconcile_evidence(operation_id, reader)`. It validates the supported official
+JSON completion subset and local correlation bindings; it does not authenticate a
+receipt or prove settlement. Gateway acceptance/completion never releases reservations.
+Missing genesis, unreadable evidence and unverifiable settlement keep the financial
+operation UNKNOWN. No network adapter or new CLI command is introduced.
+See [acceptance report](docs/AUTOMATION_ACCEPTANCE.md#p0-d-offline-flop-inference-evidence-2026-11-02)
+for supported formats, synthetic tests and remaining cryptographic verification work.

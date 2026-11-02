@@ -1,0 +1,15 @@
+{
+  "schema": "local-testnet-readiness-v1",
+  "network": "testnet",
+  "status": "UNVERIFIED",
+  "genesis": null,
+  "chain_spec": null,
+  "rpc": null,
+  "gateway": null,
+  "faucet": null,
+  "supported_releases": null,
+  "onboarding": null,
+  "identity_binding": null,
+  "faucet_status": "UNKNOWN",
+  "required_cli": null
+}
